@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Map2d.gd" id="1_6nlu3"]
 [ext_resource type="PackedScene" uid="uid://bsm07fu0icwjc" path="res://Scenes/tile_2d.tscn" id="2_if7qi"]
 [ext_resource type="PackedScene" uid="uid://btl1r0jhgh3no" path="res://Scenes/player.tscn" id="3_t3rlc"]
-[ext_resource type="PackedScene" uid="uid://caiosw3sow3s0" path="res://Scenes/slime.tscn" id="4_rsdfw"]
+[ext_resource type="PackedScene" path="res://Scenes/slime.tscn" id="4_rsdfw"]
 
 [node name="Grid" type="Node2D"]
 script = ExtResource("1_6nlu3")

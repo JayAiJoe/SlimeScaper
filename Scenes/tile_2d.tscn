@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsm07fu0icwjc"]
+[gd_scene load_steps=2 format=3 uid="uid://bsm07fu0icwjc"]
 
 [ext_resource type="Script" path="res://Scenes/tile_2d.gd" id="1_40qjr"]
-[ext_resource type="Texture2D" uid="uid://bp0aklr57hnd6" path="res://assets/sample_tiles/dirt_E.png" id="1_dqskk"]
 
-[node name="Tile2d" type="Sprite2D"]
-texture = ExtResource("1_dqskk")
-offset = Vector2(0, -103)
-region_rect = Rect2(149.74, 313.3, 212.081, 107.766)
+[node name="Tile2d" type="Node2D"]
 script = ExtResource("1_40qjr")
