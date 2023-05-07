@@ -21,7 +21,7 @@ func add_level(terrain_type:String) -> void:
 	var new_sprite = Sprite2D.new()
 	new_sprite.set_texture(load("res://Assets/sample_tiles/dirt_E.png"))
 	new_sprite.set_position(Vector2(0,-Utils.TILE_THICK*(levels.size()-1)))
-	new_sprite.set_offset(- Vector2(0,1)*103)
+	new_sprite.set_offset(Vector2(0,-1)*103)
 	add_child(new_sprite)
 	levels.append(new_sprite)
 
@@ -30,5 +30,5 @@ func get_top_pos() -> Vector2:
 
 func will_highlight(yes : bool) -> void:
 	if yes:
-		highlight.set_position(get_top_pos())
+		highlight.set_position(get_top_pos()-get_position())
 	highlight.set_visible(yes)

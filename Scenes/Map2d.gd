@@ -6,9 +6,13 @@ var grid = {}
 
 func _ready():
 	Utils.grid = self
-	var coords = get_coords_in_radius(Vector2(0,0),3)
+	var coords = get_coords_in_radius(Vector2(0,0),3, true)
 	for coord in coords:
 		add_new_tile(coord)
+	coords = get_coords_in_ring(Vector2(1,1),2)
+	for coord in coords:
+		add_new_tile(coord)
+	highlight_tiles(get_coords_in_radius(Vector2(1,1),2, true))
 	
 func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 	if coordinates in grid:
@@ -20,9 +24,9 @@ func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 		add_child(new_tile)
 	#fix global scaling
 
-func get_ring_coords(center:Vector2, radius:int) -> Array:
+func get_coords_in_ring(center:Vector2, radius:int) -> Array:
 	var result = []
-	var current = Vector2(-1,1)*radius
+	var current = Vector2(-1,1)*radius + center
 	
 	for dir in Utils.DIR:
 		for i in range(radius):
@@ -30,8 +34,15 @@ func get_ring_coords(center:Vector2, radius:int) -> Array:
 			current += Utils.DIR[dir]
 	return result
 	
-func get_coords_in_radius(center:Vector2, radius:int) -> Array: 
+func get_coords_in_radius(center:Vector2, radius:int, include_center = false) -> Array: 
 	var results = []
+	if include_center:
+		results.append(center)
 	for i in range(1,radius+1):
-		results += get_ring_coords(center, i)
+		results += get_coords_in_ring(center, i)
 	return results
+
+func highlight_tiles(tiles:Array) -> void:
+	for coord in tiles:
+		if coord in grid:
+			grid[coord].will_highlight(true)
