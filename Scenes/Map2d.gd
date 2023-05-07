@@ -2,6 +2,8 @@ extends Node2D
 
 var TILE = preload("res://Scenes/tile_2d.tscn")
 
+@export var level = "main menu"
+
 var grid = {}
 
 var top_left = Vector2()
@@ -13,18 +15,21 @@ func _ready():
 	connect_starting_signals()
 	randomize()
 	
-	test_grid()
+	if level == "main menu":
+		generate_main_menu()
+	else:
+		test_grid()
 
 func test_grid():
 	var coords = get_coords_in_radius(Vector2(0,0),3, true)
-	for coord in coords:
-		add_new_tile(coord)
-	coords = get_coords_in_ring(Vector2(1,1),2)
-	for coord in coords:
-		add_new_tile(coord)
-	highlight_tiles(get_coords_in_radius(Vector2(1,1),2, true))
-
+	for i in range(7):
+		add_new_tile(Vector2(i,-i))
 	
+
+func generate_main_menu():
+	var coords = get_coords_in_radius(Vector2(0,0),10, true)
+	for coord in coords:
+		add_new_tile(coord)
 
 func connect_starting_signals() -> void:
 	$Player.landed.connect(change_top_level) #test functionm
@@ -42,11 +47,9 @@ func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 	#fix global scaling
 
 func check_grid_size(new_tile_pos: Vector2):
-	print("new pos ", new_tile_pos)
 	var old_tl = top_left
 	var old_br = bot_right
 	if grid.is_empty():
-		print("empty grid", new_tile_pos)
 		top_left = new_tile_pos
 		bot_right = new_tile_pos
 	else:
