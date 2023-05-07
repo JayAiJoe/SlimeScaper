@@ -52,7 +52,10 @@ func _physics_process(delta):
 func move_dir(dir : String) -> void:
 	if animating:
 		return
-	current_coord = current_coord + DIR[dir]
+	var new_coord = current_coord + DIR[dir]
+	if not new_coord in Utils.grid.grid:
+		return
+	current_coord = new_coord
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)

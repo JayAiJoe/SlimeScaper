@@ -14,6 +14,13 @@ func _ready():
 		add_new_tile(coord)
 	highlight_tiles(get_coords_in_radius(Vector2(1,1),2, true))
 	
+	connect_starting_signals()
+	randomize()
+	
+
+func connect_starting_signals() -> void:
+	$Player.landed.connect(change_top_level) #test functionm
+	
 func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 	if coordinates in grid:
 		grid[coordinates].add_level(terrain)
@@ -46,3 +53,7 @@ func highlight_tiles(tiles:Array) -> void:
 	for coord in tiles:
 		if coord in grid:
 			grid[coord].will_highlight(true)
+
+func change_top_level(coordinates : Vector2) -> void:
+	#grid[coordinates].change_top_level(randi() % GameData.TERRAIN_TYPES.size())
+	pass
