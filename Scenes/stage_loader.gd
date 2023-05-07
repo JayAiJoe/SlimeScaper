@@ -21,6 +21,7 @@ func load_stage() -> void:
 			slime_container.add_child(new_slime)
 			new_slime.set_starting_position(slime[0])
 			new_slime.set_type(slime[1])
+			new_slime.landed.connect(map.change_top_level)
 			
 	
 

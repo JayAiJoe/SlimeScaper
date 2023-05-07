@@ -15,6 +15,6 @@ const level_1 = {
 	
 	"slimes" : [
 			[Vector2(0,0), SLIME.GRASS],
-			[Vector2(3,0), SLIME.FIRE],
+			[Vector2(3,0), SLIME.WATER],
 		]
 }

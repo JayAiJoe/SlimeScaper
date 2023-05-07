@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
 var velocity_y = 0
 
 
-var type = GameData.SLIME_TYPES.GRASS
+var type = GameData.SLIME.GRASS
 
 var los : Array = []
 var vision_range : int = 1
@@ -80,7 +80,7 @@ func set_animating(val : bool) -> void:
 	animating = val
 
 func update_los(coords : Vector2) -> void:
-	los = Utils.get_coords_in_ring(coords, vision_range)
+	los = Utils.get_coords_in_radius(coords, vision_range, true)
 
 func get_aggro_direction() -> String:
 	var highest_trail_level = 0

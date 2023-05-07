@@ -33,7 +33,7 @@ func connect_starting_signals() -> void:
 	
 	
 	
-func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN_TYPES.DIRT) -> void:
+func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> void:
 	if coordinates in grid:
 		grid[coordinates].add_level(terrain)
 	else:
@@ -79,8 +79,8 @@ func highlight_tiles(tiles:Array) -> void:
 
 func change_top_level(coordinates : Vector2, slime_type : int) -> void:
 	var top_level : Level = grid[coordinates].get_top_level()
-	if top_level.type in GameData.TERRAIN_REACTIONS and slime_type in GameData.TERRAIN_REACTIONS[top_level.type]:
-		top_level.set_type(GameData.TERRAIN_REACTIONS[top_level.type][slime_type])
+	if top_level.type in GameData.REACTIONS and slime_type in GameData.REACTIONS[top_level.type]:
+		top_level.set_type(GameData.REACTIONS[top_level.type][slime_type])
 
 func update_trails(new_coords : Vector2) -> void:
 	for tile in grid.values():

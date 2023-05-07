@@ -12,7 +12,7 @@ var trail_level : int = 0
 func _ready():
 	pass # Replace with function body.
 
-func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.TERRAIN_TYPES.DIRT) -> void:
+func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.TERRAIN.DIRT) -> void:
 	coordinates = _coordinates
 	set_position(Utils.coordinates_to_global(coordinates) )
 	

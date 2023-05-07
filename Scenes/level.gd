@@ -6,7 +6,7 @@ const STANDARD_SCALE = 1
 const SCALE_TIME = 0.05
 
 @onready var sprite : Sprite2D = $Sprite2D
-var type : int = GameData.TERRAIN_TYPES.DIRT
+var type : int = GameData.TERRAIN.DIRT
 
 func _ready():
 	set_type(type)
