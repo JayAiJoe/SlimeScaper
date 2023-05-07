@@ -1,4 +1,5 @@
 extends Node2D
+class_name Map2D
 
 var TILE = preload("res://Scenes/tile_2d.tscn")
 
@@ -13,7 +14,7 @@ func _ready():
 	connect_starting_signals()
 	randomize()
 	
-	test_grid()
+	#test_grid()
 
 func test_grid():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
@@ -27,11 +28,12 @@ func test_grid():
 	
 
 func connect_starting_signals() -> void:
-	$slime.landed.connect(change_top_level) #test functionm
-	$Player.landed.connect(update_trails)
+	#$slime.landed.connect(change_top_level) #test functionm
+	pass
 	
 	
-func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
+	
+func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN_TYPES.DIRT) -> void:
 	if coordinates in grid:
 		grid[coordinates].add_level(terrain)
 	else:

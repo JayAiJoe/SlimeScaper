@@ -12,22 +12,22 @@ var trail_level : int = 0
 func _ready():
 	pass # Replace with function body.
 
-func create_new_tile(_coordinates = Vector2(0,0), terrain_type = "undefined") -> void:
+func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.TERRAIN_TYPES.DIRT) -> void:
 	coordinates = _coordinates
 	set_position(Utils.coordinates_to_global(coordinates) )
 	
 	set_z_index(position.y)
 	add_level(terrain_type)
 
-func add_level(terrain_type:String) -> void:
+func add_level(terrain_type : int) -> void:
 	if levels.size() == 3:
 		return
 		
 	var new_level = Level.instantiate()
+	new_level.type = terrain_type
 	add_child(new_level)
 	levels.append(new_level)
 	
-	#new_level.set_position(Vector2(0,-Utils.TILE_THICK*(levels.size()-1)))
 	new_level.set_y_offset(-(Utils.TILE_HEIGHT + Utils.TILE_THICK*(levels.size()-1)))
 
 func get_top_pos() -> Vector2:

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Slime
 
 var current_coord
 var animating = false
@@ -24,13 +25,14 @@ func _ready():
 	set_z_index(1000)
 	
 	Utils.set_screen_rect(get_viewport_rect())
-	current_coord = Vector2(1,0)
-	update_los(current_coord)
+	
+
+func set_starting_position(pos : Vector2) -> void:
+	current_coord = pos
 	set_position(Utils.coordinates_to_global(current_coord))
+	update_los(current_coord)
 	
-	
-	
-	#animation_player.play("idle")
+
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):

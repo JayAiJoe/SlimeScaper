@@ -1,4 +1,5 @@
 extends Node2D
+class_name Player
 
 
 const MOVE_TIME = 0.25
@@ -22,7 +23,10 @@ func _ready():
 	set_z_index(1000)
 	
 	Utils.set_screen_rect(get_viewport_rect())
-	current_coord = Vector2(0,0)
+	set_starting_position(Vector2.ZERO)
+
+func set_starting_position(pos : Vector2) -> void:
+	current_coord = pos
 	set_position(Utils.coordinates_to_global(current_coord))
 
 func _input(event):
