@@ -29,6 +29,7 @@ func _ready():
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
+	print("set starting posiiton in silme")
 	set_position(Utils.coordinates_to_global(current_coord))
 	update_los(current_coord)
 	
@@ -73,7 +74,7 @@ func move_dir(dir : String) -> void:
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
-	tween.tween_property(self, "position", Utils.coordinates_to_global(current_coord), 0.4)
+	tween.tween_property(self, "position", Utils.grid.grid[current_coord].get_top_pos(), 0.4)
 	velocity_y = JUMP_VELOCITY
 	tween.tween_callback(emit_signal.bind("landed", current_coord, type))
 	tween.tween_callback(update_los.bind(current_coord))

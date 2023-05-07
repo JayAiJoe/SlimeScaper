@@ -14,6 +14,7 @@ func _ready():
 
 func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.TERRAIN.DIRT) -> void:
 	coordinates = _coordinates
+	
 	set_position(Utils.coordinates_to_global(coordinates) )
 	
 	set_z_index(position.y)

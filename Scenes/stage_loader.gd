@@ -13,8 +13,10 @@ func set_stage_info(info : Dictionary) -> void:
 
 func load_stage() -> void:
 	if stage_info:
+		Utils.set_screen_rect(get_viewport_rect())
 		for tile in stage_info.map:
 			map.add_new_tile(tile[0], tile[1])
+		print(stage_info.player_start)
 		player.set_starting_position(stage_info.player_start)
 		for slime in stage_info.slimes:
 			var new_slime : Slime = slime_scene.instantiate()

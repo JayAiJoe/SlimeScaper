@@ -21,12 +21,12 @@ signal landed(coords)
 
 func _ready():
 	set_z_index(1000)
-	
-	Utils.set_screen_rect(get_viewport_rect())
+
 	set_starting_position(Vector2.ZERO)
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
+	print("get coordinates from player set starting position")
 	set_position(Utils.coordinates_to_global(current_coord))
 
 func _input(event):

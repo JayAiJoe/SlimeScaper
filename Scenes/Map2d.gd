@@ -15,11 +15,6 @@ func _ready():
 	Utils.grid = self
 	connect_starting_signals()
 	randomize()
-	
-	if level == "main menu":
-		generate_main_menu()
-	else:
-		test_grid()
 
 func test_grid():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
