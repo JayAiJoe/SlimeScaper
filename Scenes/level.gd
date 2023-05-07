@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level
 
 const MAX_SCALE = 1.2
 const STANDARD_SCALE = 1
@@ -15,7 +16,7 @@ func set_type(type_code : int) -> void:
 	
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(sprite, "scale", Vector2.ONE * MAX_SCALE, SCALE_TIME)
-	sprite.set_texture(load("res://Assets/sample_tiles/" + GameData.TERRAIN_TYPES[type] + "_E.png"))
+	sprite.set_texture(load("res://Assets/sample_tiles/" + str(type) + ".png"))
 	tween.tween_property(sprite, "scale", Vector2.ONE * STANDARD_SCALE, SCALE_TIME)
 	
 	

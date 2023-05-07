@@ -1,13 +1,17 @@
 extends Node2D
 
 
+const MOVE_TIME = 0.25
 
 var current_coord
 var animating = false
 
-const JUMP_VELOCITY = -350.0
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
+const JUMP_VELOCITY = -400.0
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 3
 var velocity_y = 0
+
+var move_queue : Array = []
+var move_queue_max : int = 1
 
 @onready var sprite : Sprite2D = $Sprite2D
 
@@ -24,7 +28,12 @@ func _ready():
 func _input(event):
 	for dir in GameData.DIRECTIONS:
 		if event.is_action_pressed(dir):
-			move_dir(dir)
+			if move_queue.size() < move_queue_max:
+				move_queue.append(dir)
+
+func _process(delta):
+	if not animating and move_queue.size() > 0:
+		move_dir(move_queue.pop_front())
 
 func _physics_process(delta):
 	if velocity_y != 0:
@@ -43,7 +52,7 @@ func move_dir(dir):
 	var tween = get_tree().create_tween()
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
-	tween.tween_property(self, "position", Utils.grid.grid[current_coord].get_top_pos(), 0.4)
+	tween.tween_property(self, "position", Utils.grid.grid[current_coord].get_top_pos(), MOVE_TIME)
 	velocity_y = JUMP_VELOCITY
 	tween.tween_callback(emit_signal.bind("landed", current_coord))
 

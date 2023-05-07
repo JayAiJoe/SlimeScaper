@@ -21,9 +21,13 @@ func _ready():
 		test_grid()
 
 func test_grid():
-	var coords = get_coords_in_radius(Vector2(0,0),3, true)
-	for i in range(7):
-		add_new_tile(Vector2(i,-i))
+	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
+	for coord in coords:
+		add_new_tile(coord)
+	coords = Utils.get_coords_in_ring(Vector2(1,1),2)
+	for coord in coords:
+		add_new_tile(coord)
+	highlight_tiles(Utils.get_coords_in_radius(Vector2(1,1),2, true))
 	
 
 func generate_main_menu():
@@ -32,7 +36,9 @@ func generate_main_menu():
 		add_new_tile(coord)
 
 func connect_starting_signals() -> void:
-	$Player.landed.connect(change_top_level) #test functionm
+	$slime.landed.connect(change_top_level) #test functionm
+	$Player.landed.connect(update_trails)
+	
 	
 func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 	if coordinates in grid:
@@ -61,36 +67,27 @@ func check_grid_size(new_tile_pos: Vector2):
 	if old_tl != top_left or old_br != bot_right:
 		#resize na
 		var max_length = max(bot_right.x - top_left.x, bot_right.y - top_left.y)
-		print("top_left ",top_left)
-		print("bot_right ",bot_right)
+		#print("top_left ",top_left)
+		#print("bot_right ",bot_right)
 		if max_length:
 			map_scale = Utils.SCREEN_HEIGHT/max_length*0.9
 		$Camera.set_zoom(map_scale*Vector2(1,1))
 		$Camera.set_position(Vector2((bot_right.x + top_left.x)/2,(bot_right.y + top_left.y)/2))
 
-func get_coords_in_ring(center:Vector2, radius:int) -> Array:
-	var result = []
-	var current = Vector2(-1,1)*radius + center
-	
-	for dir in Utils.DIR:
-		for i in range(radius):
-			result.append(current)
-			current += Utils.DIR[dir]
-	return result
-	
-func get_coords_in_radius(center:Vector2, radius:int, include_center = false) -> Array: 
-	var results = []
-	if include_center:
-		results.append(center)
-	for i in range(1,radius+1):
-		results += get_coords_in_ring(center, i)
-	return results
+
 
 func highlight_tiles(tiles:Array) -> void:
 	for coord in tiles:
 		if coord in grid:
 			grid[coord].will_highlight(true)
 
-func change_top_level(coordinates : Vector2) -> void:
-	#grid[coordinates].change_top_level(randi() % GameData.TERRAIN_TYPES.size())
-	pass
+
+func change_top_level(coordinates : Vector2, slime_type : int) -> void:
+	var top_level : Level = grid[coordinates].get_top_level()
+	if top_level.type in GameData.TERRAIN_REACTIONS and slime_type in GameData.TERRAIN_REACTIONS[top_level.type]:
+		top_level.set_type(GameData.TERRAIN_REACTIONS[top_level.type][slime_type])
+
+func update_trails(new_coords : Vector2) -> void:
+	for tile in grid.values():
+		(tile as Tile2D).decrement_trail_level()
+	(grid[new_coords] as Tile2D).set_trail_level(GameData.PLAYER_TRAIL_STRENGTH)
