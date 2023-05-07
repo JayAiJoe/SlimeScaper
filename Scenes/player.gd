@@ -26,11 +26,14 @@ func _input(event):
 func move_dir(dir):
 	if animating:
 		return
-	current_coord = current_coord + DIR[dir]
+	var new_coord = current_coord + DIR[dir]
+	if not new_coord in Utils.grid.grid:
+		return
+	current_coord = new_coord
 	var tween = get_tree().create_tween()
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
-	tween.tween_property(self, "position", Utils.coordinates_to_global(current_coord), 0.4)
+	tween.tween_property(self, "position", Utils.grid.grid[current_coord].get_top_pos(), 0.4)
 
 func set_animating(val : bool) -> void:
 	animating = val

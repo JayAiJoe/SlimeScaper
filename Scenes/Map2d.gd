@@ -1,25 +1,26 @@
 extends Node2D
 
-
-const TILE = preload("res://Scenes/tile_2d.tscn")
+var TILE = preload("res://Scenes/tile_2d.tscn")
 
 var grid = {}
 
 func _ready():
-	
+	Utils.grid = self
 	add_new_tile(Vector2(1,1), "walow")
 	add_new_tile(Vector2(1,0), "walow")
 	add_new_tile(Vector2(0,1), "walow")
 	add_new_tile(Vector2(0,0), "walow")
 	add_new_tile(Vector2(-1,1), "walow")
-
-func add_new_tile(coordinates : Vector2, state : String) -> void:
+	add_new_tile(Vector2(-1,1), "walow")
+	add_new_tile(Vector2(-1,1), "walow")
+	add_new_tile(Vector2(0,1), "walow")
+	
+func add_new_tile(coordinates : Vector2, terrain : String) -> void:
 	if coordinates in grid:
-		return
-	var new_tile = TILE.instantiate()
-	new_tile.init(coordinates, state)
-	print(coordinates)
-	print(Utils.coordinates_to_global(coordinates))
-	grid[coordinates] = new_tile
-	add_child(new_tile)
+		grid[coordinates].add_level(terrain)
+	else:
+		var new_tile = TILE.instantiate()
+		new_tile.create_new_tile(coordinates, terrain)
+		grid[coordinates] = new_tile
+		add_child(new_tile)
 	#fix global scaling

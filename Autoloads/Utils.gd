@@ -1,9 +1,15 @@
 extends Node
 
+const TILE_WIDTH = 320
+const TILE_LENGTH = 103
+const TILE_THICK = 18
+
 var SCREEN_RECT 
 var SCREEN_WIDTH
 var SCREEN_HEIGHT
 var SCREEN_CENTER
+
+var grid
 
 func set_screen_rect(rect):
 	SCREEN_RECT = rect

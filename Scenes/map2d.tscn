@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsm07fu0icwjc" path="res://Scenes/tile_2d.tscn" id="2_if7qi"]
 [ext_resource type="PackedScene" uid="uid://btl1r0jhgh3no" path="res://Scenes/player.tscn" id="3_t3rlc"]
 
-[node name="Map" type="Node2D"]
+[node name="Grid" type="Node2D"]
 script = ExtResource("1_6nlu3")
 
 [node name="Tile2d" parent="." instance=ExtResource("2_if7qi")]
