@@ -4,8 +4,18 @@ var TILE = preload("res://Scenes/tile_2d.tscn")
 
 var grid = {}
 
+var top_left = Vector2()
+var bot_right = Vector2()
+var map_scale = 1
+
 func _ready():
 	Utils.grid = self
+	connect_starting_signals()
+	randomize()
+	
+	test_grid()
+
+func test_grid():
 	var coords = get_coords_in_radius(Vector2(0,0),3, true)
 	for coord in coords:
 		add_new_tile(coord)
@@ -13,9 +23,7 @@ func _ready():
 	for coord in coords:
 		add_new_tile(coord)
 	highlight_tiles(get_coords_in_radius(Vector2(1,1),2, true))
-	
-	connect_starting_signals()
-	randomize()
+
 	
 
 func connect_starting_signals() -> void:
@@ -27,9 +35,35 @@ func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 	else:
 		var new_tile = TILE.instantiate()
 		new_tile.create_new_tile(coordinates, terrain)
+		check_grid_size(new_tile.position)
 		grid[coordinates] = new_tile
 		add_child(new_tile)
+		
 	#fix global scaling
+
+func check_grid_size(new_tile_pos: Vector2):
+	print("new pos ", new_tile_pos)
+	var old_tl = top_left
+	var old_br = bot_right
+	if grid.is_empty():
+		print("empty grid", new_tile_pos)
+		top_left = new_tile_pos
+		bot_right = new_tile_pos
+	else:
+		top_left.x = min(top_left.x, new_tile_pos.x)
+		top_left.y = min(top_left.y, new_tile_pos.y)
+		bot_right.x = max(bot_right.x, new_tile_pos.x)
+		bot_right.y = max(bot_right.y, new_tile_pos.y)
+	
+	if old_tl != top_left or old_br != bot_right:
+		#resize na
+		var max_length = max(bot_right.x - top_left.x, bot_right.y - top_left.y)
+		print("top_left ",top_left)
+		print("bot_right ",bot_right)
+		if max_length:
+			map_scale = Utils.SCREEN_HEIGHT/max_length*0.9
+		$Camera.set_zoom(map_scale*Vector2(1,1))
+		$Camera.set_position(Vector2((bot_right.x + top_left.x)/2,(bot_right.y + top_left.y)/2))
 
 func get_coords_in_ring(center:Vector2, radius:int) -> Array:
 	var result = []
