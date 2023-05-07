@@ -38,7 +38,6 @@ func will_highlight(yes : bool) -> void:
 		highlight.set_position(get_top_pos()-get_position())
 	highlight.set_visible(yes)
 
-
 func get_top_level() -> Level:
 	return levels[-1]
 

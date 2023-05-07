@@ -31,7 +31,7 @@ func test_grid():
 	
 
 func generate_main_menu():
-	var coords = get_coords_in_radius(Vector2(0,0),10, true)
+	var coords = Utils.get_coords_in_radius(Vector2(0,0),10, true)
 	for coord in coords:
 		add_new_tile(coord)
 
@@ -74,13 +74,10 @@ func check_grid_size(new_tile_pos: Vector2):
 		$Camera.set_zoom(map_scale*Vector2(1,1))
 		$Camera.set_position(Vector2((bot_right.x + top_left.x)/2,(bot_right.y + top_left.y)/2))
 
-
-
 func highlight_tiles(tiles:Array) -> void:
 	for coord in tiles:
 		if coord in grid:
 			grid[coord].will_highlight(true)
-
 
 func change_top_level(coordinates : Vector2, slime_type : int) -> void:
 	var top_level : Level = grid[coordinates].get_top_level()

@@ -18,8 +18,6 @@ func set_type(type_code : int) -> void:
 	tween.tween_property(sprite, "scale", Vector2.ONE * MAX_SCALE, SCALE_TIME)
 	sprite.set_texture(load("res://Assets/sample_tiles/" + str(type) + ".png"))
 	tween.tween_property(sprite, "scale", Vector2.ONE * STANDARD_SCALE, SCALE_TIME)
-	
-	
 
 func set_y_offset(offset : float) -> void:
 	if not sprite:
