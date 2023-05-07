@@ -65,6 +65,8 @@ func move_dir(dir : String) -> void:
 	if animating:
 		return
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
+	if not is_free_tile(new_coord):
+		return
 	if not new_coord in Utils.grid.grid:
 		return
 	current_coord = new_coord
@@ -92,6 +94,12 @@ func get_aggro_direction() -> String:
 					highest_trail_level = current_tile.trail_level
 					chosen_direction = GameData.DIRECTION_NAMES[coords - current_coord]
 	return chosen_direction
+
+func is_free_tile(new_coords : Vector2) -> bool:
+	for slime in get_tree().get_nodes_in_group("Slimes"):
+		if slime != self and slime.current_coord == new_coords:
+			return false
+	return true
 
 
 func _on_move_timer_timeout():

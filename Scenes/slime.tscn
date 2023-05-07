@@ -26,7 +26,7 @@ _data = {
 "idle": SubResource("Animation_7m8lu")
 }
 
-[node name="slime" type="Node2D"]
+[node name="slime" type="Node2D" groups=["Slimes"]]
 script = ExtResource("1_xjruh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
