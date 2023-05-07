@@ -6,9 +6,8 @@ const TILE = preload("res://Scenes/tile_2d.tscn")
 var grid = {}
 
 func _ready():
-	Utils.set_screen_rect(get_viewport_rect())
-	add_new_tile(Vector2(1,1), "walow")
 	
+	add_new_tile(Vector2(1,1), "walow")
 	add_new_tile(Vector2(1,0), "walow")
 	add_new_tile(Vector2(0,1), "walow")
 	add_new_tile(Vector2(0,0), "walow")
@@ -21,7 +20,6 @@ func add_new_tile(coordinates : Vector2, state : String) -> void:
 	new_tile.init(coordinates, state)
 	print(coordinates)
 	print(Utils.coordinates_to_global(coordinates))
-	new_tile.set_position(Utils.coordinates_to_global(coordinates))
 	grid[coordinates] = new_tile
 	add_child(new_tile)
-	#fix scaling
+	#fix global scaling
