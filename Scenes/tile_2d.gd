@@ -1,11 +1,14 @@
 extends Sprite2D
 class_name Tile2d
 
-# Called when the node enters the scene tree for the first time.
+
+var coordinates  = Vector2(0,0)
+var state = "dirt"
+
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func init(_coordinates = Vector2(0,0), _state = "undefined"):
+	coordinates = _coordinates
+	set_z_index(coordinates.y)
+	state = _state

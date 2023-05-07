@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brbx2n4c5iljh"
-path="res://.godot/imported/building_cabin_E.png-c656c110e072267a930cf986b6527e03.ctex"
+path="res://.godot/imported/building_cabin_E.png-2e260b0d13d8ba5238f02c121740436e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sample_tiles/building_cabin_E.png"
-dest_files=["res://.godot/imported/building_cabin_E.png-c656c110e072267a930cf986b6527e03.ctex"]
+source_file="res://Assets/sample_tiles/building_cabin_E.png"
+dest_files=["res://.godot/imported/building_cabin_E.png-2e260b0d13d8ba5238f02c121740436e.ctex"]
 
 [params]
 
