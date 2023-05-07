@@ -10,8 +10,11 @@ const DIRECTIONS = {
 	"move_S" : Vector2(0,1),
 }
 
-const TERRAIN_TYPES = {
-	0 : "dirt",
-	1 : "grass",
-	2 : "stone_hill",
+enum TERRAIN_TYPES {DIRT, GRASS, ROCK, WATER}
+
+
+enum SLIME_TYPES {GRASS, WATER, ROCK, FIRE}
+
+var TERRAIN_REACTIONS : Dictionary = {
+	TERRAIN_TYPES.DIRT : {SLIME_TYPES.GRASS : TERRAIN_TYPES.GRASS}
 }

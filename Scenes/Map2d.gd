@@ -27,7 +27,7 @@ func test_grid():
 	
 
 func connect_starting_signals() -> void:
-	$Player.landed.connect(change_top_level) #test functionm
+	$slime.landed.connect(change_top_level) #test functionm
 	
 func add_new_tile(coordinates : Vector2, terrain = "dirt") -> void:
 	if coordinates in grid:
@@ -69,10 +69,10 @@ func get_coords_in_ring(center:Vector2, radius:int) -> Array:
 	var result = []
 	var current = Vector2(-1,1)*radius + center
 	
-	for dir in Utils.DIR:
+	for dir in GameData.DIRECTIONS:
 		for i in range(radius):
 			result.append(current)
-			current += Utils.DIR[dir]
+			current += GameData.DIRECTIONS[dir]
 	return result
 	
 func get_coords_in_radius(center:Vector2, radius:int, include_center = false) -> Array: 
@@ -88,6 +88,11 @@ func highlight_tiles(tiles:Array) -> void:
 		if coord in grid:
 			grid[coord].will_highlight(true)
 
-func change_top_level(coordinates : Vector2) -> void:
-	#grid[coordinates].change_top_level(randi() % GameData.TERRAIN_TYPES.size())
-	pass
+
+func change_top_level(coordinates : Vector2, slime_type : int) -> void:
+	var top_level : Level = grid[coordinates].get_top_level()
+	if top_level.type in GameData.TERRAIN_REACTIONS and slime_type in GameData.TERRAIN_REACTIONS[top_level.type]:
+		top_level.set_type(GameData.TERRAIN_REACTIONS[top_level.type][slime_type])
+
+	
+

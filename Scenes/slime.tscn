@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://caiosw3sow3s0"]
 
-[ext_resource type="Texture2D" uid="uid://bcv6ocr6p5wxm" path="res://assets/slime_idle.png" id="1_wma7g"]
 [ext_resource type="Script" path="res://Scenes/slime.gd" id="1_xjruh"]
+[ext_resource type="Texture2D" uid="uid://mreavnfe1bbr" path="res://Assets/slimes/0.png" id="2_etrik"]
 
 [sub_resource type="Animation" id="Animation_7m8lu"]
 resource_name = "idle"
@@ -30,10 +30,9 @@ _data = {
 script = ExtResource("1_xjruh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(49, -45)
-scale = Vector2(3, 3)
-texture = ExtResource("1_wma7g")
-hframes = 5
+position = Vector2(2, -33)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_etrik")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

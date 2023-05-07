@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dubyat2464u7v"
-path="res://.godot/imported/stone_hill_E.png-06c5a9c1bb4f4e30b7a9d380d9066f46.ctex"
+uid="uid://8ecvrjlaank8"
+path="res://.godot/imported/Screenshot 2023-05-07 182732.png-7f429257c76bb2445821d5da9f9644cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sample_tiles/stone_hill_E.png"
-dest_files=["res://.godot/imported/stone_hill_E.png-06c5a9c1bb4f4e30b7a9d380d9066f46.ctex"]
+source_file="res://Assets/slimes/Screenshot 2023-05-07 182732.png"
+dest_files=["res://.godot/imported/Screenshot 2023-05-07 182732.png-7f429257c76bb2445821d5da9f9644cb.ctex"]
 
 [params]
 
