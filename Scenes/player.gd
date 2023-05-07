@@ -1,11 +1,6 @@
 extends Node2D
 
-const DIR = {   "move_SE": Vector2(1,0),
-				"move_NE": Vector2(1,-1),
-				"move_N" : Vector2(0,-1),
-				"move_NW": Vector2(-1,0),
-				"move_SW": Vector2(-1,1),
-				"move_S" : Vector2(0,1),}
+
 
 var current_coord
 var animating = false
@@ -16,6 +11,8 @@ var velocity_y = 0
 
 @onready var sprite : Sprite2D = $Sprite2D
 
+signal landed(coords)
+
 
 func _ready():
 	set_z_index(1000)
@@ -25,7 +22,7 @@ func _ready():
 	set_position(Utils.coordinates_to_global(current_coord))
 
 func _input(event):
-	for dir in DIR:
+	for dir in GameData.DIRECTIONS:
 		if event.is_action_pressed(dir):
 			move_dir(dir)
 
@@ -39,7 +36,7 @@ func _physics_process(delta):
 func move_dir(dir):
 	if animating:
 		return
-	var new_coord = current_coord + DIR[dir]
+	var new_coord = current_coord + GameData.DIRECTIONS[dir]
 	if not new_coord in Utils.grid.grid:
 		return
 	current_coord = new_coord
@@ -48,8 +45,8 @@ func move_dir(dir):
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.grid.grid[current_coord].get_top_pos(), 0.4)
 	velocity_y = JUMP_VELOCITY
+	tween.tween_callback(emit_signal.bind("landed", current_coord))
 
 func set_animating(val : bool) -> void:
 	animating = val
-
 
