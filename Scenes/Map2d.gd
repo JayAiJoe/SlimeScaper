@@ -3,6 +3,8 @@ class_name Map2D
 
 var TILE = preload("res://Scenes/tile_2d.tscn")
 
+@export var level = "main menu"
+
 var grid = {}
 
 var top_left = Vector2()
@@ -14,7 +16,10 @@ func _ready():
 	connect_starting_signals()
 	randomize()
 	
-	#test_grid()
+	if level == "main menu":
+		generate_main_menu()
+	else:
+		test_grid()
 
 func test_grid():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
@@ -24,8 +29,12 @@ func test_grid():
 	for coord in coords:
 		add_new_tile(coord)
 	highlight_tiles(Utils.get_coords_in_radius(Vector2(1,1),2, true))
-
 	
+
+func generate_main_menu():
+	var coords = Utils.get_coords_in_radius(Vector2(0,0),10, true)
+	for coord in coords:
+		add_new_tile(coord)
 
 func connect_starting_signals() -> void:
 	#$slime.landed.connect(change_top_level) #test functionm
@@ -46,11 +55,9 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 	#fix global scaling
 
 func check_grid_size(new_tile_pos: Vector2):
-	#print("new pos ", new_tile_pos)
 	var old_tl = top_left
 	var old_br = bot_right
 	if grid.is_empty():
-		#print("empty grid", new_tile_pos)
 		top_left = new_tile_pos
 		bot_right = new_tile_pos
 	else:
@@ -69,13 +76,10 @@ func check_grid_size(new_tile_pos: Vector2):
 		$Camera.set_zoom(map_scale*Vector2(1,1))
 		$Camera.set_position(Vector2((bot_right.x + top_left.x)/2,(bot_right.y + top_left.y)/2))
 
-
-
 func highlight_tiles(tiles:Array) -> void:
 	for coord in tiles:
 		if coord in grid:
 			grid[coord].will_highlight(true)
-
 
 func change_top_level(coordinates : Vector2, slime_type : int) -> void:
 	var top_level : Level = grid[coordinates].get_top_level()
