@@ -3,6 +3,7 @@ class_name Tile2D
 
 var coordinates  = Vector2(0,0)
 var levels = []
+@onready var highlight = $Highlight
 
 func _ready():
 	pass # Replace with function body.
@@ -25,6 +26,9 @@ func add_level(terrain_type:String) -> void:
 	levels.append(new_sprite)
 
 func get_top_pos() -> Vector2:
-	print(get_position())
-	print(-Utils.TILE_THICK*(levels.size()-1))
 	return get_position() + Vector2(0,-Utils.TILE_THICK*(levels.size()-1))
+
+func will_highlight(yes : bool) -> void:
+	if yes:
+		highlight.set_position(get_top_pos())
+	highlight.set_visible(yes)

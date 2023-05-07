@@ -1,5 +1,12 @@
 extends Node
 
+const DIR = {   "move_SE": Vector2(1,0),
+				"move_NE": Vector2(1,-1),
+				"move_N" : Vector2(0,-1),
+				"move_NW": Vector2(-1,0),
+				"move_SW": Vector2(-1,1),
+				"move_S" : Vector2(0,1),}
+				
 const TILE_WIDTH = 320
 const TILE_LENGTH = 103
 const TILE_THICK = 18
