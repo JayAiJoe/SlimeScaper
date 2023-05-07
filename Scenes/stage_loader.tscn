@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4f1gdsdh2o7d"]
+
+[ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
+[ext_resource type="PackedScene" uid="uid://dvuodt3krqvsx" path="res://Scenes/map2d.tscn" id="2_oien2"]
+[ext_resource type="PackedScene" uid="uid://btl1r0jhgh3no" path="res://Scenes/player.tscn" id="3_1y5lv"]
+
+[node name="StageLoader" type="Node2D"]
+script = ExtResource("1_qk5nt")
+
+[node name="Grid" parent="." instance=ExtResource("2_oien2")]
+
+[node name="Player" parent="." instance=ExtResource("3_1y5lv")]
+
+[node name="SlimeContainer" type="Node2D" parent="."]

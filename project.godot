@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Utils="*res://Autoloads/Utils.gd"
 Events="*res://Autoloads/Events.gd"
 GameData="*res://Autoloads/GameData.gd"
+StageData="*res://Autoloads/StageData.gd"
 
 [display]
 

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Slime
 
 var current_coord
 var animating = false
@@ -8,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
 var velocity_y = 0
 
 
-var type = GameData.SLIME_TYPES.GRASS
+var type = GameData.SLIME.GRASS
 
 var los : Array = []
 var vision_range : int = 1
@@ -24,13 +25,14 @@ func _ready():
 	set_z_index(1000)
 	
 	Utils.set_screen_rect(get_viewport_rect())
-	current_coord = Vector2(1,0)
-	update_los(current_coord)
+	
+
+func set_starting_position(pos : Vector2) -> void:
+	current_coord = pos
 	set_position(Utils.coordinates_to_global(current_coord))
+	update_los(current_coord)
 	
-	
-	
-	#animation_player.play("idle")
+
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):
@@ -78,7 +80,7 @@ func set_animating(val : bool) -> void:
 	animating = val
 
 func update_los(coords : Vector2) -> void:
-	los = Utils.get_coords_in_ring(coords, vision_range)
+	los = Utils.get_coords_in_radius(coords, vision_range, true)
 
 func get_aggro_direction() -> String:
 	var highest_trail_level = 0

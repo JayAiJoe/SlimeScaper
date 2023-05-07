@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvuodt3krqvsx"]
+[gd_scene load_steps=3 format=3 uid="uid://dvuodt3krqvsx"]
 
 [ext_resource type="Script" path="res://Scenes/Map2d.gd" id="1_6nlu3"]
 [ext_resource type="PackedScene" uid="uid://bsm07fu0icwjc" path="res://Scenes/tile_2d.tscn" id="2_if7qi"]
+
 [ext_resource type="PackedScene" uid="uid://btl1r0jhgh3no" path="res://Scenes/player.tscn" id="3_t3rlc"]
 [ext_resource type="PackedScene" path="res://Scenes/slime.tscn" id="4_rsdfw"]
 
@@ -14,7 +15,3 @@ z_index = 4096
 z_as_relative = false
 
 [node name="Tile2d" parent="." instance=ExtResource("2_if7qi")]
-
-[node name="Player" parent="." instance=ExtResource("3_t3rlc")]
-
-[node name="slime" parent="." instance=ExtResource("4_rsdfw")]
