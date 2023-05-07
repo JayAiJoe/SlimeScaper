@@ -1,12 +1,5 @@
 extends Node2D
 
-const DIR = {   "move_SE": Vector2(1,0),
-				"move_NE": Vector2(1,-1),
-				"move_N" : Vector2(0,-1),
-				"move_NW": Vector2(-1,0),
-				"move_SW": Vector2(-1,1),
-				"move_S" : Vector2(0,1),}
-
 var current_coord
 var animating = false
 
@@ -14,7 +7,11 @@ const JUMP_VELOCITY = -350.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
 var velocity_y = 0
 
+
 var type = GameData.SLIME_TYPES.GRASS
+
+var los : Array = []
+var vision_range : int = 1
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -28,7 +25,10 @@ func _ready():
 	
 	Utils.set_screen_rect(get_viewport_rect())
 	current_coord = Vector2(1,0)
+	update_los(current_coord)
 	set_position(Utils.coordinates_to_global(current_coord))
+	
+	
 	
 	#animation_player.play("idle")
 
@@ -62,7 +62,7 @@ func set_type(type_code : int) -> void:
 func move_dir(dir : String) -> void:
 	if animating:
 		return
-	var new_coord = current_coord + DIR[dir]
+	var new_coord = current_coord + GameData.DIRECTIONS[dir]
 	if not new_coord in Utils.grid.grid:
 		return
 	current_coord = new_coord
@@ -72,8 +72,27 @@ func move_dir(dir : String) -> void:
 	tween.tween_property(self, "position", Utils.coordinates_to_global(current_coord), 0.4)
 	velocity_y = JUMP_VELOCITY
 	tween.tween_callback(emit_signal.bind("landed", current_coord, type))
+	tween.tween_callback(update_los.bind(current_coord))
 
 func set_animating(val : bool) -> void:
 	animating = val
 
+func update_los(coords : Vector2) -> void:
+	los = Utils.get_coords_in_ring(coords, vision_range)
 
+func get_aggro_direction() -> String:
+	var highest_trail_level = 0
+	var chosen_direction = ""
+	for coords in los:
+		if coords in Utils.grid.grid:
+			var current_tile = (Utils.grid.grid[coords] as Tile2D)
+			if current_tile.trail_level > highest_trail_level:
+					highest_trail_level = current_tile.trail_level
+					chosen_direction = GameData.DIRECTION_NAMES[coords - current_coord]
+	return chosen_direction
+
+
+func _on_move_timer_timeout():
+	var direction = get_aggro_direction()
+	if direction != "":
+		move_dir(direction)

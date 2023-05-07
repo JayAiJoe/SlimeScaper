@@ -4,6 +4,9 @@ class_name Tile2D
 var coordinates  = Vector2(0,0)
 var Level = preload("res://Scenes/level.tscn")
 var levels = []
+
+var trail_level : int = 0
+
 @onready var highlight = $Highlight
 
 func _ready():
@@ -39,4 +42,8 @@ func will_highlight(yes : bool) -> void:
 func get_top_level() -> Level:
 	return levels[-1]
 
+func decrement_trail_level() -> void:
+	trail_level = max(0, trail_level - 1)
 
+func set_trail_level(t_level : int) -> void:
+	trail_level = t_level
