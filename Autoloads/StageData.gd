@@ -49,4 +49,21 @@ const LEVEL_DATA = {
 			[Vector2(0,0), SLIME.GRASS],
 		]
 	},
+	
+	"level_4" : {
+		"map" : [
+			[Vector2(0,0), TERRAIN.DIRT],[Vector2(0,1), TERRAIN.DIRT],[Vector2(0,2), TERRAIN.DIRT],
+			[Vector2(0,3), TERRAIN.DIRT],
+			[Vector2(0,4), TERRAIN.DIRT],
+			[Vector2(0,5), TERRAIN.DIRT],
+			[Vector2(0,6), TERRAIN.DIRT],
+			[Vector2(0,7), TERRAIN.DIRT],
+		],
+			
+		"player_start" : Vector2(0,1),
+		
+		"slimes" : [
+			[Vector2(0,0), SLIME.GRASS],
+		]
+	},
 }
