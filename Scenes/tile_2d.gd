@@ -5,6 +5,7 @@ var coordinates  = Vector2(0,0)
 var Level = preload("res://Scenes/level.tscn")
 var levels = []
 
+var max_terrain_height = 3
 var trail_level : int = 0
 
 @onready var highlight = $Highlight
@@ -21,7 +22,7 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	add_level(terrain_type)
 
 func add_level(terrain_type : int) -> void:
-	if levels.size() == 3:
+	if levels.size() == max_terrain_height:
 		return
 		
 	var new_level = Level.instantiate()

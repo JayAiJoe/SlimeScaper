@@ -5,6 +5,8 @@ var TILE = preload("res://Scenes/tile_2d.tscn")
 
 @export var level = "main menu"
 
+
+
 var grid = {}
 
 var top_left = Vector2()
@@ -15,7 +17,7 @@ func _ready():
 	Utils.grid = self
 	connect_starting_signals()
 	randomize()
-	test_grid()
+	#test_grid()
 
 func test_grid():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
@@ -66,10 +68,9 @@ func check_grid_size(new_tile_pos: Vector2):
 		#print("top_left ",top_left)
 		#print("bot_right ",bot_right)
 		if max_length:
-			map_scale = Utils.SCREEN_HEIGHT/max_length*0.9
+			map_scale = Utils.SCREEN_HEIGHT/max_length*0.85
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
-		print("emit ", cam_pos)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
 
 func highlight_tiles(tiles:Array) -> void:

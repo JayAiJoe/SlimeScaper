@@ -16,7 +16,6 @@ func load_stage() -> void:
 		
 		for tile in stage_info.map:
 			map.add_new_tile(tile[0], tile[1])
-		print(stage_info.player_start)
 		player.set_starting_position(stage_info.player_start)
 		for slime in stage_info.slimes:
 			var new_slime : Slime = slime_scene.instantiate()
@@ -31,5 +30,5 @@ func _ready():
 	player.landed.connect(map.update_trails)
 	
 	
-	stage_info = StageData.level_1
+	stage_info = StageData.LEVEL_DATA["level_3"]
 	load_stage()

@@ -1,10 +1,8 @@
 extends Node
 
-
 const TILE_WIDTH = 318
 const TILE_HEIGHT = 103
 const TILE_THICK = 16
-
 
 var SCREEN_RECT 
 var SCREEN_WIDTH = 1920
@@ -19,9 +17,9 @@ func ready():
 	SCREEN_HEIGHT = SCREEN_RECT.size.y
 	SCREEN_CENTER = SCREEN_RECT.get_center()
 
-func coordinates_to_global(coordinates:Vector2, scale = Vector2(TILE_WIDTH/2,TILE_HEIGHT/2)) -> Vector2:
-	return Vector2( SCREEN_CENTER.x + (3/2 * coordinates.x                                 ) * scale.x,
-					SCREEN_CENTER.y + (sqrt(3)/2 * coordinates.x + sqrt(3) * coordinates.y ) * scale.y)
+func coordinates_to_global(coordinates:Vector2, tile_size = Vector2(TILE_WIDTH/2,TILE_HEIGHT/2)) -> Vector2:
+	return Vector2( SCREEN_CENTER.x + (3/2 * coordinates.x                                  ) * tile_size.x,
+					SCREEN_CENTER.y + (sqrt(3)/2 * coordinates.x + sqrt(3) * coordinates.y ) * tile_size.y)
 
 func get_coords_in_ring(center:Vector2, radius:int) -> Array:
 	var result = []
