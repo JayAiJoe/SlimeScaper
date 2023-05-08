@@ -24,12 +24,9 @@ func _ready():
 	set_type(type)
 	set_z_index(1000)
 	
-	Utils.set_screen_rect(get_viewport_rect())
-	
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
-	print("set starting posiiton in silme")
 	set_position(Utils.coordinates_to_global(current_coord))
 	update_los(current_coord)
 	

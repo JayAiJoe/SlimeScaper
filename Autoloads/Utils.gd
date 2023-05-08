@@ -13,8 +13,8 @@ var SCREEN_CENTER = Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
 
 var grid
 
-func set_screen_rect(rect):
-	SCREEN_RECT = rect
+func ready():
+	SCREEN_RECT = Rect2(0,0,get("display/width"),get("display/height"))
 	SCREEN_WIDTH = SCREEN_RECT.size.x
 	SCREEN_HEIGHT = SCREEN_RECT.size.y
 	SCREEN_CENTER = SCREEN_RECT.get_center()

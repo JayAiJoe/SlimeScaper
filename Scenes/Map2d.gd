@@ -15,6 +15,7 @@ func _ready():
 	Utils.grid = self
 	connect_starting_signals()
 	randomize()
+	test_grid()
 
 func test_grid():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
@@ -34,8 +35,6 @@ func generate_main_menu():
 func connect_starting_signals() -> void:
 	#$slime.landed.connect(change_top_level) #test functionm
 	pass
-	
-	
 	
 func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> void:
 	if coordinates in grid:
@@ -68,8 +67,10 @@ func check_grid_size(new_tile_pos: Vector2):
 		#print("bot_right ",bot_right)
 		if max_length:
 			map_scale = Utils.SCREEN_HEIGHT/max_length*0.9
-		$Camera.set_zoom(map_scale*Vector2(1,1))
-		$Camera.set_position(Vector2((bot_right.x + top_left.x)/2,(bot_right.y + top_left.y)/2))
+		var cam_pos = top_left + (bot_right-top_left)/2
+		var cam_zoom = map_scale*Vector2(1,1)
+		print("emit ", cam_pos)
+		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
 
 func highlight_tiles(tiles:Array) -> void:
 	for coord in tiles:

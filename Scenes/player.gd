@@ -26,7 +26,6 @@ func _ready():
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
-	print("get coordinates from player set starting position")
 	set_position(Utils.coordinates_to_global(current_coord))
 
 func _input(event):
