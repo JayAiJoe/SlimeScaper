@@ -27,6 +27,7 @@ func _ready():
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
 	set_position(Utils.coordinates_to_global(current_coord))
+	landed.emit(current_coord)
 
 func _input(event):
 	for dir in GameData.DIRECTIONS:

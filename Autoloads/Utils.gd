@@ -21,6 +21,7 @@ func coordinates_to_global(coordinates:Vector2, tile_size = Vector2(TILE_WIDTH/2
 	return Vector2( SCREEN_CENTER.x + (3/2 * coordinates.x                                  ) * tile_size.x,
 					SCREEN_CENTER.y + (sqrt(3)/2 * coordinates.x + sqrt(3) * coordinates.y ) * tile_size.y)
 
+
 func get_coords_in_ring(center:Vector2, radius:int) -> Array:
 	var result = []
 	var current = Vector2(-1,1)*radius + center

@@ -10,6 +10,9 @@ var trail_level : int = 0
 
 @onready var highlight = $Highlight
 
+var selectable : bool = false
+signal clicked(tile)
+
 func _ready():
 	pass # Replace with function body.
 
@@ -48,3 +51,19 @@ func decrement_trail_level() -> void:
 
 func set_trail_level(t_level : int) -> void:
 	trail_level = t_level
+
+
+func _on_area_2d_mouse_entered():
+	if selectable:
+		will_highlight(true)
+
+
+func _on_area_2d_mouse_exited():
+	will_highlight(false)
+
+
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if selectable:
+		if event is InputEventMouseButton:
+			if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+				clicked.emit(self)

@@ -5,11 +5,13 @@ var stage_info
 @onready var map : Map2D = $Grid
 @onready var player : Player = $Player
 @onready var slime_container = $SlimeContainer
+@onready var tool_handler = $ToolHandler
 
 var slime_scene = preload("res://Scenes/slime.tscn")
 
 func set_stage_info(info : Dictionary) -> void:
 	stage_info = info
+	
 
 func load_stage() -> void:
 	if stage_info:
@@ -28,7 +30,8 @@ func load_stage() -> void:
 
 func _ready():
 	player.landed.connect(map.update_trails)
-	
+	player.landed.connect(map.update_selectables)
+	map.tile_clicked.connect(tool_handler.use_tool)
 	
 	stage_info = StageData.LEVEL_DATA["level_3"]
 	load_stage()

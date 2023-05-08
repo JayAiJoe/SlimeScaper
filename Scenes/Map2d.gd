@@ -13,6 +13,8 @@ var top_left = Vector2()
 var bot_right = Vector2()
 var map_scale = 1
 
+signal tile_clicked(tile)
+
 func _ready():
 	Utils.grid = self
 	connect_starting_signals()
@@ -47,6 +49,7 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 		check_grid_size(new_tile.position)
 		grid[coordinates] = new_tile
 		add_child(new_tile)
+		new_tile.clicked.connect(signal_tile_clicked)
 		
 	#fix global scaling
 
@@ -87,3 +90,15 @@ func update_trails(new_coords : Vector2) -> void:
 	for tile in grid.values():
 		(tile as Tile2D).decrement_trail_level()
 	(grid[new_coords] as Tile2D).set_trail_level(GameData.PLAYER_TRAIL_STRENGTH)
+
+
+func update_selectables(new_coords : Vector2) -> void:
+	for tile in grid.values():
+		tile.selectable = false
+		tile.will_highlight(false)
+	for coord in Utils.get_coords_in_ring(new_coords, 1):
+		if coord in grid:
+			grid[coord].selectable = true
+
+func signal_tile_clicked(tile : Tile2D) -> void:
+	tile_clicked.emit(tile)
