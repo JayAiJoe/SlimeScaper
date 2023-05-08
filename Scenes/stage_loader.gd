@@ -26,12 +26,20 @@ func load_stage() -> void:
 			new_slime.set_type(slime[1])
 			new_slime.landed.connect(map.change_top_level)
 			
-	
+func get_click_info(target_tile):
+	var entity = null
+	if player.current_coord == target_tile.coordinates:
+		entity = player
+	else:
+		for slime in slime_container.get_children():
+			if slime.current_coord == target_tile.coordinates:
+				entity = slime
+	tool_handler.use_tool(target_tile, entity)
 
 func _ready():
 	player.landed.connect(map.update_trails)
 	player.landed.connect(map.update_selectables)
-	map.tile_clicked.connect(tool_handler.use_tool)
+	map.tile_clicked.connect(get_click_info)
 	
 	stage_info = StageData.LEVEL_DATA["level_2"]
 	load_stage()

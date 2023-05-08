@@ -57,7 +57,6 @@ func _on_area_2d_mouse_entered():
 	if selectable:
 		will_highlight(true)
 
-
 func _on_area_2d_mouse_exited():
 	will_highlight(false)
 

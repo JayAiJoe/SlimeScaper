@@ -8,9 +8,9 @@ const JUMP_VELOCITY = -350.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
 var velocity_y = 0
 
-
 var type = GameData.SLIME.GRASS
 
+var aggro = false
 var los : Array = []
 var vision_range : int = 2
 var smellos : Array = []
@@ -81,42 +81,38 @@ func set_animating(val : bool) -> void:
 func update_los(coords : Vector2) -> void:
 	var old_los = los
 	los = Utils.get_coords_in_radius(coords, vision_range, false)
-	Utils.grid.highlight_tiles(los)
-	for coord in old_los:
-		if not coord in los:
-			if coord in Utils.grid.grid:
-				Utils.grid.grid[coord].will_highlight(false)
+#	Utils.grid.highlight_tiles(los)
+#	for coord in old_los:
+#		if not coord in los:
+#			if coord in Utils.grid.grid:
+#				Utils.grid.grid[coord].will_highlight(false)
 	
 	smellos = Utils.get_coords_in_radius(coords, smell_range, false)
+
+func set_aggro(val:bool) -> void:
 	
+	aggro = val
+	if aggro:
+		$MoveTimer.start()
+	else:
+		$MoveTimer.stop()
+	print($MoveTimer.time_left)
 
 func get_aggro_direction() -> String:
 	var chosen_direction = ""
 	if Utils.player.current_coord in los:
 		var player_dir = current_coord.direction_to(Utils.player.current_coord)
-		print("player_dir ", player_dir)
 		for dir in GameData.DIRECTION_NAMES:
 			if player_dir == dir.normalized():
 				chosen_direction = GameData.DIRECTION_NAMES[dir]
-				print("chosen ", current_coord.direction_to(dir))
 				return chosen_direction
 		
 		#in vision but not direct line
 		var smell_dir = get_smell_dir()
-		print("smell_dir ",smell_dir)
 		var biased_dir = smell_dir + player_dir
 		chosen_direction = GameData.DIRECTION_NAMES[Utils.find_closest_dir(biased_dir)]
-		print("closest dir ",biased_dir, Utils.find_closest_dir(biased_dir) )
-	
-	
-	
-#	var highest_trail_level = 0
-#	for coords in los:
-#		if coords in Utils.grid.grid:
-#			var current_tile = (Utils.grid.grid[coords] as Tile2D)
-#			if current_tile.trail_level > highest_trail_level:
-#					highest_trail_level = current_tile.trail_level
-					
+	else:
+		set_aggro(false)
 	return chosen_direction
 
 func get_smell_dir() -> Vector2:
@@ -136,7 +132,6 @@ func is_free_tile(new_coords : Vector2) -> bool:
 		if slime != self and slime.current_coord == new_coords:
 			return false
 	return true
-
 
 func _on_move_timer_timeout():
 	var direction = get_aggro_direction()
