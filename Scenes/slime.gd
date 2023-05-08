@@ -12,7 +12,9 @@ var velocity_y = 0
 var type = GameData.SLIME.GRASS
 
 var los : Array = []
-var vision_range : int = 1
+var vision_range : int = 2
+var smellos : Array = []
+var smell_range : int = 1
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -23,14 +25,11 @@ signal landed(coords, type)
 func _ready():
 	set_type(type)
 	set_z_index(1000)
-	
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
 	set_position(Utils.coordinates_to_global(current_coord))
 	update_los(current_coord)
-	
-
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):
@@ -80,18 +79,57 @@ func set_animating(val : bool) -> void:
 	animating = val
 
 func update_los(coords : Vector2) -> void:
-	los = Utils.get_coords_in_radius(coords, vision_range, true)
+	var old_los = los
+	los = Utils.get_coords_in_radius(coords, vision_range, false)
+	Utils.grid.highlight_tiles(los)
+	for coord in old_los:
+		if not coord in los:
+			if coord in Utils.grid.grid:
+				Utils.grid.grid[coord].will_highlight(false)
+	
+	smellos = Utils.get_coords_in_radius(coords, smell_range, false)
+	
 
 func get_aggro_direction() -> String:
-	var highest_trail_level = 0
 	var chosen_direction = ""
-	for coords in los:
-		if coords in Utils.grid.grid:
-			var current_tile = (Utils.grid.grid[coords] as Tile2D)
-			if current_tile.trail_level > highest_trail_level:
-					highest_trail_level = current_tile.trail_level
-					chosen_direction = GameData.DIRECTION_NAMES[coords - current_coord]
+	if Utils.player.current_coord in los:
+		var player_dir = current_coord.direction_to(Utils.player.current_coord)
+		print("player_dir ", player_dir)
+		for dir in GameData.DIRECTION_NAMES:
+			if player_dir == dir.normalized():
+				chosen_direction = GameData.DIRECTION_NAMES[dir]
+				print("chosen ", current_coord.direction_to(dir))
+				return chosen_direction
+		
+		#in vision but not direct line
+		var smell_dir = get_smell_dir()
+		print("smell_dir ",smell_dir)
+		var biased_dir = smell_dir + player_dir
+		chosen_direction = GameData.DIRECTION_NAMES[Utils.find_closest_dir(biased_dir)]
+		print("closest dir ",biased_dir, Utils.find_closest_dir(biased_dir) )
+	
+	
+	
+#	var highest_trail_level = 0
+#	for coords in los:
+#		if coords in Utils.grid.grid:
+#			var current_tile = (Utils.grid.grid[coords] as Tile2D)
+#			if current_tile.trail_level > highest_trail_level:
+#					highest_trail_level = current_tile.trail_level
+					
 	return chosen_direction
+
+func get_smell_dir() -> Vector2:
+	var dir_num = 0
+	var dir_total = Vector2(0,0)
+	for coord in smellos:
+		if coord in Utils.grid.grid:
+			dir_total = current_coord.direction_to(coord) * Utils.grid.grid[coord].trail_level
+			dir_num += 1
+	
+	if dir_num == 0:
+		return dir_total
+	return dir_total / dir_num
 
 func is_free_tile(new_coords : Vector2) -> bool:
 	for slime in get_tree().get_nodes_in_group("Slimes"):

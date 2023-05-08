@@ -23,6 +23,7 @@ func _ready():
 	set_z_index(1000)
 
 	set_starting_position(Vector2.ZERO)
+	Utils.player = self
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos

@@ -5,8 +5,6 @@ var TILE = preload("res://Scenes/tile_2d.tscn")
 
 @export var level = "main menu"
 
-
-
 var grid = {}
 
 var top_left = Vector2()
@@ -76,10 +74,10 @@ func check_grid_size(new_tile_pos: Vector2):
 		var cam_zoom = map_scale*Vector2(1,1)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
 
-func highlight_tiles(tiles:Array) -> void:
+func highlight_tiles(tiles:Array, will_highlight = true) -> void:
 	for coord in tiles:
 		if coord in grid:
-			grid[coord].will_highlight(true)
+			grid[coord].will_highlight(will_highlight)
 
 func change_top_level(coordinates : Vector2, slime_type : int) -> void:
 	var top_level : Level = grid[coordinates].get_top_level()

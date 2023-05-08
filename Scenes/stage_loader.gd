@@ -33,5 +33,5 @@ func _ready():
 	player.landed.connect(map.update_selectables)
 	map.tile_clicked.connect(tool_handler.use_tool)
 	
-	stage_info = StageData.LEVEL_DATA["level_3"]
+	stage_info = StageData.LEVEL_DATA["level_2"]
 	load_stage()
