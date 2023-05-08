@@ -30,5 +30,5 @@ func _ready():
 	player.landed.connect(map.update_trails)
 	
 	
-	stage_info = StageData.LEVEL_DATA["level_3"]
+	stage_info = StageData.LEVEL_DATA["level_2"]
 	load_stage()
