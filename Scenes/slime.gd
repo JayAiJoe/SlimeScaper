@@ -70,7 +70,11 @@ func move_dir(dir : String) -> void:
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
 	if not is_free_tile(new_coord):
 		return
-	if not new_coord in Utils.map.grid:
+	if Utils.map.grid[new_coord].entity is Slime: # may laman
+		animate_invalid_move(half_move(Utils.coordinates_to_global(new_coord)))
+		return
+	elif Utils.map.grid[new_coord].entity is Player: # may laman
+		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
 	change_coord(new_coord)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
@@ -83,6 +87,16 @@ func move_dir(dir : String) -> void:
 
 func set_animating(val : bool) -> void:
 	animating = val
+
+func half_move(a)->Vector2:
+	return (Utils.map.grid[current_coord].get_top_pos() +a)/2
+
+func animate_invalid_move(global_pos:Vector2):
+	var tween = get_tree().create_tween()
+	tween.finished.connect(set_animating.bind(false))
+	set_animating(true)
+	tween.tween_property(self, "position", global_pos, $MoveTimer.wait_time/2)
+	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), $MoveTimer.wait_time/2)
 
 func change_coord(new_pos : Vector2) -> void:
 	Utils.map.grid[current_coord].entity = null
@@ -112,26 +126,38 @@ func set_aggro(new_target) -> void:
 func get_aggro_direction() -> String:
 	var chosen_direction = ""
 	if aggro.current_coord in los:
+		
 		var player_dir = current_coord.direction_to(aggro.current_coord)
 		for dir in GameData.DIRECTION_NAMES:
 			if player_dir == dir.normalized():
-				chosen_direction = GameData.DIRECTION_NAMES[dir]
-				return chosen_direction
-		
+				var new_coord = current_coord + dir
+				if new_coord in Utils.map.grid:
+					chosen_direction = GameData.DIRECTION_NAMES[dir]
+					return chosen_direction
+				break
+
 		#in vision but not direct line
-		var smell_dir = get_smell_dir()
-		var biased_dir = smell_dir + player_dir
-		chosen_direction = GameData.DIRECTION_NAMES[Utils.find_closest_dir(biased_dir)]
+		var player_angle = GameData.DIR_TO_ANGLE[aggro.current_coord - current_coord]
+		var smell_avg_angle = get_avg_smell_angle()
+		var final_angle = (smell_avg_angle + player_angle*GameData.PLAYER_TRAIL_STRENGTH)/(GameData.PLAYER_TRAIL_STRENGTH+1)
+		var candidate_dirs = Utils.get_closest_dirs_array(final_angle)
+		for dir in candidate_dirs:
+			var new_coord = current_coord + GameData.DIRECTIONS[dir]
+			if new_coord in Utils.map.grid:
+				if Utils.map.grid[new_coord].entity is Slime:
+					continue
+				else:
+					return dir
 	else:
 		set_aggro(null)
 	return chosen_direction
 
-func get_smell_dir() -> Vector2:
+func get_avg_smell_angle() -> float:
 	var dir_num = 0
-	var dir_total = Vector2(0,0)
+	var dir_total = 0
 	for coord in smellos:
 		if coord in Utils.map.grid:
-			dir_total = current_coord.direction_to(coord) * Utils.map.grid[coord].trail_level
+			dir_total =  GameData.DIR_TO_ANGLE[coord - current_coord] * Utils.map.grid[coord].trail_level
 			dir_num += 1
 	
 	if dir_num == 0:

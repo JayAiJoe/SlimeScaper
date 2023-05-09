@@ -27,7 +27,6 @@ func _ready():
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
-	print(Utils.map.grid)
 	Utils.map.grid[pos].entity = self
 	set_position(Utils.coordinates_to_global(current_coord))
 	landed.emit(current_coord)

@@ -17,7 +17,49 @@ const DIRECTION_NAMES = {
 	Vector2(-1,0) : "NW",
 	Vector2(-1,1) : "SW",
 	Vector2(0,1) : "S",
-	Vector2(0,0) : ""
+}
+
+const MID_DIRS = {
+	Vector2(2,-1) : {Vector2(1,0):[Vector2(2,0),Vector2(1,1),Vector2(0,1)],
+					Vector2(1,-1):[Vector2(2,-2),Vector2(1,-2),Vector2(0,-1)]},
+	Vector2(1,-2) : {Vector2(0,-1):[Vector2(0,-2),Vector2(-1,-1),Vector2(-1,0)],
+					Vector2(1,-1):[Vector2(2,-2),Vector2(2,-1),Vector2(1,0)]},
+	Vector2(-1,1) : {Vector2(-1,0):[Vector2(-1,1),Vector2(-2,1),Vector2(-2,0)],
+					Vector2(0,-1):[Vector2(1,-1),Vector2(1,-2),Vector2(0,-2)]},
+	Vector2(-2,1) : {Vector2(-1,0):[Vector2(-2,0),Vector2(-1,-1),Vector2(0,-1)],
+					Vector2(-1,1):[Vector2(0,1),Vector2(-1,2),Vector2(-2,2)]},
+	Vector2(-1,2) : {Vector2(-1,0):[Vector2(-2,0),Vector2(-1,-1),Vector2(0,-1)],
+					Vector2(-1,1):[Vector2(0,1),Vector2(-1,2),Vector2(-2,2)]},
+}
+
+const DIR_TO_ANGLE = {
+	Vector2(1,-1) : 0,
+	Vector2(1,-2) : 30,
+	Vector2(0,-1) : 60,
+	Vector2(-1,-1) : 90,
+	Vector2(-1,0) : 120,
+	Vector2(-2,1) : 150,
+	Vector2(-1,1) : 180,
+	Vector2(-1,2) : 210,
+	Vector2(0,1) : 240,
+	Vector2(1,1) : 270,
+	Vector2(1,0) : 300,
+	Vector2(2,-1) : 330,
+}
+
+const ANGLE_TO_DIR = {
+	0 : Vector2(1,-1),
+	30 : Vector2(1,-2),
+	60 : Vector2(0,-1),
+	90 : Vector2(-1,-1),
+	120 : Vector2(-1,0),
+	150 : Vector2(-2,1),
+	180 : Vector2(-1,1),
+	210 : Vector2(-1,2),
+	240 : Vector2(0,1),
+	270 : Vector2(1,1),
+	300 : Vector2(1,0),
+	330 : Vector2(2,-1),
 }
 
 const PLAYER_TRAIL_STRENGTH = 7

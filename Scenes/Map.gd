@@ -69,7 +69,7 @@ func check_grid_size(new_tile_pos: Vector2):
 		#print("top_left ",top_left)
 		#print("bot_right ",bot_right)
 		if max_length:
-			map_scale = Utils.SCREEN_HEIGHT/max_length*0.85
+			map_scale = Utils.SCREEN_HEIGHT/max_length*0.9
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
