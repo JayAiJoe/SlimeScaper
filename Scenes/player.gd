@@ -23,12 +23,12 @@ signal landed(coords)
 
 func _ready():
 	set_z_index(1000)
-
-	set_starting_position(Vector2.ZERO)
 	Utils.player = self
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
+	print(Utils.map.grid)
+	Utils.map.grid[pos].entity = self
 	set_position(Utils.coordinates_to_global(current_coord))
 	landed.emit(current_coord)
 
@@ -54,10 +54,18 @@ func move_dir(dir):
 		return
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
 	if not new_coord in Utils.map.grid: # no tile
+		animate_invalid_move(half_move(Utils.coordinates_to_global(new_coord)) )
 		return
-	if Utils.map.grid[new_coord].entity != null: # may laman
+	if Utils.map.grid[new_coord].entity is Slime: # may laman
+		Utils.map.grid[new_coord].entity.set_aggro(self)
+		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
-	current_coord = new_coord
+	elif Utils.map.grid[new_coord].entity is Player: # may laman
+		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
+		return
+		
+	change_coord(new_coord)
+	
 	var tween = get_tree().create_tween()
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
@@ -68,3 +76,17 @@ func move_dir(dir):
 func set_animating(val : bool) -> void:
 	animating = val
 
+func half_move(a)->Vector2:
+	return (Utils.map.grid[current_coord].get_top_pos() +a)/2
+
+func animate_invalid_move(global_pos:Vector2):
+	var tween = get_tree().create_tween()
+	tween.finished.connect(set_animating.bind(false))
+	set_animating(true)
+	tween.tween_property(self, "position", global_pos, MOVE_TIME/2)
+	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME/2)
+
+func change_coord(new_pos : Vector2) -> void:
+	Utils.map.grid[current_coord].entity = null
+	current_coord = new_pos
+	Utils.map.grid[current_coord].entity = self

@@ -17,8 +17,10 @@ func load_stage() -> void:
 		
 		for tile in stage_info.map:
 			map.add_new_tile(tile[0], tile[1])
+			
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
+			
 		for slime in stage_info.slimes:
 			var new_slime : Slime = slime_scene.instantiate()
 			slime_container.add_child(new_slime)

@@ -33,6 +33,7 @@ func _ready():
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
+	Utils.map.grid[pos].entity = self
 	set_position(Utils.coordinates_to_global(current_coord))
 	update_los(current_coord)
 
@@ -71,7 +72,7 @@ func move_dir(dir : String) -> void:
 		return
 	if not new_coord in Utils.map.grid:
 		return
-	current_coord = new_coord
+	change_coord(new_coord)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
@@ -82,6 +83,11 @@ func move_dir(dir : String) -> void:
 
 func set_animating(val : bool) -> void:
 	animating = val
+
+func change_coord(new_pos : Vector2) -> void:
+	Utils.map.grid[current_coord].entity = null
+	current_coord = new_pos
+	Utils.map.grid[current_coord].entity = self
 
 func update_los(coords : Vector2) -> void:
 	var old_los = los
@@ -99,15 +105,14 @@ func set_aggro(new_target) -> void:
 	if aggro == null:
 		$MoveTimer.stop()
 		$MoveTimer.set_wait_time(max_move_time)
-		print("DEAGGROD")
+		print("LOSE AGGRO")
 	else:
 		$MoveTimer.start()
-		print($MoveTimer.time_left)
 
 func get_aggro_direction() -> String:
 	var chosen_direction = ""
-	if Utils.player.current_coord in los:
-		var player_dir = current_coord.direction_to(Utils.player.current_coord)
+	if aggro.current_coord in los:
+		var player_dir = current_coord.direction_to(aggro.current_coord)
 		for dir in GameData.DIRECTION_NAMES:
 			if player_dir == dir.normalized():
 				chosen_direction = GameData.DIRECTION_NAMES[dir]
