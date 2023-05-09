@@ -12,7 +12,8 @@ const LEVEL_DATA = {
 			[Vector2(3,0), TERRAIN.WATER],
 		],
 			
-		"player_start" : Vector2(1,0),
+		"blue_start" : Vector2(1,0),
+		"red_start" : Vector2(1,0),
 		
 		"slimes" : [
 			[Vector2(0,0), SLIME.GRASS],
@@ -28,7 +29,8 @@ const LEVEL_DATA = {
 			[Vector2(3,0), TERRAIN.DIRT],[Vector2(3,1), TERRAIN.DIRT],[Vector2(3,2), TERRAIN.DIRT],[Vector2(3,3), TERRAIN.DIRT],
 		],
 			
-		"player_start" : Vector2(0,2),
+		"blue_start" : Vector2(0,2),
+		"red_start" : Vector2(3,3),
 		
 		"slimes" : [
 			[Vector2(0,3), SLIME.GRASS],

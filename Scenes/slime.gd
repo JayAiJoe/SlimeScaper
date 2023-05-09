@@ -19,6 +19,7 @@ var smell_range : int = 1
 var max_move_time = 1.2
 var min_move_time = 0.45
 var move_time_scale = 0.8
+#if speed carries over to new aggro, make scale higher for more incentive to steal
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_player = $AnimationPlayer

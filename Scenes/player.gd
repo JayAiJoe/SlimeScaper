@@ -14,7 +14,7 @@ var velocity_y = 0
 var move_queue : Array = []
 var move_queue_max : int = 1
 
-var player_color = "blue"
+@export var player_color = "blue"
 
 @onready var sprite : Sprite2D = $Sprite2D
 
@@ -34,7 +34,7 @@ func set_starting_position(pos : Vector2) -> void:
 
 func _input(event):
 	for dir in GameData.DIRECTIONS:
-		if event.is_action_pressed(dir):
+		if event.is_action_pressed(player_color+"_"+dir):
 			if move_queue.size() < move_queue_max:
 				move_queue.append(dir)
 
@@ -53,7 +53,9 @@ func move_dir(dir):
 	if animating:
 		return
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
-	if not new_coord in Utils.map.grid:
+	if not new_coord in Utils.map.grid: # no tile
+		return
+	if Utils.map.grid[new_coord].entity != null: # may laman
 		return
 	current_coord = new_coord
 	var tween = get_tree().create_tween()

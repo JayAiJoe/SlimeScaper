@@ -89,7 +89,6 @@ func update_trails(new_coords : Vector2) -> void:
 		(tile as Tile2D).decrement_trail_level()
 	(grid[new_coords] as Tile2D).set_trail_level(GameData.PLAYER_TRAIL_STRENGTH)
 
-
 func update_selectables(new_coords : Vector2) -> void:
 	for tile in grid.values():
 		tile.selectable = false
