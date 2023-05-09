@@ -54,11 +54,12 @@ func _input(event):
 			move_dir("move_S")
 
 func _physics_process(delta):
-	if velocity_y != 0:
-		velocity_y += + gravity * delta
-		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
-		if sprite.offset.y == 0:
-			velocity_y = 0
+	pass
+#	if velocity_y != 0:
+#		velocity_y += + gravity * delta
+#		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
+#		if sprite.offset.y == 0:
+#			velocity_y = 0
 
 func set_type(type_code : int) -> void:
 	type = type_code
@@ -119,9 +120,11 @@ func set_aggro(new_target) -> void:
 	if aggro == null:
 		$MoveTimer.stop()
 		$MoveTimer.set_wait_time(max_move_time)
+		$Indicator.visible = false
 		print("LOSE AGGRO")
 	else:
 		$MoveTimer.start()
+		$Indicator.visible = true
 
 func get_aggro_direction() -> String:
 	var chosen_direction = ""
