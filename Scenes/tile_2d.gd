@@ -4,6 +4,7 @@ class_name Tile2D
 var coordinates  = Vector2(0,0)
 var Level = preload("res://Scenes/level.tscn")
 var levels = []
+var entity = null
 
 var max_terrain_height = 3
 var trail_level : int = 0

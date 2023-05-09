@@ -14,6 +14,8 @@ var velocity_y = 0
 var move_queue : Array = []
 var move_queue_max : int = 1
 
+var player_color = "blue"
+
 @onready var sprite : Sprite2D = $Sprite2D
 
 signal landed(coords)
@@ -51,13 +53,13 @@ func move_dir(dir):
 	if animating:
 		return
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
-	if not new_coord in Utils.grid.grid:
+	if not new_coord in Utils.map.grid:
 		return
 	current_coord = new_coord
 	var tween = get_tree().create_tween()
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
-	tween.tween_property(self, "position", Utils.grid.grid[current_coord].get_top_pos(), MOVE_TIME)
+	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME)
 	velocity_y = JUMP_VELOCITY
 	tween.tween_callback(emit_signal.bind("landed", current_coord))
 

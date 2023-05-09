@@ -9,7 +9,7 @@ var SCREEN_WIDTH = 1920
 var SCREEN_HEIGHT = 1080
 var SCREEN_CENTER = Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
 
-var grid
+var map
 var player
 
 func ready():

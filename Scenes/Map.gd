@@ -14,7 +14,7 @@ var map_scale = 1
 signal tile_clicked(tile)
 
 func _ready():
-	Utils.grid = self
+	Utils.map = self
 	connect_starting_signals()
 	randomize()
 	#test_grid()
