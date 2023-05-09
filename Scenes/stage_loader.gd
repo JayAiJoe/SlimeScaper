@@ -15,8 +15,9 @@ func set_stage_info(info : Dictionary) -> void:
 func load_stage() -> void:
 	if stage_info:
 		
-		for tile in stage_info.map:
-			map.add_new_tile(tile[0], tile[1])
+		for tile_type in stage_info.map:
+			for tile_coord in stage_info.map[tile_type]:
+				map.add_new_tile(tile_coord, tile_type)
 			
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
@@ -38,5 +39,5 @@ func _ready():
 		player.landed.connect(map.update_selectables)
 	map.tile_clicked.connect(get_click_info)
 	
-	stage_info = StageData.LEVEL_DATA["level_2"]
+	stage_info = StageData.LEVEL_DATA["map1"]
 	load_stage()

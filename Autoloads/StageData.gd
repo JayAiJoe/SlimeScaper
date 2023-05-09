@@ -52,17 +52,23 @@ const LEVEL_DATA = {
 		]
 	},
 	
-	"level_4" : {
-		"map" : [
-			[Vector2(0,0), TERRAIN.DIRT],[Vector2(0,1), TERRAIN.DIRT],[Vector2(0,2), TERRAIN.DIRT],
-			[Vector2(0,3), TERRAIN.DIRT],
-			[Vector2(0,4), TERRAIN.DIRT],
-			[Vector2(0,5), TERRAIN.DIRT],
-			[Vector2(0,6), TERRAIN.DIRT],
-			[Vector2(0,7), TERRAIN.DIRT],
-		],
+	"map1" : {
+		"map" : {
+			TERRAIN.ROCK:[Vector2(0,0),Vector2(2,-1),Vector2(-2,1),Vector2(0,3),Vector2(0,-3)],
+			TERRAIN.GRASS:[Vector2(3,1),Vector2(3,-4),Vector2(-3,-1),Vector2(-3,4)],
+			TERRAIN.DIRT:[Vector2(-4,0),Vector2(-4,1),Vector2(-4,2),Vector2(-4,3),Vector2(-4,4),
+			Vector2(-3,0),Vector2(-3,1),Vector2(-3,2),Vector2(-3,3),
+			Vector2(-2,-1),Vector2(-2,0),Vector2(-2,2),Vector2(-2,3),
+			Vector2(-1,-2),Vector2(-1,-1),Vector2(-1,2),Vector2(-1,3),
+			Vector2(0,-2),Vector2(0,-1),Vector2(0,1),Vector2(0,2),
+			Vector2(1,-3),Vector2(1,-2),Vector2(1,1),Vector2(1,2),
+			Vector2(2,-3),Vector2(2,-2),Vector2(2,0),Vector2(2,1),
+			Vector2(3,-3),Vector2(3,-2),Vector2(3,-1),Vector2(3,0),
+			Vector2(4,-4),Vector2(4,-3),Vector2(4,-2),Vector2(4,-1),Vector2(4,0),],
+		},
 			
-		"player_start" : Vector2(0,1),
+		"blue_start" : Vector2(-4,2),
+		"red_start" : Vector2(0,0),
 		
 		"slimes" : [
 			[Vector2(0,0), SLIME.GRASS],
