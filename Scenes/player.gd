@@ -43,11 +43,12 @@ func _process(delta):
 		move_dir(move_queue.pop_front())
 
 func _physics_process(delta):
-	if velocity_y != 0:
-		velocity_y += + gravity * delta
-		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
-		if sprite.offset.y == 0:
-			velocity_y = 0
+	pass
+#	if velocity_y != 0:
+#		velocity_y += + gravity * delta
+#		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
+#		if sprite.offset.y == 0:
+#			velocity_y = 0
 
 func move_dir(dir):
 	if animating:
@@ -66,11 +67,11 @@ func move_dir(dir):
 		
 	change_coord(new_coord)
 	
-	var tween = get_tree().create_tween()
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME)
-	velocity_y = JUMP_VELOCITY
+	#velocity_y = JUMP_VELOCITY
 	tween.tween_callback(emit_signal.bind("landed", current_coord))
 
 func set_animating(val : bool) -> void:
@@ -84,6 +85,7 @@ func animate_invalid_move(global_pos:Vector2):
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
 	tween.tween_property(self, "position", global_pos, MOVE_TIME/2)
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME/2)
 
 func change_coord(new_pos : Vector2) -> void:
