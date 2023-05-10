@@ -10,15 +10,16 @@ var velocity_y = 0
 
 var type = GameData.SLIME.GRASS
 
-var aggro = null # which player
+var aggro : Player = null # which player
 var los : Array = []
 var vision_range : int = 3
 var smellos : Array = []
 var smell_range : int = 1
 
-var max_move_time = 1.2
-var min_move_time = 0.8
+var max_move_time = 0.2
+var min_move_time = 0.2
 var move_time_scale = 0.8
+var to_free = false
 #if speed carries over to new aggro, make scale higher for more incentive to steal
 
 @onready var sprite : Sprite2D = $Sprite2D
@@ -71,8 +72,13 @@ func move_dir(dir_prio : Array) -> void:
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.4)
 	velocity_y = JUMP_VELOCITY
-	tween.tween_callback(emit_signal.bind("landed", current_coord, type))
-	tween.tween_callback(update_los.bind(current_coord))
+	if to_free:
+		tween.tween_callback(queue_free)
+	else:
+		tween.tween_callback(emit_signal.bind("landed", current_coord, type))
+		tween.tween_callback(update_los.bind(current_coord))
+	
+		
 
 func set_animating(val : bool) -> void:
 	animating = val
@@ -147,3 +153,6 @@ func _on_move_timer_timeout():
 		move_dir(direction_prio)
 		$MoveTimer.set_wait_time(max($MoveTimer.wait_time*move_time_scale, min_move_time))
 		#print($MoveTimer.wait_time)
+
+func trigger_free():
+	to_free = true

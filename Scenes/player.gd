@@ -57,7 +57,7 @@ func move_dir(dir):
 	if not new_coord in Utils.map.grid: # no tile
 		animate_invalid_move(half_move(Utils.coordinates_to_global(new_coord)) )
 		return
-	if Utils.map.grid[new_coord].entity is Slime: # may laman
+	if Utils.map.grid[new_coord].entity and Utils.map.grid[new_coord].entity is Slime: # may laman
 		Utils.map.grid[new_coord].entity.set_aggro(self)
 		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return

@@ -2,6 +2,7 @@ extends Node2D
 class_name Map2D
 
 var TILE = preload("res://Scenes/tile.tscn")
+var CAPTURE_POINT_TILE = preload("res://Scenes/capture_point_tile.tscn")
 
 @export var level = "main menu"
 
@@ -42,7 +43,11 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 	if coordinates in grid:
 		grid[coordinates].add_level(terrain)
 	else:
-		var new_tile = TILE.instantiate()
+		var new_tile
+		if terrain == GameData.TERRAIN.ROCK:
+			new_tile = CAPTURE_POINT_TILE.instantiate()
+		else:
+			new_tile = TILE.instantiate()
 		new_tile.create_new_tile(coordinates, terrain)
 		check_grid_size(new_tile.position)
 		grid[coordinates] = new_tile

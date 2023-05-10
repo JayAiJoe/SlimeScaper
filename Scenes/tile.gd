@@ -68,11 +68,11 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 func occupy(slime : Slime) -> void:
 	entity = slime
-	if tile_type == "capture":
-		capturing = slime.aggro
-		$CaptureTimer.start()
-		captured_by = slime.aggro
-		$TerrainSprite.set_modulate(GameData.COLORS[captured_by.player_color])
+#	if tile_type == "capture":
+#		capturing = slime.aggro
+#		$CaptureTimer.start()
+#		captured_by = slime.aggro
+#		$TerrainSprite.set_modulate(GameData.COLORS[captured_by.player_color])
 
 func leave() -> void:
 	entity = null
