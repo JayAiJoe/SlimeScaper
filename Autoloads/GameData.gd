@@ -62,6 +62,8 @@ const ANGLE_TO_DIR = {
 	330 : Vector2(2,-1),
 }
 
+const COLORS = {"blue":Color(0,0,1,1), "red":Color(1,0,0,1)}
+
 const PLAYER_TRAIL_STRENGTH = 3
 
 enum TERRAIN {DIRT, GRASS, ROCK, WATER, PLANT}

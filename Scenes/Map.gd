@@ -84,10 +84,10 @@ func highlight_tiles(tiles:Array, will_highlight = true) -> void:
 #	if top_level.type in GameData.REACTIONS and slime_type in GameData.REACTIONS[top_level.type]:
 #		top_level.set_type(GameData.REACTIONS[top_level.type][slime_type])
 
-func update_trails(new_coords : Vector2) -> void:
+func update_trails( color : String,new_coords : Vector2) -> void:
 	for tile in grid.values():
-		(tile as Tile).decrement_trail_level()
-	(grid[new_coords] as Tile).set_trail_level(GameData.PLAYER_TRAIL_STRENGTH)
+		(tile as Tile).decrement_trail_level(color)
+	(grid[new_coords] as Tile).set_trail_level(color, GameData.PLAYER_TRAIL_STRENGTH)
 
 func update_selectables(new_coords : Vector2) -> void:
 	for tile in grid.values():
@@ -100,9 +100,9 @@ func update_selectables(new_coords : Vector2) -> void:
 func signal_tile_clicked(tile : Tile) -> void:
 	tile_clicked.emit(tile)
 
-func get_pheromone_level(center:Vector2) -> float:
-	var pheromone_level = pow(grid[center].trail_level,2)
+func get_pheromone_level(color : String, center:Vector2) -> float:
+	var pheromone_level = pow(grid[center].trail_levels[color],2)
 	for coord in Utils.get_coords_in_ring(center, 1):
 		if coord in grid:
-			pheromone_level += grid[coord].trail_level
+			pheromone_level += grid[coord].trail_levels[color]
 	return pheromone_level

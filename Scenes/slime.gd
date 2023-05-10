@@ -12,7 +12,7 @@ var type = GameData.SLIME.GRASS
 
 var aggro = null # which player
 var los : Array = []
-var vision_range : int = 2
+var vision_range : int = 3
 var smellos : Array = []
 var smell_range : int = 1
 
@@ -109,10 +109,12 @@ func set_aggro(new_target) -> void:
 		$MoveTimer.stop()
 		$MoveTimer.set_wait_time(max_move_time)
 		$Indicator.visible = false
+		$Sprite2D.set_modulate(Color(1,1,1))
 		print("LOSE AGGRO")
 	else:
 		$MoveTimer.start()
 		$Indicator.visible = true
+		$Sprite2D.set_modulate(GameData.COLORS[aggro.player_color])
 
 func get_aggro_direction() -> Array:
 	var direction_prio = []
@@ -122,7 +124,7 @@ func get_aggro_direction() -> Array:
 		for coord in GameData.DIRECTION_NAMES:
 			var new_coord = current_coord + coord
 			if new_coord in Utils.map.grid:
-				var new_pher = Utils.map.get_pheromone_level(new_coord)
+				var new_pher = Utils.map.get_pheromone_level(aggro.player_color, new_coord)
 				i = 0
 				while i < direction_prio.size() and new_pher < pheromones_prio[i]:
 					i += 1

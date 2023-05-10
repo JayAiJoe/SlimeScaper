@@ -11,15 +11,13 @@ var captured_by = null
 var point_score = 1
 const TIME_TO_CAP = 3
 
-var trail_level : int = 0
-
-@onready var highlight = $Highlight
+var trail_levels = {"blue": 0, "red":0}
 
 var tile_type = "dirt"
 
 var selectable : bool = false
 
-var colors = {"blue":Color(0,0,1), "red":Color(1,0,0)}
+
 signal clicked(tile)
 
 func _ready():
@@ -43,24 +41,24 @@ func set_sprite(terrain_type : int) -> void:
 func get_top_pos() -> Vector2:
 	return get_position() + Vector2(0,-Utils.TILE_THICK*(levels.size()-1))
 
-func will_highlight(yes : bool) -> void:
-	if yes:
-		highlight.set_position(get_top_pos()-get_position())
-	highlight.set_visible(yes)
+#func will_highlight(yes : bool) -> void:
+#	if yes:
+#		highlight.set_position(get_top_pos()-get_position())
+#	highlight.set_visible(yes)
 
 
-func decrement_trail_level() -> void:
-	trail_level = max(0, trail_level - 1)
+func decrement_trail_level(color) -> void:
+	trail_levels[color] = max(0, trail_levels[color] - 1)
 
-func set_trail_level(t_level : int) -> void:
-	trail_level = t_level
+func set_trail_level(color, t_level : int) -> void:
+	trail_levels[color] = t_level
 
-func _on_area_2d_mouse_entered():
-	if selectable:
-		will_highlight(true)
+#func _on_area_2d_mouse_entered():
+#	if selectable:
+#		will_highlight(true)
 
-func _on_area_2d_mouse_exited():
-	will_highlight(false)
+#func _on_area_2d_mouse_exited():
+#	will_highlight(false)
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if selectable:
@@ -74,7 +72,7 @@ func occupy(slime : Slime) -> void:
 		capturing = slime.aggro
 		$CaptureTimer.start()
 		captured_by = slime.aggro
-		$TerrainSprite.set_modulate(colors[captured_by.player_color])
+		$TerrainSprite.set_modulate(GameData.COLORS[captured_by.player_color])
 
 func leave() -> void:
 	entity = null
@@ -84,3 +82,12 @@ func leave() -> void:
 func global_tick():
 	if captured_by:
 		captured_by.add_score(point_score)
+		$ScoreEffect.set_position(Vector2(0,0))
+		$ScoreEffect.set_modulate(GameData.COLORS[captured_by.player_color])
+		var transparent = GameData.COLORS[captured_by.player_color]
+		transparent.a = 0
+		$ScoreEffect.show()
+		var tween = get_tree().create_tween()
+		tween.tween_property($ScoreEffect, "position", Vector2(0,-130), 0.6)
+		tween.parallel().tween_property($ScoreEffect, "modulate", transparent, 0.6)
+		

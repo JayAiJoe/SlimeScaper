@@ -19,7 +19,7 @@ var score = 0
 
 @onready var sprite : Sprite2D = $Sprite2D
 
-signal landed(coords)
+signal landed(color, coords)
 
 func _ready():
 	set_z_index(1000)
@@ -30,7 +30,7 @@ func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
 	Utils.map.grid[pos].entity = self
 	set_position(Utils.coordinates_to_global(current_coord))
-	landed.emit(current_coord)
+	landed.emit(player_color, current_coord)
 
 func _input(event):
 	for dir in GameData.DIRECTIONS:
@@ -72,7 +72,7 @@ func move_dir(dir):
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME)
 	#velocity_y = JUMP_VELOCITY
-	tween.tween_callback(emit_signal.bind("landed", current_coord))
+	tween.tween_callback(emit_signal.bind("landed", player_color, current_coord))
 
 func set_animating(val : bool) -> void:
 	animating = val

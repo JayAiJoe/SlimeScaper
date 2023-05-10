@@ -33,7 +33,7 @@ func load_stage() -> void:
 func _ready():
 	for player in player_container.get_children():
 		player.landed.connect(map.update_trails)
-		player.landed.connect(map.update_selectables)
+		#player.landed.connect(map.update_selectables)
 	
 	stage_info = StageData.LEVEL_DATA["map1"]
 	load_stage()
