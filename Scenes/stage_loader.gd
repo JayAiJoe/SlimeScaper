@@ -38,6 +38,11 @@ func _ready():
 	stage_info = StageData.LEVEL_DATA["map1"]
 	load_stage()
 	$GlobalTickTimer.set_wait_time(TICK_RATE)
+	$GlobalTickTimer.start()
+	HUD.get_node("timer_visual").set_max(TICK_RATE)
+
+func _physics_process(delta):
+	Events.emit_signal("update_ticker", $GlobalTickTimer.time_left)
 
 func _on_global_tick_timer_timeout():
 	Events.emit_signal("global_tick")

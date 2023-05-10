@@ -25,6 +25,5 @@ player_color = "red"
 [node name="SlimeContainer" type="Node2D" parent="."]
 
 [node name="GlobalTickTimer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="GlobalTickTimer" to="." method="_on_global_tick_timer_timeout"]
