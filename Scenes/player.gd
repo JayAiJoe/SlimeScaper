@@ -15,15 +15,16 @@ var move_queue : Array = []
 var move_queue_max : int = 1
 
 @export var player_color = "blue"
+var score = 0
 
 @onready var sprite : Sprite2D = $Sprite2D
 
 signal landed(coords)
 
-
 func _ready():
 	set_z_index(1000)
 	Utils.player = self
+	Events.emit_signal("points_gained",player_color,score)
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
@@ -91,3 +92,7 @@ func change_coord(new_pos : Vector2) -> void:
 	Utils.map.grid[current_coord].entity = null
 	current_coord = new_pos
 	Utils.map.grid[current_coord].entity = self
+
+func add_score(gained_score : int):
+	score += gained_score
+	Events.emit_signal("points_gained",player_color,score)

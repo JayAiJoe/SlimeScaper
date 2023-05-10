@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://4cxw75dkj4gm"]
+
+[ext_resource type="Script" path="res://HUD/ScoreContainer.gd" id="1_a81n8"]
+[ext_resource type="FontFile" uid="uid://c5qejmkpwaeex" path="res://Assets/Ode to Idle Gaming.otf" id="2_awn84"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 133.0
+grow_horizontal = 2
+script = ExtResource("1_a81n8")
+
+[node name="blue_score" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.215686, 0.435294, 0.788235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_awn84")
+theme_override_font_sizes/font_size = 64
+text = "456"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="red_score" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.313726, 0.247059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_awn84")
+theme_override_font_sizes/font_size = 64
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1

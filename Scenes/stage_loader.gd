@@ -5,9 +5,10 @@ var stage_info
 @onready var map : Map2D = $Grid
 @onready var player_container  = $PlayerContainer
 @onready var slime_container = $SlimeContainer
-@onready var tool_handler = $ToolHandler
 
 var slime_scene = preload("res://Scenes/slime.tscn")
+
+const TICK_RATE = 5
 
 func set_stage_info(info : Dictionary) -> void:
 	stage_info = info
@@ -28,16 +29,15 @@ func load_stage() -> void:
 			new_slime.set_starting_position(slime_pos)
 			new_slime.set_type(StageData.SLIME.GRASS)
 			new_slime.landed.connect(map.change_top_level)
-			
-func get_click_info(target_tile):
-	var entity = null
-	tool_handler.use_tool(target_tile, entity)
 
 func _ready():
 	for player in player_container.get_children():
 		player.landed.connect(map.update_trails)
 		player.landed.connect(map.update_selectables)
-	map.tile_clicked.connect(get_click_info)
 	
 	stage_info = StageData.LEVEL_DATA["map1"]
 	load_stage()
+	$GlobalTickTimer.set_wait_time(TICK_RATE)
+
+func _on_global_tick_timer_timeout():
+	Events.emit_signal("global_tick")

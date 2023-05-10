@@ -17,7 +17,7 @@ var smellos : Array = []
 var smell_range : int = 1
 
 var max_move_time = 1.2
-var min_move_time = 0.45
+var min_move_time = 0.8
 var move_time_scale = 0.8
 #if speed carries over to new aggro, make scale higher for more incentive to steal
 
@@ -25,7 +25,6 @@ var move_time_scale = 0.8
 @onready var animation_player = $AnimationPlayer
 
 signal landed(coords, type)
-
 
 func _ready():
 	set_type(type)
@@ -89,9 +88,9 @@ func animate_invalid_move(global_pos:Vector2):
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), $MoveTimer.wait_time/2)
 
 func change_coord(new_pos : Vector2) -> void:
-	Utils.map.grid[current_coord].entity = null
+	Utils.map.grid[current_coord].leave()
 	current_coord = new_pos
-	Utils.map.grid[current_coord].entity = self
+	Utils.map.grid[current_coord].occupy(self)
 
 func update_los(coords : Vector2) -> void:
 	var old_los = los
@@ -131,8 +130,6 @@ func get_aggro_direction() -> Array:
 				pheromones_prio.insert(i, new_pher)
 	else:
 		set_aggro(null)
-	for _i in range(direction_prio.size()):
-		print(direction_prio[_i],":",pheromones_prio[_i])
 	return direction_prio
 
 

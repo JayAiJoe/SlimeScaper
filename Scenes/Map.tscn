@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5tndvs5gilhy"]
+[gd_scene load_steps=2 format=3 uid="uid://bgmterw6bq5iq"]
 
 [ext_resource type="Script" path="res://Scenes/Map.gd" id="1_sag2u"]
-[ext_resource type="PackedScene" uid="uid://bsm07fu0icwjc" path="res://Scenes/tile_2d.tscn" id="2_if7qi"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_sag2u")
-
-[node name="Tile2d" parent="." instance=ExtResource("2_if7qi")]

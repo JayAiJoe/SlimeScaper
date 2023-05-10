@@ -1,7 +1,7 @@
 extends Node2D
 class_name Map2D
 
-var TILE = preload("res://Scenes/tile_2d.tscn")
+var TILE = preload("res://Scenes/tile.tscn")
 
 @export var level = "main menu"
 
@@ -86,8 +86,8 @@ func change_top_level(coordinates : Vector2, slime_type : int) -> void:
 
 func update_trails(new_coords : Vector2) -> void:
 	for tile in grid.values():
-		(tile as Tile2D).decrement_trail_level()
-	(grid[new_coords] as Tile2D).set_trail_level(GameData.PLAYER_TRAIL_STRENGTH)
+		(tile as Tile).decrement_trail_level()
+	(grid[new_coords] as Tile).set_trail_level(GameData.PLAYER_TRAIL_STRENGTH)
 
 func update_selectables(new_coords : Vector2) -> void:
 	for tile in grid.values():
@@ -97,7 +97,7 @@ func update_selectables(new_coords : Vector2) -> void:
 		if coord in grid:
 			grid[coord].selectable = true
 
-func signal_tile_clicked(tile : Tile2D) -> void:
+func signal_tile_clicked(tile : Tile) -> void:
 	tile_clicked.emit(tile)
 
 func get_pheromone_level(center:Vector2) -> float:

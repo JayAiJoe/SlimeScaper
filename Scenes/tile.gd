@@ -1,21 +1,27 @@
 extends Node2D
-class_name Tile2D
+class_name Tile
 
 var coordinates  = Vector2(0,0)
 var Level = preload("res://Scenes/level.tscn")
 var levels = []
 var entity = null
+var captured_by = null
+var tick_rate = 1
+var point_score = 1
 
 var max_terrain_height = 3
 var trail_level : int = 0
 
 @onready var highlight = $Highlight
 
+var tile_type = "dirt"
+
 var selectable : bool = false
 signal clicked(tile)
 
 func _ready():
-	pass # Replace with function body.
+	pass
+		
 
 func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.TERRAIN.DIRT) -> void:
 	coordinates = _coordinates
@@ -24,6 +30,9 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	
 	set_z_index(position.y*0.8)
 	add_level(terrain_type)
+	if terrain_type == StageData.TERRAIN.ROCK:
+		tile_type = "capture"
+		Events.connect("global_tick", global_tick)
 
 func add_level(terrain_type : int) -> void:
 	if levels.size() == max_terrain_height:
@@ -66,3 +75,15 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		if event is InputEventMouseButton:
 			if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 				clicked.emit(self)
+
+func occupy(slime : Slime) -> void:
+	entity = slime
+	captured_by = slime.aggro
+
+func leave() -> void:
+	entity = null
+
+func global_tick():
+	if captured_by:
+		print("test")
+		captured_by.add_score(point_score)

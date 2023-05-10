@@ -1,16 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3jo8e8n8wh1l"]
+[gd_scene load_steps=5 format=3 uid="uid://c3jo8e8n8wh1l"]
 
 [ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
-[ext_resource type="PackedScene" uid="uid://b5tndvs5gilhy" path="res://Scenes/Map.tscn" id="2_oien2"]
+[ext_resource type="PackedScene" uid="uid://bgmterw6bq5iq" path="res://Scenes/Map.tscn" id="2_oien2"]
 [ext_resource type="PackedScene" uid="uid://btl1r0jhgh3no" path="res://Scenes/player.tscn" id="3_1y5lv"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_dkcvl"]
-[ext_resource type="PackedScene" uid="uid://cf0fch3j3q1v8" path="res://Scenes/tool_handler.tscn" id="4_xrd6d"]
 
 [node name="StageLoader" type="Node2D"]
 script = ExtResource("1_qk5nt")
 
 [node name="Camera" type="Camera2D" parent="."]
-z_index = 4096
+z_index = 4092
 z_as_relative = false
 script = ExtResource("4_dkcvl")
 
@@ -25,4 +24,7 @@ player_color = "red"
 
 [node name="SlimeContainer" type="Node2D" parent="."]
 
-[node name="ToolHandler" parent="." instance=ExtResource("4_xrd6d")]
+[node name="GlobalTickTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="GlobalTickTimer" to="." method="_on_global_tick_timer_timeout"]
