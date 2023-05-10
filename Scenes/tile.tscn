@@ -17,6 +17,11 @@ offset = Vector2(0, -103)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-53, -46, 54, -46, 106, 1, 54, 46, -53, 47, -105, -1)
 
+[node name="TerrainSprite" type="Sprite2D" parent="."]
+
+[node name="CaptureTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

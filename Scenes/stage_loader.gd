@@ -28,7 +28,7 @@ func load_stage() -> void:
 			slime_container.add_child(new_slime)
 			new_slime.set_starting_position(slime_pos)
 			new_slime.set_type(StageData.SLIME.GRASS)
-			new_slime.landed.connect(map.change_top_level)
+			#new_slime.landed.connect(map.change_top_level)
 
 func _ready():
 	for player in player_container.get_children():

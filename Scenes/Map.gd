@@ -79,10 +79,10 @@ func highlight_tiles(tiles:Array, will_highlight = true) -> void:
 		if coord in grid:
 			grid[coord].will_highlight(will_highlight)
 
-func change_top_level(coordinates : Vector2, slime_type : int) -> void:
-	var top_level : Level = grid[coordinates].get_top_level()
-	if top_level.type in GameData.REACTIONS and slime_type in GameData.REACTIONS[top_level.type]:
-		top_level.set_type(GameData.REACTIONS[top_level.type][slime_type])
+#func change_top_level(coordinates : Vector2, slime_type : int) -> void:
+#	var top_level : Level = grid[coordinates].get_top_level()
+#	if top_level.type in GameData.REACTIONS and slime_type in GameData.REACTIONS[top_level.type]:
+#		top_level.set_type(GameData.REACTIONS[top_level.type][slime_type])
 
 func update_trails(new_coords : Vector2) -> void:
 	for tile in grid.values():

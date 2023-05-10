@@ -5,11 +5,12 @@ var coordinates  = Vector2(0,0)
 var Level = preload("res://Scenes/level.tscn")
 var levels = []
 var entity = null
-var captured_by = null
-var tick_rate = 1
-var point_score = 1
 
-var max_terrain_height = 3
+var capturing = null
+var captured_by = null
+var point_score = 1
+const TIME_TO_CAP = 3
+
 var trail_level : int = 0
 
 @onready var highlight = $Highlight
@@ -17,11 +18,12 @@ var trail_level : int = 0
 var tile_type = "dirt"
 
 var selectable : bool = false
+
+var colors = {"blue":Color(0,0,1), "red":Color(1,0,0)}
 signal clicked(tile)
 
 func _ready():
-	pass
-		
+	$CaptureTimer.set_wait_time(TIME_TO_CAP)
 
 func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.TERRAIN.DIRT) -> void:
 	coordinates = _coordinates
@@ -29,21 +31,14 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	set_position(Utils.coordinates_to_global(coordinates) )
 	
 	set_z_index(position.y*0.8)
-	add_level(terrain_type)
+	set_sprite(terrain_type)
 	if terrain_type == StageData.TERRAIN.ROCK:
 		tile_type = "capture"
 		Events.connect("global_tick", global_tick)
 
-func add_level(terrain_type : int) -> void:
-	if levels.size() == max_terrain_height:
-		return
-		
-	var new_level = Level.instantiate()
-	new_level.type = terrain_type
-	add_child(new_level)
-	levels.append(new_level)
-	
-	new_level.set_y_offset(-(Utils.TILE_HEIGHT + Utils.TILE_THICK*(levels.size()-1)))
+func set_sprite(terrain_type : int) -> void:
+	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/" + str(terrain_type) + ".png"))
+	$TerrainSprite.offset.y = -Utils.TILE_HEIGHT
 
 func get_top_pos() -> Vector2:
 	return get_position() + Vector2(0,-Utils.TILE_THICK*(levels.size()-1))
@@ -53,8 +48,6 @@ func will_highlight(yes : bool) -> void:
 		highlight.set_position(get_top_pos()-get_position())
 	highlight.set_visible(yes)
 
-func get_top_level() -> Level:
-	return levels[-1]
 
 func decrement_trail_level() -> void:
 	trail_level = max(0, trail_level - 1)
@@ -69,7 +62,6 @@ func _on_area_2d_mouse_entered():
 func _on_area_2d_mouse_exited():
 	will_highlight(false)
 
-
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if selectable:
 		if event is InputEventMouseButton:
@@ -78,12 +70,17 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 func occupy(slime : Slime) -> void:
 	entity = slime
-	captured_by = slime.aggro
+	if tile_type == "capture":
+		capturing = slime.aggro
+		$CaptureTimer.start()
+		captured_by = slime.aggro
+		$TerrainSprite.set_modulate(colors[captured_by.player_color])
 
 func leave() -> void:
 	entity = null
+	$CaptureTimer.stop()
+
 
 func global_tick():
 	if captured_by:
-		print("test")
 		captured_by.add_score(point_score)
