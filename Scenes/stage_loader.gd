@@ -22,11 +22,11 @@ func load_stage() -> void:
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
 			
-		for slime in stage_info.slimes:
+		for slime_pos in stage_info.slimes:
 			var new_slime : Slime = slime_scene.instantiate()
 			slime_container.add_child(new_slime)
-			new_slime.set_starting_position(slime[0])
-			new_slime.set_type(slime[1])
+			new_slime.set_starting_position(slime_pos)
+			new_slime.set_type(StageData.SLIME.GRASS)
 			new_slime.landed.connect(map.change_top_level)
 			
 func get_click_info(target_tile):

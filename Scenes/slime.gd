@@ -37,22 +37,6 @@ func set_starting_position(pos : Vector2) -> void:
 	set_position(Utils.coordinates_to_global(current_coord))
 	update_los(current_coord)
 
-func _input(event):
-	if event.is_action_pressed("ui_up"):
-		if Input.is_action_pressed("ui_left"):
-			move_dir("move_NW")
-		elif Input.is_action_pressed("ui_right"):
-			move_dir("move_NE")
-		else:
-			move_dir("move_N")
-	elif event.is_action_pressed("ui_down"):
-		if Input.is_action_pressed("ui_left"):
-			move_dir("move_SW")
-		elif Input.is_action_pressed("ui_right"):
-			move_dir("move_SE")
-		else:
-			move_dir("move_S")
-
 func _physics_process(delta):
 	pass
 #	if velocity_y != 0:
@@ -65,18 +49,23 @@ func set_type(type_code : int) -> void:
 	type = type_code
 	sprite.set_texture(load("res://Assets/slimes/" + str(type) + ".png"))
 
-func move_dir(dir : String) -> void:
+func move_dir(dir_prio : Array) -> void:
 	if animating:
 		return
-	var new_coord = current_coord + GameData.DIRECTIONS[dir]
-	if not is_free_tile(new_coord):
-		return
-	if Utils.map.grid[new_coord].entity is Slime: # may laman
-		animate_invalid_move(half_move(Utils.coordinates_to_global(new_coord)))
-		return
-	elif Utils.map.grid[new_coord].entity is Player: # may laman
+	var new_coord
+	for dir in dir_prio:
+		new_coord = current_coord + GameData.DIRECTIONS[dir]
+		if not is_free_tile(new_coord):
+			continue
+		elif Utils.map.grid[new_coord].entity is Slime: # may laman
+			continue
+		else:
+			break
+		
+	if Utils.map.grid[new_coord].entity is Player: # may laman
 		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
+	
 	change_coord(new_coord)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.finished.connect(set_animating.bind(false))
@@ -126,46 +115,26 @@ func set_aggro(new_target) -> void:
 		$MoveTimer.start()
 		$Indicator.visible = true
 
-func get_aggro_direction() -> String:
-	var chosen_direction = ""
+func get_aggro_direction() -> Array:
+	var direction_prio = []
+	var pheromones_prio = []
+	var i = 0
 	if aggro.current_coord in los:
-		
-		var player_dir = current_coord.direction_to(aggro.current_coord)
-		for dir in GameData.DIRECTION_NAMES:
-			if player_dir == dir.normalized():
-				var new_coord = current_coord + dir
-				if new_coord in Utils.map.grid:
-					chosen_direction = GameData.DIRECTION_NAMES[dir]
-					return chosen_direction
-				break
-
-		#in vision but not direct line
-		var player_angle = GameData.DIR_TO_ANGLE[aggro.current_coord - current_coord]
-		var smell_avg_angle = get_avg_smell_angle()
-		var final_angle = (smell_avg_angle + player_angle*GameData.PLAYER_TRAIL_STRENGTH)/(GameData.PLAYER_TRAIL_STRENGTH+1)
-		var candidate_dirs = Utils.get_closest_dirs_array(final_angle)
-		for dir in candidate_dirs:
-			var new_coord = current_coord + GameData.DIRECTIONS[dir]
+		for coord in GameData.DIRECTION_NAMES:
+			var new_coord = current_coord + coord
 			if new_coord in Utils.map.grid:
-				if Utils.map.grid[new_coord].entity is Slime:
-					continue
-				else:
-					return dir
+				var new_pher = Utils.map.get_pheromone_level(new_coord)
+				i = 0
+				while i < direction_prio.size() and new_pher < pheromones_prio[i]:
+					i += 1
+				direction_prio.insert(i, GameData.DIRECTION_NAMES[coord])
+				pheromones_prio.insert(i, new_pher)
 	else:
 		set_aggro(null)
-	return chosen_direction
+	for _i in range(direction_prio.size()):
+		print(direction_prio[_i],":",pheromones_prio[_i])
+	return direction_prio
 
-func get_avg_smell_angle() -> float:
-	var dir_num = 0
-	var dir_total = 0
-	for coord in smellos:
-		if coord in Utils.map.grid:
-			dir_total =  GameData.DIR_TO_ANGLE[coord - current_coord] * Utils.map.grid[coord].trail_level
-			dir_num += 1
-	
-	if dir_num == 0:
-		return dir_total
-	return dir_total / dir_num
 
 func is_free_tile(new_coords : Vector2) -> bool:
 	for slime in get_tree().get_nodes_in_group("Slimes"):
@@ -174,8 +143,8 @@ func is_free_tile(new_coords : Vector2) -> bool:
 	return true
 
 func _on_move_timer_timeout():
-	var direction = get_aggro_direction()
-	if direction != "":
-		move_dir(direction)
+	var direction_prio = get_aggro_direction()
+	if direction_prio != []:
+		move_dir(direction_prio)
 		$MoveTimer.set_wait_time(max($MoveTimer.wait_time*move_time_scale, min_move_time))
-		print($MoveTimer.wait_time)
+		#print($MoveTimer.wait_time)

@@ -70,8 +70,7 @@ const LEVEL_DATA = {
 		"blue_start" : Vector2(-4,2),
 		"red_start" : Vector2(0,0),
 		
-		"slimes" : [
-			[Vector2(0,0), SLIME.GRASS],
-		]
+		"slimes" : 
+			[Vector2(3,1),Vector2(3,-4),Vector2(-3,-1),Vector2(-3,4)]
 	},
 }

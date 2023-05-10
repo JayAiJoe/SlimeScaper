@@ -99,3 +99,10 @@ func update_selectables(new_coords : Vector2) -> void:
 
 func signal_tile_clicked(tile : Tile2D) -> void:
 	tile_clicked.emit(tile)
+
+func get_pheromone_level(center:Vector2) -> float:
+	var pheromone_level = pow(grid[center].trail_level,2)
+	for coord in Utils.get_coords_in_ring(center, 1):
+		if coord in grid:
+			pheromone_level += grid[coord].trail_level
+	return pheromone_level

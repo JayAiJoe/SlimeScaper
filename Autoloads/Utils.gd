@@ -23,9 +23,12 @@ func coordinates_to_global(coordinates:Vector2, tile_size = Vector2(TILE_WIDTH/2
 					SCREEN_CENTER.y + (sqrt(3)/2 * coordinates.x + sqrt(3) * coordinates.y ) * tile_size.y)
 
 
-func get_coords_in_ring(center:Vector2, radius:int) -> Array:
+func get_coords_in_ring(center:Vector2, radius:int, include_center = false) -> Array:
 	var result = []
 	var current = Vector2(-1,1)*radius + center
+	
+	if include_center:
+		result.append(center)
 	
 	for dir in GameData.DIRECTIONS:
 		for i in range(radius):
@@ -34,12 +37,14 @@ func get_coords_in_ring(center:Vector2, radius:int) -> Array:
 	return result
 	
 func get_coords_in_radius(center:Vector2, radius:int, include_center = false) -> Array: 
-	var results = []
+	var result = []
+	
 	if include_center:
-		results.append(center)
+		result.append(center)
+		
 	for i in range(1,radius+1):
-		results += get_coords_in_ring(center, i)
-	return results
+		result += get_coords_in_ring(center, i)
+	return result
 
 func find_closest_dir(d:Vector2) -> Vector2:
 	var closest = Vector2(0,0)

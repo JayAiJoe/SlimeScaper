@@ -53,7 +53,6 @@ func decrement_trail_level() -> void:
 func set_trail_level(t_level : int) -> void:
 	trail_level = t_level
 
-
 func _on_area_2d_mouse_entered():
 	if selectable:
 		will_highlight(true)
