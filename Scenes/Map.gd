@@ -3,10 +3,12 @@ class_name Map2D
 
 var TILE = preload("res://Scenes/tile.tscn")
 var CAPTURE_POINT_TILE = preload("res://Scenes/capture_point_tile.tscn")
+var slime_scene = preload("res://Scenes/slime.tscn")
 
 @export var level = "main menu"
 
 var grid = {}
+var garden_coords = []
 
 var top_left = Vector2()
 var bot_right = Vector2()
@@ -28,7 +30,6 @@ func test_grid():
 	for coord in coords:
 		add_new_tile(coord)
 	highlight_tiles(Utils.get_coords_in_radius(Vector2(1,1),2, true))
-	
 
 func generate_main_menu():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),10, true)
@@ -41,6 +42,7 @@ func connect_starting_signals() -> void:
 	
 func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> void:
 	if coordinates in grid:
+		return
 		grid[coordinates].add_level(terrain)
 	else:
 		var new_tile
@@ -48,13 +50,15 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 			new_tile = CAPTURE_POINT_TILE.instantiate()
 		else:
 			new_tile = TILE.instantiate()
+			
 		new_tile.create_new_tile(coordinates, terrain)
 		check_grid_size(new_tile.position)
 		grid[coordinates] = new_tile
+		if terrain == GameData.TERRAIN.GRASS:
+			garden_coords.append(coordinates)
 		add_child(new_tile)
 		new_tile.clicked.connect(signal_tile_clicked)
 		
-	#fix global scaling
 
 func check_grid_size(new_tile_pos: Vector2):
 	var old_tl = top_left
@@ -69,12 +73,11 @@ func check_grid_size(new_tile_pos: Vector2):
 		bot_right.y = max(bot_right.y, new_tile_pos.y)
 	
 	if old_tl != top_left or old_br != bot_right:
-		#resize na
-		var max_length = max(bot_right.x - top_left.x, bot_right.y - top_left.y)
+		var max_length = min(Utils.SCREEN_WIDTH/(bot_right.x - top_left.x), Utils.SCREEN_HEIGHT/(bot_right.y - top_left.y))
 		#print("top_left ",top_left)
 		#print("bot_right ",bot_right)
 		if max_length:
-			map_scale = Utils.SCREEN_HEIGHT/max_length*0.9
+			map_scale = max_length*0.9
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)

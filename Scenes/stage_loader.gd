@@ -22,24 +22,38 @@ func load_stage() -> void:
 			
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
+		
+		for i in range(6):
+			spawn_random_slime()
 			
-		for slime_pos in stage_info.slimes:
-			var new_slime : Slime = slime_scene.instantiate()
-			slime_container.add_child(new_slime)
-			new_slime.set_starting_position(slime_pos)
-			new_slime.set_type(StageData.SLIME.GRASS)
+#		for slime_pos in stage_info.slimes:
+#			var new_slime : Slime = slime_scene.instantiate()
+#			slime_container.add_child(new_slime)
+#			new_slime.set_starting_position(slime_pos)
+#			new_slime.set_type(StageData.SLIME.GRASS)
 			#new_slime.landed.connect(map.change_top_level)
+
+func spawn_random_slime() -> void:
+	var spawn_coord = Vector2()
+	while map.grid[spawn_coord].entity != null:
+		spawn_coord = map.garden_coords.pick_random()
+	
+	var new_slime : Slime = slime_scene.instantiate()
+	slime_container.add_child(new_slime)
+	new_slime.set_starting_position(spawn_coord)
+	new_slime.set_type(randi()%4)
 
 func _ready():
 	for player in player_container.get_children():
 		player.landed.connect(map.update_trails)
 		#player.landed.connect(map.update_selectables)
 	
-	stage_info = StageData.LEVEL_DATA["map1"]
+	stage_info = StageData.LEVEL_DATA["garden1"]
 	load_stage()
 	$GlobalTickTimer.set_wait_time(TICK_RATE)
 	$GlobalTickTimer.start()
 	HUD.get_node("timer_visual").set_max(TICK_RATE)
+	
 
 func _physics_process(delta):
 	Events.emit_signal("update_ticker", $GlobalTickTimer.time_left)
