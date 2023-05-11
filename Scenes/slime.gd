@@ -73,12 +73,14 @@ func move_dir(dir_prio : Array) -> void:
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.4)
 	velocity_y = JUMP_VELOCITY
 	if to_free:
+		tween.tween_callback(absorb)
 		tween.tween_callback(queue_free)
 	else:
 		tween.tween_callback(emit_signal.bind("landed", current_coord, type))
 		tween.tween_callback(update_los.bind(current_coord))
 	
-		
+func absorb():
+	Events.emit_signal("slime_absorbed")
 
 func set_animating(val : bool) -> void:
 	animating = val

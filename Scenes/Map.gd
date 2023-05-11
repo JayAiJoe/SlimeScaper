@@ -7,6 +7,8 @@ var slime_scene = preload("res://Scenes/slime.tscn")
 
 @export var level = "main menu"
 
+var slime_container
+
 var grid = {}
 var garden_coords = []
 
@@ -14,12 +16,15 @@ var top_left = Vector2()
 var bot_right = Vector2()
 var map_scale = 1
 
+var slime_deck = []
+
 signal tile_clicked(tile)
 
 func _ready():
 	Utils.map = self
 	connect_starting_signals()
 	randomize()
+	fill_slime_deck()
 	#test_grid()
 
 func test_grid():
@@ -31,6 +36,10 @@ func test_grid():
 		add_new_tile(coord)
 	highlight_tiles(Utils.get_coords_in_radius(Vector2(1,1),2, true))
 
+func fill_slime_deck():
+	slime_deck = [0,0,1,1,2,2,3]
+	slime_deck.shuffle()
+	
 func generate_main_menu():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),10, true)
 	for coord in coords:
@@ -38,7 +47,7 @@ func generate_main_menu():
 
 func connect_starting_signals() -> void:
 	#$slime.landed.connect(change_top_level) #test functionm
-	pass
+	Events.connect("slime_absorbed", spawn_random_slime)
 	
 func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> void:
 	if coordinates in grid:
@@ -81,6 +90,18 @@ func check_grid_size(new_tile_pos: Vector2):
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
+
+func spawn_random_slime() -> void:
+	var spawn_coord = Vector2()
+	while grid[spawn_coord].entity != null:
+		spawn_coord = garden_coords.pick_random()
+	
+	var new_slime : Slime = slime_scene.instantiate()
+	slime_container.add_child(new_slime)
+	new_slime.set_starting_position(spawn_coord)
+	if slime_deck == []:
+		fill_slime_deck()
+	new_slime.set_type(slime_deck.pop_back())
 
 func highlight_tiles(tiles:Array, will_highlight = true) -> void:
 	for coord in tiles:
