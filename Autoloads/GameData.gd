@@ -76,3 +76,13 @@ var REACTIONS : Dictionary = {
 	TERRAIN.PLANT : {SLIME.FIRE : TERRAIN.DIRT, SLIME.ROCK : TERRAIN.GRASS},
 	
 }
+
+const INGREDIENT_VARIETIES = 3
+const CHOMPY_INDEX = 3
+
+var INGREDIENT_NAMES = {
+	0 : "onion",
+	1 : "carrot",
+	2 : "lettuce",
+	3 : "chompy",
+}

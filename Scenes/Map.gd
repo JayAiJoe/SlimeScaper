@@ -51,9 +51,9 @@ func connect_starting_signals() -> void:
 	pass
 	
 	
-func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> void:
+func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> Tile:
 	if coordinates in grid:
-		return
+		return null
 		grid[coordinates].add_level(terrain)
 	else:
 		var new_tile
@@ -70,6 +70,7 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 		if terrain == GameData.TERRAIN.GRASS:
 			garden_coords.append(coordinates)
 		add_child(new_tile)
+		return new_tile
 		
 
 func check_grid_size(new_tile_pos: Vector2):

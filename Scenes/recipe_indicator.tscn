@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://2m3xx3wjvjw4"]
+
+[ext_resource type="Texture2D" uid="uid://b3gpxxuplm68u" path="res://Assets/panel_beige.png" id="1_g870h"]
+[ext_resource type="Script" path="res://Scenes/recipe_indicator.gd" id="2_ulnxo"]
+
+[node name="RecipeIndicator" type="NinePatchRect"]
+offset_right = 800.0
+offset_bottom = 250.0
+texture = ExtResource("1_g870h")
+patch_margin_left = 33
+patch_margin_top = 33
+patch_margin_right = 33
+patch_margin_bottom = 33
+script = ExtResource("2_ulnxo")
+
+[node name="IngredientContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -152.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1

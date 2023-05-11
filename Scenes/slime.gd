@@ -47,7 +47,8 @@ func _physics_process(delta):
 
 func set_type(type_code : int) -> void:
 	type = type_code
-	sprite.set_texture(load("res://Assets/slimes/" + str(type) + ".png"))
+	#sprite.set_texture(load("res://Assets/slimes/" + str(type) + ".png"))
+	sprite.set_texture(load("res://Assets/slimes/" + GameData.INGREDIENT_NAMES[type] + ".png"))
 
 func move_dir(dir_prio : Array) -> void:
 	if animating:
@@ -127,12 +128,10 @@ func set_aggro(new_target) -> void:
 	if aggro == null:
 		$MoveTimer.stop()
 		$MoveTimer.set_wait_time(max_move_time)
-		$Indicator.visible = false
 		$Sprite2D.set_modulate(Color(1,1,1))
 		print("LOSE AGGRO")
 	else:
 		$MoveTimer.start()
-		$Indicator.visible = true
 		$Sprite2D.set_modulate(GameData.COLORS[aggro.player_color])
 
 func get_aggro_direction() -> Array:

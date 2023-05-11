@@ -9,3 +9,7 @@ func update_score(player_color, new_score):
 	if new_score == winning_points:
 		$Winner.set_modulate(GameData.COLORS[player_color])
 		$Winner.set_text(player_color+" wins!")
+
+func display_winner(player_color):
+	$Winner.set_modulate(GameData.COLORS[player_color])
+	$Winner.set_text(player_color+" wins!")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5yusugfb1p72"]
+
+[ext_resource type="Script" path="res://Scenes/ingredient_pip.gd" id="1_tipnp"]
+[ext_resource type="Texture2D" uid="uid://dsacgoha7jmlc" path="res://Assets/slimes/carrot.png" id="2_734ji"]
+
+[node name="IngredientPip" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1792.0
+offset_bottom = -952.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tipnp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("2_734ji")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)

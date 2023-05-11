@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3jo8e8n8wh1l"]
+[gd_scene load_steps=7 format=3 uid="uid://c3jo8e8n8wh1l"]
 
 [ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
 [ext_resource type="PackedScene" uid="uid://bgmterw6bq5iq" path="res://Scenes/Map.tscn" id="2_oien2"]
 [ext_resource type="PackedScene" uid="uid://btl1r0jhgh3no" path="res://Scenes/player.tscn" id="3_1y5lv"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_dkcvl"]
+[ext_resource type="PackedScene" uid="uid://2m3xx3wjvjw4" path="res://Scenes/recipe_indicator.tscn" id="5_8dcxp"]
+[ext_resource type="PackedScene" uid="uid://bdo8vi8f3apoo" path="res://Scenes/recipe_handler.tscn" id="6_w5r4q"]
 
 [node name="StageLoader" type="Node2D"]
 script = ExtResource("1_qk5nt")
@@ -25,5 +27,25 @@ player_color = "red"
 [node name="SlimeContainer" type="Node2D" parent="."]
 
 [node name="GlobalTickTimer" type="Timer" parent="."]
+
+[node name="Recipes" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RecipeIndicator" parent="Recipes" instance=ExtResource("5_8dcxp")]
+layout_mode = 0
+
+[node name="RecipeIndicator2" parent="Recipes" instance=ExtResource("5_8dcxp")]
+layout_mode = 0
+offset_left = 1120.0
+offset_right = 1920.0
+
+[node name="RecipeHandler" parent="." instance=ExtResource("6_w5r4q")]
 
 [connection signal="timeout" from="GlobalTickTimer" to="." method="_on_global_tick_timer_timeout"]

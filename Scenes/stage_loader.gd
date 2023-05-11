@@ -21,10 +21,12 @@ func set_stage_info(info : Dictionary) -> void:
 
 func load_stage() -> void:
 	if stage_info:
-		
+		var cauldrons = []
 		for tile_type in stage_info.map:
 			for tile_coord in stage_info.map[tile_type]:
-				map.add_new_tile(tile_coord, tile_type)
+				var new_tile = map.add_new_tile(tile_coord, tile_type)
+				if tile_type == GameData.TERRAIN.ROCK:
+					cauldrons.append(new_tile)
 			
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
@@ -35,6 +37,16 @@ func load_stage() -> void:
 		else:
 			for i in range(stage_info["num_slimes"]):
 				map.spawn_random_slime()
+		
+		for i in range(cauldrons.size()):
+			cauldrons[i].ingredient_placed.connect($Recipes.get_children()[i].receive_ingredient)
+		
+		var idx = 0
+		for indicator in $Recipes.get_children():
+			indicator.recipe_requested.connect($RecipeHandler.handle_recipe_request)
+			indicator.request_new_recipe()
+			indicator.player_color = GameData.COLORS.keys()[idx]
+			idx += 1
 			
 #		for slime_pos in stage_info.slimes:
 #			var new_slime : Slime = slime_scene.instantiate()
