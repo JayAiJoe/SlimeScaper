@@ -10,6 +10,10 @@ var stage_info
 
 var slime_scene = preload("res://Scenes/slime.tscn")
 
+var ready_players = 0
+var max_ready_time = 3
+var ready_decay = 1
+
 const TICK_RATE = 5
 
 func set_stage_info(info : Dictionary) -> void:
@@ -38,9 +42,11 @@ func load_stage() -> void:
 #			new_slime.set_type(StageData.SLIME.GRASS)
 			#new_slime.landed.connect(map.change_top_level)
 
-
+func update_ready(delta):
+	ready_players += delta
 
 func _ready():
+	Events.connect("ready_player", update_ready)
 	for player in player_container.get_children():
 		player.landed.connect(map.update_trails)
 		#player.landed.connect(map.update_selectables)
@@ -51,17 +57,22 @@ func _ready():
 		stage_info = StageData.LEVEL_DATA["main_menu"]
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
 		Events.disconnect("points_gained", HUD.update_score)
+		$TextureProgressBar.set_max(max_ready_time)
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
 	load_stage()
-	$GlobalTickTimer.set_wait_time(TICK_RATE)
+	
 	$GlobalTickTimer.start()
 	HUD.get_node("timer_visual").set_max(TICK_RATE)
-	
 
 func _physics_process(delta):
-	Events.emit_signal("update_ticker", $GlobalTickTimer.time_left)
+	if ready_players == 2:
+		$TextureProgressBar.set_value($TextureProgressBar.get_value()+delta)
+		if $TextureProgressBar.get_value() >= $TextureProgressBar.get_max():
+			print("START THE GAME")
+	else:
+		$TextureProgressBar.set_value($TextureProgressBar.get_value()-delta*ready_decay)
 
 func _on_global_tick_timer_timeout():
 	Events.emit_signal("global_tick")

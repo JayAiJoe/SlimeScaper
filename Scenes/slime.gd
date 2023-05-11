@@ -99,13 +99,13 @@ func change_coord(new_pos : Vector2) -> void:
 	Utils.map.grid[current_coord].leave()
 	current_coord = new_pos
 	Utils.map.grid[current_coord].occupy(self)
-	
 
 func cauldron_check() -> void:
 	for new_coord in Utils.get_coords_in_radius(current_coord,1,false):
 		if new_coord in Utils.map.grid:
 			if Utils.map.grid[new_coord].tile_type == GameData.TERRAIN.ROCK:
 				jump_to_cauldron(new_coord-current_coord)
+				break
 
 func jump_to_cauldron(dir:Vector2) -> void:
 	print("jump")

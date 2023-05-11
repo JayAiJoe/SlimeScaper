@@ -22,7 +22,7 @@ var score = 0
 signal landed(color, coords)
 
 func _ready():
-	set_z_index(1000)
+	set_z_index(4096)
 	Utils.player = self
 	Events.emit_signal("points_gained",player_color,score)
 
@@ -90,8 +90,12 @@ func animate_invalid_move(global_pos:Vector2):
 
 func change_coord(new_pos : Vector2) -> void:
 	Utils.map.grid[current_coord].entity = null
+	if Utils.map.grid[current_coord].tile_type == GameData.TERRAIN.WATER:
+		Events.emit_signal("ready_player", -1)
 	current_coord = new_pos
 	Utils.map.grid[current_coord].entity = self
+	if Utils.map.grid[current_coord].tile_type == GameData.TERRAIN.WATER:
+		Events.emit_signal("ready_player", 1)
 
 func add_score(gained_score : int):
 	score += gained_score

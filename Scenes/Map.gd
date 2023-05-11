@@ -3,6 +3,7 @@ class_name Map2D
 
 var TILE = preload("res://Scenes/tile.tscn")
 var CAPTURE_POINT_TILE = preload("res://Scenes/capture_point_tile.tscn")
+var READY_TILE = preload("res://Scenes/ready_tile.tscn")
 var slime_scene = preload("res://Scenes/slime.tscn")
 
 @export var level = "main menu"
@@ -56,7 +57,9 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 		grid[coordinates].add_level(terrain)
 	else:
 		var new_tile
-		if terrain == GameData.TERRAIN.ROCK:
+		if terrain == GameData.TERRAIN.WATER:
+			new_tile = READY_TILE.instantiate()
+		elif terrain == GameData.TERRAIN.ROCK:
 			new_tile = CAPTURE_POINT_TILE.instantiate()
 		else:
 			new_tile = TILE.instantiate()
@@ -67,7 +70,6 @@ func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) 
 		if terrain == GameData.TERRAIN.GRASS:
 			garden_coords.append(coordinates)
 		add_child(new_tile)
-		new_tile.clicked.connect(signal_tile_clicked)
 		
 
 func check_grid_size(new_tile_pos: Vector2):
@@ -139,7 +141,7 @@ func signal_tile_clicked(tile : Tile) -> void:
 	tile_clicked.emit(tile)
 
 func get_pheromone_level(color : String, center:Vector2) -> float:
-	var pheromone_level = pow(grid[center].trail_levels[color],2)
+	var pheromone_level = pow(grid[center].trail_levels[color],5)
 	for coord in Utils.get_coords_in_ring(center, 1):
 		if coord in grid:
 			pheromone_level += grid[coord].trail_levels[color]

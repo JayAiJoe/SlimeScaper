@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6dqwxpfh1p8f"]
+[gd_scene load_steps=3 format=3 uid="uid://c6dqwxpfh1p8f"]
 
 [ext_resource type="PackedScene" uid="uid://c3jo8e8n8wh1l" path="res://Scenes/stage_loader.tscn" id="1_jerfw"]
+[ext_resource type="Texture2D" uid="uid://bdx12iwsmw7l4" path="res://HUD/ready_timer.png" id="2_a8j0e"]
 
 [node name="StageLoader" instance=ExtResource("1_jerfw")]
 is_main_menu = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." index="5"]
+z_index = 4093
+z_as_relative = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 704.0
+offset_top = -73.0
+offset_right = 1216.0
+offset_bottom = 439.0
+grow_horizontal = 2
+max_value = 5.0
+step = 0.001
+texture_progress = ExtResource("2_a8j0e")
