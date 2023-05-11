@@ -61,6 +61,7 @@ func _ready():
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
+		set_physics_process(false)
 	load_stage()
 	
 	$GlobalTickTimer.start()
@@ -70,7 +71,7 @@ func _physics_process(delta):
 	if ready_players == 2:
 		$TextureProgressBar.set_value($TextureProgressBar.get_value()+delta)
 		if $TextureProgressBar.get_value() >= $TextureProgressBar.get_max():
-			print("START THE GAME")
+			get_tree().change_scene_to_file("res://Scenes/stage_loader.tscn")
 	else:
 		$TextureProgressBar.set_value($TextureProgressBar.get_value()-delta*ready_decay)
 
