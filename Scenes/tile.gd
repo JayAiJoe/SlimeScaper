@@ -30,8 +30,8 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	
 	set_z_index(position.y*0.8)
 	set_sprite(terrain_type)
+	tile_type = terrain_type
 	if terrain_type == StageData.TERRAIN.ROCK:
-		tile_type = "capture"
 		Events.connect("global_tick", global_tick)
 
 func set_sprite(terrain_type : int) -> void:
