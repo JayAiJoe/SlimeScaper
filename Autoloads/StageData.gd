@@ -94,8 +94,25 @@ const LEVEL_DATA = {
 			
 		"blue_start" : Vector2(-4,2),
 		"red_start" : Vector2(4,-2),
-		
-		"slimes" : 
-			[Vector2(3,1),Vector2(3,-4),Vector2(-3,-1),Vector2(-3,4)]
+		"num_slimes" : 6,
+	},
+	"main_menu" : {
+		"map" : {
+			TERRAIN.ROCK:[Vector2(-3,0),Vector2(3,-3)],
+			TERRAIN.GRASS:[ Vector2(0,0),Vector2(0,1),Vector2(0,2),Vector2(0,3),],
+			TERRAIN.DIRT:[  Vector2(-4,1),Vector2(-4,2),Vector2(-4,3),
+							Vector2(-3,0),Vector2(-3,1),Vector2(-3,2),Vector2(-3,3),
+							Vector2(-2,-1),Vector2(-2,0),Vector2(-2,1),Vector2(-2,2),Vector2(-2,3),
+							Vector2(-1,-1),Vector2(-1,0),Vector2(-1,1),Vector2(-1,2),Vector2(-1,3),
+							Vector2(0,-1),
+							Vector2(1,-2),Vector2(1,-1),Vector2(1,0),Vector2(1,1),Vector2(1,2),
+							Vector2(2,-3),Vector2(2,-2),Vector2(2,-1),Vector2(2,0),Vector2(2,1),
+							Vector2(3,-2),Vector2(3,-1),Vector2(3,0),
+							Vector2(4,-1),Vector2(4,-2),Vector2(4,-3),],
+			TERRAIN.WATER:[ Vector2(-1,-2),Vector2(0,-2),Vector2(0,-3),Vector2(1,-3),]
+		},
+			
+		"blue_start" : Vector2(-3,2),
+		"red_start" : Vector2(3,-1),
 	},
 }

@@ -6,6 +6,8 @@ var stage_info
 @onready var player_container  = $PlayerContainer
 @onready var slime_container = $SlimeContainer
 
+@export var is_main_menu = false
+
 var slime_scene = preload("res://Scenes/slime.tscn")
 
 const TICK_RATE = 5
@@ -23,8 +25,11 @@ func load_stage() -> void:
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
 		
-		for i in range(6):
-			map.spawn_random_slime()
+		if is_main_menu:
+			map.spawn_fixed_slimes()
+		else:
+			for i in range(stage_info["num_slimes"]):
+				map.spawn_random_slime()
 			
 #		for slime_pos in stage_info.slimes:
 #			var new_slime : Slime = slime_scene.instantiate()
@@ -42,7 +47,13 @@ func _ready():
 	
 	map.slime_container = slime_container
 	
-	stage_info = StageData.LEVEL_DATA["garden1"]
+	if is_main_menu:
+		stage_info = StageData.LEVEL_DATA["main_menu"]
+		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
+		Events.disconnect("points_gained", HUD.update_score)
+	else:
+		stage_info = StageData.LEVEL_DATA["garden1"]
+		Events.connect("slime_absorbed", map.spawn_random_slime)
 	load_stage()
 	$GlobalTickTimer.set_wait_time(TICK_RATE)
 	$GlobalTickTimer.start()

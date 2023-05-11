@@ -46,8 +46,9 @@ func generate_main_menu():
 		add_new_tile(coord)
 
 func connect_starting_signals() -> void:
-	#$slime.landed.connect(change_top_level) #test functionm
-	Events.connect("slime_absorbed", spawn_random_slime)
+	#$slime.landed.connect(change_top_level) #test function
+	pass
+	
 	
 func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> void:
 	if coordinates in grid:
@@ -82,11 +83,10 @@ func check_grid_size(new_tile_pos: Vector2):
 		bot_right.y = max(bot_right.y, new_tile_pos.y)
 	
 	if old_tl != top_left or old_br != bot_right:
+		if top_left == bot_right:
+			return
 		var max_length = min(Utils.SCREEN_WIDTH/(bot_right.x - top_left.x), Utils.SCREEN_HEIGHT/(bot_right.y - top_left.y))
-		#print("top_left ",top_left)
-		#print("bot_right ",bot_right)
-		if max_length:
-			map_scale = max_length*0.9
+		map_scale = max_length*0.9
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
@@ -102,6 +102,15 @@ func spawn_random_slime() -> void:
 	if slime_deck == []:
 		fill_slime_deck()
 	new_slime.set_type(slime_deck.pop_back())
+
+func spawn_fixed_slimes():
+	for i in range(garden_coords.size()):
+		if grid[garden_coords[i]].entity == null:
+			var new_slime : Slime = slime_scene.instantiate()
+			slime_container.add_child(new_slime)
+			new_slime.set_starting_position(garden_coords[i])
+			new_slime.set_type(i)
+		
 
 func highlight_tiles(tiles:Array, will_highlight = true) -> void:
 	for coord in tiles:

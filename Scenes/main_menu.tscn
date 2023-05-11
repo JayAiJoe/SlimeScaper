@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6dqwxpfh1p8f"]
 
-[ext_resource type="PackedScene" uid="uid://b5tndvs5gilhy" path="res://Scenes/Map.tscn" id="1_vxpwt"]
+[ext_resource type="PackedScene" uid="uid://c3jo8e8n8wh1l" path="res://Scenes/stage_loader.tscn" id="1_jerfw"]
 
-[node name="MainMenu" type="Node2D"]
-
-[node name="Grid" parent="." instance=ExtResource("1_vxpwt")]
+[node name="StageLoader" instance=ExtResource("1_jerfw")]
+is_main_menu = true
