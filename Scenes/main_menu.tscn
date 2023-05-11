@@ -6,9 +6,17 @@
 [node name="StageLoader" instance=ExtResource("1_jerfw")]
 is_main_menu = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." index="5"]
+[node name="Prompts" type="Control" parent="." index="5"]
 z_index = 4093
 z_as_relative = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Prompts" index="0"]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 704.0
@@ -19,3 +27,145 @@ grow_horizontal = 2
 max_value = 5.0
 step = 0.001
 texture_progress = ExtResource("2_a8j0e")
+
+[node name="Blue_keys" type="Control" parent="Prompts" index="1"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Q" type="Label" parent="Prompts/Blue_keys" index="0"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 466.0
+offset_right = 354.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 75
+text = "Q"
+
+[node name="W" type="Label" parent="Prompts/Blue_keys" index="1"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 437.0
+offset_right = 518.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 75
+text = "W"
+
+[node name="E" type="Label" parent="Prompts/Blue_keys" index="2"]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 469.0
+offset_right = 691.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 75
+text = "E"
+
+[node name="A" type="Label" parent="Prompts/Blue_keys" index="3"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 573.0
+offset_right = 360.0
+offset_bottom = 713.0
+theme_override_font_sizes/font_size = 75
+text = "A"
+
+[node name="S" type="Label" parent="Prompts/Blue_keys" index="4"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 622.0
+offset_right = 536.0
+offset_bottom = 762.0
+theme_override_font_sizes/font_size = 75
+text = "S"
+
+[node name="D" type="Label" parent="Prompts/Blue_keys" index="5"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 582.0
+offset_right = 682.0
+offset_bottom = 722.0
+theme_override_font_sizes/font_size = 75
+text = "D"
+
+[node name="Red_keys" type="Control" parent="Prompts" index="2"]
+anchors_preset = 0
+offset_left = 987.0
+offset_top = -13.0
+offset_right = 1027.0
+offset_bottom = 27.0
+
+[node name="U" type="Label" parent="Prompts/Red_keys" index="0"]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 483.0
+offset_right = 348.0
+offset_bottom = 623.0
+theme_override_font_sizes/font_size = 75
+text = "U"
+
+[node name="I" type="Label" parent="Prompts/Red_keys" index="1"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 437.0
+offset_right = 518.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 75
+text = "I"
+
+[node name="O" type="Label" parent="Prompts/Red_keys" index="2"]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 486.0
+offset_right = 666.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 75
+text = "O"
+
+[node name="J" type="Label" parent="Prompts/Red_keys" index="3"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 590.0
+offset_right = 363.0
+offset_bottom = 730.0
+theme_override_font_sizes/font_size = 75
+text = "J"
+
+[node name="K" type="Label" parent="Prompts/Red_keys" index="4"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 642.0
+offset_right = 505.0
+offset_bottom = 782.0
+theme_override_font_sizes/font_size = 75
+text = "K"
+
+[node name="L" type="Label" parent="Prompts/Red_keys" index="5"]
+layout_mode = 0
+offset_left = 597.0
+offset_top = 605.0
+offset_right = 676.0
+offset_bottom = 745.0
+theme_override_font_sizes/font_size = 75
+text = "L"
+
+[node name="Title" type="Label" parent="Prompts" index="3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 600.0
+offset_top = -187.0
+offset_right = 1362.0
+offset_bottom = 225.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 300
+text = "TITLE"
+
+[node name="ready_text" type="Label" parent="Prompts" index="4"]
+layout_mode = 0
+offset_left = 885.0
+offset_top = 294.0
+offset_right = 1045.0
+offset_bottom = 366.0
+theme_override_font_sizes/font_size = 50
+text = "READY"

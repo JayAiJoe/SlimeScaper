@@ -31,6 +31,7 @@ func load_stage() -> void:
 		
 		if is_main_menu:
 			map.spawn_fixed_slimes()
+			Events.emit_signal("resize_camera", Vector2(960, 320), Vector2(1,1)*0.95)
 		else:
 			for i in range(stage_info["num_slimes"]):
 				map.spawn_random_slime()
@@ -57,7 +58,7 @@ func _ready():
 		stage_info = StageData.LEVEL_DATA["main_menu"]
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
 		Events.disconnect("points_gained", HUD.update_score)
-		$TextureProgressBar.set_max(max_ready_time)
+		$Prompts/TextureProgressBar.set_max(max_ready_time)
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
@@ -69,11 +70,11 @@ func _ready():
 
 func _physics_process(delta):
 	if ready_players == 2:
-		$TextureProgressBar.set_value($TextureProgressBar.get_value()+delta)
-		if $TextureProgressBar.get_value() >= $TextureProgressBar.get_max():
+		$Prompts/TextureProgressBar.set_value($Prompts/TextureProgressBar.get_value()+delta)
+		if $Prompts/TextureProgressBar.get_value() >= $Prompts/TextureProgressBar.get_max():
 			get_tree().change_scene_to_file("res://Scenes/stage_loader.tscn")
 	else:
-		$TextureProgressBar.set_value($TextureProgressBar.get_value()-delta*ready_decay)
+		$Prompts/TextureProgressBar.set_value($Prompts/TextureProgressBar.get_value()-delta*ready_decay)
 
 func _on_global_tick_timer_timeout():
 	Events.emit_signal("global_tick")

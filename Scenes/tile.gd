@@ -31,8 +31,6 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	set_z_index(position.y*0.8)
 	set_sprite(terrain_type)
 	tile_type = terrain_type
-	if terrain_type == StageData.TERRAIN.ROCK:
-		Events.connect("global_tick", global_tick)
 
 func set_sprite(terrain_type : int) -> void:
 	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/" + str(terrain_type) + ".png"))
