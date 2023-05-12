@@ -91,8 +91,9 @@ const LEVEL_DATA = {
 							Vector2(5,-1),Vector2(5,-2),Vector2(5,-3),Vector2(5,-4),
 							Vector2(6,-2),Vector2(6,-4),],
 		},
-			
+		"blue_cauldron" : Vector2(-6,3),
 		"blue_start" : Vector2(-4,2),
+		"red_cauldron" : Vector2(6,-3),
 		"red_start" : Vector2(4,-2),
 		"num_slimes" : 6,
 	},

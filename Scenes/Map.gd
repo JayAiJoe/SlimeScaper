@@ -19,22 +19,12 @@ var map_scale = 1
 
 var slime_deck = []
 
-signal tile_clicked(tile)
+var player_color = ""
 
 func _ready():
 	Utils.map = self
 	connect_starting_signals()
 	randomize()
-	#test_grid()
-
-func test_grid():
-	var coords = Utils.get_coords_in_radius(Vector2(0,0),3, true)
-	for coord in coords:
-		add_new_tile(coord)
-	coords = Utils.get_coords_in_ring(Vector2(1,1),2)
-	for coord in coords:
-		add_new_tile(coord)
-	highlight_tiles(Utils.get_coords_in_radius(Vector2(1,1),2, true))
 	
 func generate_main_menu():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),10, true)
@@ -44,8 +34,7 @@ func generate_main_menu():
 func connect_starting_signals() -> void:
 	#$slime.landed.connect(change_top_level) #test function
 	pass
-	
-	
+
 func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> Tile:
 	if coordinates in grid:
 		return null
@@ -118,7 +107,6 @@ func spawn_fixed_slimes(_slime = null):
 			slime_container.add_child(new_slime)
 			new_slime.set_starting_position(garden_coords[i])
 			new_slime.set_type(i)
-		
 
 func highlight_tiles(tiles:Array, will_highlight = true) -> void:
 	for coord in tiles:
@@ -134,17 +122,17 @@ func update_trails( color : String,new_coords : Vector2) -> void:
 	for tile in grid.values():
 		(tile as Tile).decrement_trail_level(color)
 	(grid[new_coords] as Tile).set_trail_level(color, GameData.PLAYER_TRAIL_STRENGTH)
-
-func update_selectables(new_coords : Vector2) -> void:
-	for tile in grid.values():
-		tile.selectable = false
-		tile.will_highlight(false)
-	for coord in Utils.get_coords_in_ring(new_coords, 1):
-		if coord in grid:
-			grid[coord].selectable = true
-
-func signal_tile_clicked(tile : Tile) -> void:
-	tile_clicked.emit(tile)
+#
+#func update_selectables(new_coords : Vector2) -> void:
+#	for tile in grid.values():
+#		tile.selectable = false
+#		tile.will_highlight(false)
+#	for coord in Utils.get_coords_in_ring(new_coords, 1):
+#		if coord in grid:
+#			grid[coord].selectable = true
+#
+#func signal_tile_clicked(tile : Tile) -> void:
+#	tile_clicked.emit(tile)
 
 func get_pheromone_level(color : String, center:Vector2) -> float:
 	var pheromone_level = pow(grid[center].trail_levels[color],5)

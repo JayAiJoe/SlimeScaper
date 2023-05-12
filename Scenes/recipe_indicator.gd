@@ -13,11 +13,10 @@ signal recipe_requested(index, indicator)
 
 func _ready():
 	pass
-	
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		receive_ingredient(0)
+#func _input(event):
+#	if event.is_action_pressed("ui_accept"):
+#		receive_ingredient(0)
 
 func request_new_recipe() -> void:
 	recipe_requested.emit(current_index, self)
@@ -27,7 +26,6 @@ func request_new_recipe() -> void:
 func reset_contained() -> void:
 	for i in range(GameData.INGREDIENT_VARIETIES):
 		contained_ingredients.append(0)
-
 
 func update_recipe(new_recipe : Array) -> void:
 	current_recipe = new_recipe
@@ -70,7 +68,6 @@ func receive_ingredient(type : int) -> void:
 			$Clear.show()
 			$IngredientContainer.hide()
 			return
-	
 
 func check_recipe() -> bool:
 	for pip in ingredient_container.get_children():

@@ -58,11 +58,11 @@ func set_trail_level(color, t_level : int) -> void:
 #func _on_area_2d_mouse_exited():
 #	will_highlight(false)
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
-	if selectable:
-		if event is InputEventMouseButton:
-			if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-				clicked.emit(self)
+#func _on_area_2d_input_event(viewport, event, shape_idx):
+#	if selectable:
+#		if event is InputEventMouseButton:
+#			if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+#				clicked.emit(self)
 
 func occupy(slime : Slime) -> void:
 	entity = slime

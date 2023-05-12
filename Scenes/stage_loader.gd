@@ -27,8 +27,10 @@ func load_stage() -> void:
 			for tile_coord in stage_info.map[tile_type]:
 				var new_tile = map.add_new_tile(tile_coord, tile_type)
 				if tile_type == GameData.TERRAIN.ROCK:
+#					if tile_coord == stage_info["blue_cauldron"]:
+#						new_tile.set_modulate(Color(0,0,1,1))
 					cauldrons.append(new_tile)
-			
+		
 		for player in player_container.get_children():
 			player.set_starting_position(stage_info[player.player_color+"_start"])
 		
