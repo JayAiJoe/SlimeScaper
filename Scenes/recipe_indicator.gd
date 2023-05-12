@@ -54,6 +54,7 @@ func reset_recipe() -> void:
 func receive_ingredient(type : int) -> void:
 	if type == GameData.CHOMPY_INDEX:
 		reset_recipe()
+		$WRONG.hide()
 		return
 	for pip in ingredient_container.get_children():
 		if not pip.filled and pip.type == type:
@@ -65,6 +66,7 @@ func receive_ingredient(type : int) -> void:
 	for pip in ingredient_container.get_children():
 		if not pip.filled:
 			pip.set_type_incorrect(type)
+			$WRONG.show()
 			return
 	
 

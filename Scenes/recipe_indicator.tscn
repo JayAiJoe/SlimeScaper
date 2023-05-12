@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://2m3xx3wjvjw4"]
+[gd_scene load_steps=4 format=3 uid="uid://2m3xx3wjvjw4"]
 
 [ext_resource type="Texture2D" uid="uid://b3gpxxuplm68u" path="res://Assets/panel_beige.png" id="1_g870h"]
 [ext_resource type="Script" path="res://Scenes/recipe_indicator.gd" id="2_ulnxo"]
+[ext_resource type="Texture2D" uid="uid://gsjl8jrif8qo" path="res://Assets/WRONG.png" id="3_6ftf3"]
 
 [node name="RecipeIndicator" type="NinePatchRect"]
 anchors_preset = -1
@@ -45,3 +46,10 @@ offset_bottom = -12.0
 theme_override_font_sizes/font_size = 50
 text = "Recipe # 1"
 horizontal_alignment = 1
+
+[node name="WRONG" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_6ftf3")

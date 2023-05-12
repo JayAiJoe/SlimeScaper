@@ -260,7 +260,7 @@ offset_top = -184.0
 offset_right = 311.0
 offset_bottom = -126.0
 theme_override_font_sizes/font_size = 40
-text = "Bring                    to                           to clear"
+text = "Bring                    to                           to empty"
 
 [node name="chompy" type="TextureRect" parent="Prompts/Tutorials/Clear" index="1"]
 layout_mode = 0
