@@ -12,13 +12,13 @@ var type = GameData.SLIME.GRASS
 
 var aggro : Player = null # which player
 var los : Array = []
-var vision_range : int = 3
+var vision_range : int = 4
 var smellos : Array = []
 var smell_range : int = 1
 
 var max_move_time = 0.2
 var min_move_time = 0.2
-var move_time_scale = 0.8
+var move_time_scale = 0.1
 var to_free = false
 #if speed carries over to new aggro, make scale higher for more incentive to steal
 
@@ -30,6 +30,7 @@ signal landed(coords, type)
 func _ready():
 	set_type(type)
 	set_z_index(1000)
+	$MoveTimer.set_wait_time(max_move_time)
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
@@ -71,7 +72,7 @@ func move_dir(dir_prio : Array) -> void:
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
-	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.4)
+	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.2)
 	velocity_y = JUMP_VELOCITY
 	if to_free:
 		tween.tween_callback(absorb)
@@ -81,7 +82,7 @@ func move_dir(dir_prio : Array) -> void:
 		tween.tween_callback(update_los.bind(current_coord))
 	
 func absorb():
-	Events.emit_signal("slime_absorbed")
+	Events.emit_signal("slime_absorbed", self)
 
 func set_animating(val : bool) -> void:
 	animating = val
@@ -109,7 +110,6 @@ func cauldron_check() -> void:
 				break
 
 func jump_to_cauldron(dir:Vector2) -> void:
-	print("jump")
 	move_dir([GameData.DIRECTION_NAMES[dir]])
 
 func update_los(coords : Vector2) -> void:
@@ -129,7 +129,6 @@ func set_aggro(new_target) -> void:
 		$MoveTimer.stop()
 		$MoveTimer.set_wait_time(max_move_time)
 		$Sprite2D.set_modulate(Color(1,1,1))
-		print("LOSE AGGRO")
 	else:
 		$MoveTimer.start()
 		$Sprite2D.set_modulate(GameData.COLORS[aggro.player_color])

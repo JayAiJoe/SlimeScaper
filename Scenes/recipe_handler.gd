@@ -6,14 +6,14 @@ var recipe_list = []
 func _ready():
 	randomize()
 
-	for recipe in generate_unique_combinations(3, 1): #(3, 4)
+	for recipe in generate_unique_combinations(3, 2): #(3, 4)
 		recipe_list.append(recipe)
-#	for recipe in generate_unique_combinations(4, 3):
-#		recipe_list.append(recipe)
-#	for recipe in generate_unique_combinations(5, 2):
-#		recipe_list.append(recipe)
-#	for recipe in generate_unique_combinations(6, 1):
-#		recipe_list.append(recipe)
+	for recipe in generate_unique_combinations(4, 1):
+		recipe_list.append(recipe)
+	for recipe in generate_unique_combinations(5, 1):
+		recipe_list.append(recipe)
+	for recipe in generate_unique_combinations(6, 1):
+		recipe_list.append(recipe)
 	
 
 func generate_unique_combinations(ingredient_count : int, combination_count : int) -> Array:

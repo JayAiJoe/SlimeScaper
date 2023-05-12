@@ -25,7 +25,6 @@ func _ready():
 	Utils.map = self
 	connect_starting_signals()
 	randomize()
-	fill_slime_deck()
 	#test_grid()
 
 func test_grid():
@@ -36,10 +35,6 @@ func test_grid():
 	for coord in coords:
 		add_new_tile(coord)
 	highlight_tiles(Utils.get_coords_in_radius(Vector2(1,1),2, true))
-
-func fill_slime_deck():
-	slime_deck = [0,0,1,1,2,2,3]
-	slime_deck.shuffle()
 	
 func generate_main_menu():
 	var coords = Utils.get_coords_in_radius(Vector2(0,0),10, true)
@@ -95,7 +90,9 @@ func check_grid_size(new_tile_pos: Vector2):
 		print(cam_pos," ",cam_zoom)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
 
-func spawn_random_slime() -> void:
+func spawn_random_slime(absorbed_slime = null) -> void:
+	if absorbed_slime:
+		slime_deck.remove_at(slime_deck.find(absorbed_slime.type))
 	var spawn_coord = Vector2()
 	while grid[spawn_coord].entity != null:
 		spawn_coord = garden_coords.pick_random()
@@ -103,9 +100,16 @@ func spawn_random_slime() -> void:
 	var new_slime : Slime = slime_scene.instantiate()
 	slime_container.add_child(new_slime)
 	new_slime.set_starting_position(spawn_coord)
-	if slime_deck == []:
-		fill_slime_deck()
-	new_slime.set_type(slime_deck.pop_back())
+	var slime_type = -1
+	for i in range(4):
+		if not i in slime_deck:
+			slime_type = i
+			break
+	if slime_type == -1:
+		slime_type = randi()%3
+		
+	new_slime.set_type(slime_type)
+	slime_deck.append(slime_type)
 
 func spawn_fixed_slimes():
 	for i in range(garden_coords.size()):

@@ -37,6 +37,7 @@ func load_stage() -> void:
 		else:
 			for i in range(stage_info["num_slimes"]):
 				map.spawn_random_slime()
+			Events.emit_signal("resize_camera", Vector2(960, 320), Vector2(1,1)*0.90566)
 		
 		for i in range(cauldrons.size()):
 			cauldrons[i].ingredient_placed.connect($Recipes.get_children()[i].receive_ingredient)
@@ -71,6 +72,7 @@ func _ready():
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
 		Events.disconnect("points_gained", HUD.update_score)
 		$Prompts/TextureProgressBar.set_max(max_ready_time)
+		$Recipes.hide()
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)

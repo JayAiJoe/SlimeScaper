@@ -25,6 +25,7 @@ func _ready():
 	set_z_index(4096)
 	Utils.player = self
 	Events.emit_signal("points_gained",player_color,score)
+	$Hat.set_modulate(GameData.COLORS[player_color])
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
@@ -56,6 +57,9 @@ func move_dir(dir):
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
 	if not new_coord in Utils.map.grid: # no tile
 		animate_invalid_move(half_move(Utils.coordinates_to_global(new_coord)) )
+		return
+	if Utils.map.grid[new_coord].tile_type == GameData.TERRAIN.ROCK:
+		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
 	if Utils.map.grid[new_coord].entity and Utils.map.grid[new_coord].entity is Slime: # may laman
 		Utils.map.grid[new_coord].entity.set_aggro(self)

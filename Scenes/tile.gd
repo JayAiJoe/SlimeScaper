@@ -76,16 +76,16 @@ func leave() -> void:
 	entity = null
 	$CaptureTimer.stop()
 
-
-func global_tick():
-	if captured_by:
-		captured_by.add_score(point_score)
-		$ScoreEffect.set_position(Vector2(0,0))
-		$ScoreEffect.set_modulate(GameData.COLORS[captured_by.player_color])
-		var transparent = GameData.COLORS[captured_by.player_color]
-		transparent.a = 0
-		$ScoreEffect.show()
-		var tween = get_tree().create_tween()
-		tween.tween_property($ScoreEffect, "position", Vector2(0,-130), 0.6)
-		tween.parallel().tween_property($ScoreEffect, "modulate", transparent, 0.6)
+#
+#func global_tick():
+#	if captured_by:
+#		captured_by.add_score(point_score)
+#		$ScoreEffect.set_position(Vector2(0,0))
+#		$ScoreEffect.set_modulate(GameData.COLORS[captured_by.player_color])
+#		var transparent = GameData.COLORS[captured_by.player_color]
+#		transparent.a = 0
+#		$ScoreEffect.show()
+#		var tween = get_tree().create_tween()
+#		tween.tween_property($ScoreEffect, "position", Vector2(0,-130), 0.6)
+#		tween.parallel().tween_property($ScoreEffect, "modulate", transparent, 0.6)
 		

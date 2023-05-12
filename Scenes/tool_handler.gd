@@ -29,7 +29,7 @@ func switch_tool(delta : int = 1) -> void:
 		current_index = tools.size() - 1
 	Input.set_custom_mouse_cursor(tool_sprites[tools[current_index]], Input.CURSOR_ARROW, Vector2.ZERO)
 
-func use_tool(target_tile : Tile2D, entity) -> void:
+func use_tool(target_tile : Tile, entity) -> void:
 	print("used " + tools[current_index] + " at " + str(target_tile.coordinates) + ".")
 	match tools[current_index]:
 		"stick":
