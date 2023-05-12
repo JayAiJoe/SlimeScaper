@@ -77,6 +77,7 @@ func check_recipe() -> bool:
 	return true
 
 func animate_fulfill():
+	var orig_scale = scale
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "scale", Vector2(1,1)*1.2, 0.25)
-	tween.tween_property(self, "scale", Vector2(1,1), 0.25)
+	tween.tween_property(self, "scale", orig_scale*1.2, 0.25)
+	tween.tween_property(self, "scale", orig_scale, 0.25)

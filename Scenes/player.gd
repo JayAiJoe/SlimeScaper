@@ -1,8 +1,9 @@
 extends Node2D
 class_name Player
 
-
 const MOVE_TIME = 0.25
+
+
 
 var current_coord
 var animating = false
@@ -50,6 +51,11 @@ func _physics_process(delta):
 #		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
 #		if sprite.offset.y == 0:
 #			velocity_y = 0
+
+func show_keys():
+	for key in GameData.KEY_BINDS[player_color]:
+		$KEYS.get_node(key).set_text(GameData.KEY_BINDS[player_color][key])
+	$KEYS.show()
 
 func move_dir(dir):
 	if animating:

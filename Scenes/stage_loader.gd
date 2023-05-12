@@ -68,6 +68,8 @@ func _ready():
 	map.slime_container = slime_container
 	
 	if is_main_menu:
+		for player in player_container.get_children():
+			player.show_keys()
 		stage_info = StageData.LEVEL_DATA["main_menu"]
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
 		Events.disconnect("points_gained", HUD.update_score)
@@ -78,6 +80,8 @@ func _ready():
 		Events.connect("slime_absorbed", map.spawn_random_slime)
 		set_physics_process(false)
 	$RecipeHandler.init_recipe_list(is_main_menu)
+	var recipe_sum = $RecipeHandler.recipe_nums.reduce(func(accum, number): return accum + number,0)
+	$WINCON.set_text("First to complete %d recipes wins!" % recipe_sum)
 	load_stage()
 	
 	HUD.get_node("timer_visual").set_max(TICK_RATE)

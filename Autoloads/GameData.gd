@@ -62,6 +62,23 @@ const ANGLE_TO_DIR = {
 	330 : Vector2(2,-1),
 }
 
+const KEY_BINDS = {"blue":{   
+	"SE": "D",
+	"NE": "E",
+	"N" : "W",
+	"NW": "Q",
+	"SW": "A",
+	"S" : "S",
+	},
+	"red":{   
+	"SE": "L",
+	"NE": "O",
+	"N" : "I",
+	"NW": "U",
+	"SW": "J",
+	"S" : "K",
+	}}
+
 const COLORS = {"blue":Color(0,0,1,1), "red":Color(1,0,0,1)}
 
 const PLAYER_TRAIL_STRENGTH = 6

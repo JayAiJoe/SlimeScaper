@@ -16,3 +16,84 @@ texture = ExtResource("1_f75sj")
 position = Vector2(-28, -60)
 scale = Vector2(0.399281, 0.399281)
 texture = ExtResource("3_y5243")
+
+[node name="KEYS" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -486.0
+offset_top = -601.0
+offset_right = -446.0
+offset_bottom = -561.0
+
+[node name="NW" type="Label" parent="KEYS"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 466.0
+offset_right = 354.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 30
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="N" type="Label" parent="KEYS"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 419.0
+offset_right = 518.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 30
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="NE" type="Label" parent="KEYS"]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 469.0
+offset_right = 691.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 30
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="SW" type="Label" parent="KEYS"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 561.0
+offset_right = 360.0
+offset_bottom = 701.0
+theme_override_font_sizes/font_size = 30
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="S" type="Label" parent="KEYS"]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 610.0
+offset_right = 513.0
+offset_bottom = 750.0
+theme_override_font_sizes/font_size = 30
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="SE" type="Label" parent="KEYS"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 570.0
+offset_right = 682.0
+offset_bottom = 710.0
+theme_override_font_sizes/font_size = 30
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true

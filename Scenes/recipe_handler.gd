@@ -2,6 +2,7 @@ extends Node2D
 
 
 var recipe_list = []
+var recipe_nums = [2,1,1,1]
 
 func init_recipe_list(is_main_menu):
 	randomize()
@@ -10,15 +11,10 @@ func init_recipe_list(is_main_menu):
 			for recipe in generate_unique_combinations(3, 1):
 				recipe_list.append(recipe)
 		return
-		
-	for recipe in generate_unique_combinations(3, 2): #(3, 4)
-		recipe_list.append(recipe)
-	for recipe in generate_unique_combinations(4, 1):
-		recipe_list.append(recipe)
-	for recipe in generate_unique_combinations(5, 1):
-		recipe_list.append(recipe)
-	for recipe in generate_unique_combinations(6, 1):
-		recipe_list.append(recipe)
+	
+	for i in range(recipe_nums.size()):
+		for recipe in generate_unique_combinations(i+3, recipe_nums[i]): #(3, 4)
+			recipe_list.append(recipe)
 	
 
 func generate_unique_combinations(ingredient_count : int, combination_count : int) -> Array:
@@ -35,8 +31,6 @@ func generate_unique_combinations(ingredient_count : int, combination_count : in
 		if counts not in combinations:
 			combinations.append(counts)
 	return combinations
-
-
 
 func handle_recipe_request(index : int, indicator) -> void:
 	if index >= recipe_list.size():
