@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2m3xx3wjvjw4"]
+[gd_scene load_steps=5 format=3 uid="uid://2m3xx3wjvjw4"]
 
 [ext_resource type="Texture2D" uid="uid://b3gpxxuplm68u" path="res://Assets/panel_beige.png" id="1_g870h"]
 [ext_resource type="Script" path="res://Scenes/recipe_indicator.gd" id="2_ulnxo"]
 [ext_resource type="Texture2D" uid="uid://gsjl8jrif8qo" path="res://Assets/WRONG.png" id="3_6ftf3"]
+[ext_resource type="Texture2D" uid="uid://c2u7q31is38ol" path="res://Assets/slimes/chompy.png" id="4_6jbp0"]
 
 [node name="RecipeIndicator" type="NinePatchRect"]
 anchors_preset = -1
@@ -53,3 +54,32 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_6ftf3")
+
+[node name="Clear" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="clear" type="Label" parent="Clear"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Bring                to empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="chompy" type="TextureRect" parent="Clear"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 57.0
+offset_right = 418.0
+offset_bottom = 185.0
+texture = ExtResource("4_6jbp0")

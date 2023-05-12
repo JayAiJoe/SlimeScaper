@@ -87,7 +87,7 @@ func check_grid_size(new_tile_pos: Vector2):
 		map_scale = max_length*0.9
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
-		print(cam_pos," ",cam_zoom)
+		#print(cam_pos," ",cam_zoom)
 		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
 
 func spawn_random_slime(absorbed_slime = null) -> void:

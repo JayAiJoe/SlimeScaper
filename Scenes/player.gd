@@ -3,8 +3,6 @@ class_name Player
 
 const MOVE_TIME = 0.25
 
-
-
 var current_coord
 var animating = false
 
@@ -14,6 +12,8 @@ var velocity_y = 0
 
 var move_queue : Array = []
 var move_queue_max : int = 1
+
+var round_started = false
 
 @export var player_color = "blue"
 var score = 0
@@ -35,10 +35,11 @@ func set_starting_position(pos : Vector2) -> void:
 	landed.emit(player_color, current_coord)
 
 func _input(event):
-	for dir in GameData.DIRECTIONS:
-		if event.is_action_pressed(player_color+"_"+dir):
-			if move_queue.size() < move_queue_max:
-				move_queue.append(dir)
+	if round_started:
+		for dir in GameData.DIRECTIONS:
+			if event.is_action_pressed(player_color+"_"+dir):
+				if move_queue.size() < move_queue_max:
+					move_queue.append(dir)
 
 func _process(delta):
 	if not animating and move_queue.size() > 0:

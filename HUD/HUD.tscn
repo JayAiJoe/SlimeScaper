@@ -48,3 +48,15 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(141.507, 138.884)
 texture = ExtResource("5_fxi3x")
+
+[node name="Number" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+theme_override_font_sizes/font_size = 400
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

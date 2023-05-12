@@ -14,7 +14,8 @@ var ready_players = 0
 var max_ready_time = 3
 var ready_decay = 1
 
-const TICK_RATE = 5
+const MAX_COUNTDOWN = 3
+var COUNTDOWN = MAX_COUNTDOWN
 
 func set_stage_info(info : Dictionary) -> void:
 	stage_info = info
@@ -78,13 +79,16 @@ func _ready():
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
+		$WINCON.show()
 		set_physics_process(false)
+		$round_start_timer.set_wait_time(1)
+		$round_start_timer.start()
+		HUD.display_number(COUNTDOWN)
+		
 	$RecipeHandler.init_recipe_list(is_main_menu)
 	var recipe_sum = $RecipeHandler.recipe_nums.reduce(func(accum, number): return accum + number,0)
 	$WINCON.set_text("First to complete %d recipes wins!" % recipe_sum)
 	load_stage()
-	
-	HUD.get_node("timer_visual").set_max(TICK_RATE)
 
 func _physics_process(delta):
 	if ready_players == 2:
@@ -93,3 +97,13 @@ func _physics_process(delta):
 			get_tree().change_scene_to_file("res://Scenes/stage_loader.tscn")
 	else:
 		$Prompts/TextureProgressBar.set_value($Prompts/TextureProgressBar.get_value()-delta*ready_decay)
+
+func _on_round_start_timer_timeout():
+	COUNTDOWN -= 1
+	if COUNTDOWN == 0:
+		HUD.display_number("START")
+		for player in player_container.get_children():
+			player.round_started = true
+	else:
+		HUD.display_number(COUNTDOWN)
+		$round_start_timer.start()

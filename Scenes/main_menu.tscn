@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6dqwxpfh1p8f"]
+[gd_scene load_steps=7 format=3 uid="uid://c6dqwxpfh1p8f"]
 
 [ext_resource type="PackedScene" uid="uid://c3jo8e8n8wh1l" path="res://Scenes/stage_loader.tscn" id="1_jerfw"]
 [ext_resource type="Texture2D" uid="uid://bdx12iwsmw7l4" path="res://HUD/ready_timer.png" id="2_a8j0e"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://nw7hpqydjslo" path="res://Assets/slimes/lettuce.png" id="4_hil6u"]
 [ext_resource type="Texture2D" uid="uid://dk51w0dqpsv7u" path="res://Assets/slimes/onion.png" id="5_o5g3m"]
 [ext_resource type="Texture2D" uid="uid://dubyat2464u7v" path="res://Assets/sample_tiles/2.png" id="6_jv68c"]
-[ext_resource type="Texture2D" uid="uid://c2u7q31is38ol" path="res://Assets/slimes/chompy.png" id="7_a1r4n"]
 
 [node name="StageLoader" instance=ExtResource("1_jerfw")]
 is_main_menu = true
@@ -203,10 +202,10 @@ offset_bottom = 40.0
 
 [node name="Bring" type="Control" parent="Prompts/Tutorials" index="0"]
 anchors_preset = 0
-offset_left = -43.0
-offset_top = 73.0
-offset_right = -3.0
-offset_bottom = 113.0
+offset_left = 298.0
+offset_top = 101.0
+offset_right = 338.0
+offset_bottom = 141.0
 
 [node name="bring" type="Label" parent="Prompts/Tutorials/Bring" index="0"]
 layout_mode = 0
@@ -215,7 +214,7 @@ offset_top = -184.0
 offset_right = 311.0
 offset_bottom = -126.0
 theme_override_font_sizes/font_size = 40
-text = "Bring                                   close to"
+text = "Bring                                   close to                          to complete recipes"
 
 [node name="veggie" type="TextureRect" parent="Prompts/Tutorials/Bring" index="1"]
 layout_mode = 0
@@ -249,47 +248,19 @@ offset_right = 1033.0
 offset_bottom = 9.0
 texture = ExtResource("6_jv68c")
 
-[node name="Clear" type="Control" parent="Prompts/Tutorials" index="1"]
-anchors_preset = 0
-offset_left = 927.0
-offset_top = 73.0
-offset_right = 967.0
-offset_bottom = 113.0
-
-[node name="clear" type="Label" parent="Prompts/Tutorials/Clear" index="0"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = -184.0
-offset_right = 311.0
-offset_bottom = -126.0
-theme_override_font_sizes/font_size = 40
-text = "Bring                    close to                           to empty"
-
-[node name="chompy" type="TextureRect" parent="Prompts/Tutorials/Clear" index="1"]
-layout_mode = 0
-offset_left = 194.0
-offset_top = -223.0
-offset_right = 322.0
-offset_bottom = -95.0
-texture = ExtResource("7_a1r4n")
-
-[node name="cauldron" type="TextureRect" parent="Prompts/Tutorials/Clear" index="2"]
-layout_mode = 0
-offset_left = 387.0
-offset_top = -505.0
-offset_right = 899.0
-offset_bottom = 7.0
-texture = ExtResource("6_jv68c")
-
 [node name="ready_text" type="Label" parent="Prompts" index="4"]
 layout_mode = 0
-offset_left = 819.0
-offset_top = 286.0
-offset_right = 1123.0
-offset_bottom = 358.0
+offset_left = 752.0
+offset_top = 247.0
+offset_right = 1153.0
+offset_bottom = 391.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "START GAME"
+theme_override_font_sizes/font_size = 30
+text = "STAND HERE TO START GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="round_start_timer" parent="." index="8"]
+wait_time = 1.0
