@@ -50,6 +50,7 @@ pivot_offset = Vector2(141.507, 138.884)
 texture = ExtResource("5_fxi3x")
 
 [node name="Number" type="Label" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

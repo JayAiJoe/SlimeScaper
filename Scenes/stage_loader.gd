@@ -75,7 +75,7 @@ func _ready():
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
 		Events.disconnect("points_gained", HUD.update_score)
 		$Prompts/TextureProgressBar.set_max(max_ready_time)
-		
+		start_round()
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
@@ -102,8 +102,11 @@ func _on_round_start_timer_timeout():
 	COUNTDOWN -= 1
 	if COUNTDOWN == 0:
 		HUD.display_number("START")
-		for player in player_container.get_children():
-			player.round_started = true
+		start_round()
 	else:
 		HUD.display_number(COUNTDOWN)
 		$round_start_timer.start()
+
+func start_round():
+	for player in player_container.get_children():
+		player.round_started = true
