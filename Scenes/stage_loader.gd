@@ -79,7 +79,6 @@ func _ready():
 		set_physics_process(false)
 	load_stage()
 	
-	$GlobalTickTimer.start()
 	HUD.get_node("timer_visual").set_max(TICK_RATE)
 
 func _physics_process(delta):
@@ -89,6 +88,3 @@ func _physics_process(delta):
 			get_tree().change_scene_to_file("res://Scenes/stage_loader.tscn")
 	else:
 		$Prompts/TextureProgressBar.set_value($Prompts/TextureProgressBar.get_value()-delta*ready_decay)
-
-func _on_global_tick_timer_timeout():
-	Events.emit_signal("global_tick")

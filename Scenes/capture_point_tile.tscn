@@ -1,10 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://u5sh5halde0t"]
+[gd_scene load_steps=5 format=3 uid="uid://u5sh5halde0t"]
 
 [ext_resource type="PackedScene" uid="uid://c84lun0ooo87v" path="res://Scenes/tile.tscn" id="1_lnmny"]
 [ext_resource type="Script" path="res://CapturePointTile.gd" id="2_02ubn"]
+[ext_resource type="Texture2D" uid="uid://qcvhgrfqbk70" path="res://Assets/sample_tiles/halo_front.png" id="3_yjnn3"]
+[ext_resource type="Texture2D" uid="uid://c6g34a5ygarbc" path="res://Assets/sample_tiles/halo_back.png" id="4_n0isn"]
 
 [node name="CapturePointTile" instance=ExtResource("1_lnmny")]
 script = ExtResource("2_02ubn")
 
 [node name="Area2D" parent="." index="0"]
 visible = true
+
+[node name="ScoreEffect" type="Node2D" parent="." index="3"]
+visible = false
+
+[node name="halo_front" type="Sprite2D" parent="ScoreEffect" index="0"]
+z_index = 2
+texture = ExtResource("3_yjnn3")
+
+[node name="halo_back" type="Sprite2D" parent="ScoreEffect" index="1"]
+texture = ExtResource("4_n0isn")

@@ -26,8 +26,6 @@ player_color = "red"
 
 [node name="SlimeContainer" type="Node2D" parent="."]
 
-[node name="GlobalTickTimer" type="Timer" parent="."]
-
 [node name="Recipes" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -41,12 +39,30 @@ grow_vertical = 2
 
 [node name="RecipeIndicator" parent="Recipes" instance=ExtResource("5_8dcxp")]
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 800.0
+offset_bottom = 250.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="RecipeIndicator2" parent="Recipes" instance=ExtResource("5_8dcxp")]
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 1120.0
+offset_top = 0.0
 offset_right = 1920.0
+offset_bottom = 250.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="RecipeHandler" parent="." instance=ExtResource("6_w5r4q")]
-
-[connection signal="timeout" from="GlobalTickTimer" to="." method="_on_global_tick_timer_timeout"]

@@ -111,7 +111,7 @@ func spawn_random_slime(absorbed_slime = null) -> void:
 	new_slime.set_type(slime_type)
 	slime_deck.append(slime_type)
 
-func spawn_fixed_slimes():
+func spawn_fixed_slimes(_slime = null):
 	for i in range(garden_coords.size()):
 		if grid[garden_coords[i]].entity == null:
 			var new_slime : Slime = slime_scene.instantiate()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c84lun0ooo87v"]
 
 [ext_resource type="Script" path="res://Scenes/tile.gd" id="1_17tx4"]
-[ext_resource type="Texture2D" uid="uid://pocpbbvjbtkc" path="res://Assets/sample_tiles/score_effect.png" id="2_7ltwn"]
+[ext_resource type="Texture2D" uid="uid://dubyat2464u7v" path="res://Assets/sample_tiles/2.png" id="2_36bae"]
 
 [node name="Tile2d" type="Node2D"]
 script = ExtResource("1_17tx4")
@@ -15,12 +15,8 @@ monitorable = false
 polygon = PackedVector2Array(-53, -46, 54, -46, 106, 1, 54, 46, -53, 47, -105, -1)
 
 [node name="TerrainSprite" type="Sprite2D" parent="."]
-
-[node name="ScoreEffect" type="Sprite2D" parent="."]
-visible = false
 z_index = 1
-texture = ExtResource("2_7ltwn")
-offset = Vector2(0, -103)
+texture = ExtResource("2_36bae")
 
 [node name="CaptureTimer" type="Timer" parent="."]
 one_shot = true
