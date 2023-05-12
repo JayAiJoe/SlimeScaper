@@ -59,6 +59,7 @@ func receive_ingredient(type : int) -> void:
 		if not pip.filled and pip.type == type:
 			pip.fill()
 			if check_recipe():
+				animate_fulfill()
 				request_new_recipe()
 			return
 	for pip in ingredient_container.get_children():
@@ -72,3 +73,8 @@ func check_recipe() -> bool:
 		if pip.correctly_filled == false:
 			return false
 	return true
+
+func animate_fulfill():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "scale", Vector2(1,1)*1.2, 0.25)
+	tween.tween_property(self, "scale", Vector2(1,1), 0.25)

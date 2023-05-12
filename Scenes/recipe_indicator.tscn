@@ -4,8 +4,18 @@
 [ext_resource type="Script" path="res://Scenes/recipe_indicator.gd" id="2_ulnxo"]
 
 [node name="RecipeIndicator" type="NinePatchRect"]
-offset_right = 800.0
-offset_bottom = 250.0
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.116
+anchor_right = 0.208
+anchor_bottom = 0.116
+offset_left = -399.36
+offset_top = -125.28
+offset_right = 400.64
+offset_bottom = 124.72
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 125)
 texture = ExtResource("1_g870h")
 patch_margin_left = 33
 patch_margin_top = 33
