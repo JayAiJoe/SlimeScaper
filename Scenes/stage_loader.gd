@@ -72,11 +72,12 @@ func _ready():
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
 		Events.disconnect("points_gained", HUD.update_score)
 		$Prompts/TextureProgressBar.set_max(max_ready_time)
-		$Recipes.hide()
+		
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
 		set_physics_process(false)
+	$RecipeHandler.init_recipe_list(is_main_menu)
 	load_stage()
 	
 	HUD.get_node("timer_visual").set_max(TICK_RATE)
