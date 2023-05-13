@@ -22,6 +22,7 @@ Events="*res://Autoloads/Events.gd"
 GameData="*res://Autoloads/GameData.gd"
 StageData="*res://Autoloads/StageData.gd"
 HUD="*res://HUD/HUD.tscn"
+SoundManager="*res://HUD/sound_manager.tscn"
 
 [display]
 

@@ -61,7 +61,7 @@ func receive_ingredient(type : int) -> void:
 	if type == GameData.CHOMPY_INDEX:
 		animate_chompy()
 		if ingredient_container.get_children().size() < 4:
-			await get_tree().create_timer(ingredient_container.get_children().size() * 0.15).timeout
+			await get_tree().create_timer(ingredient_container.get_children().size() * 0.07).timeout
 		cascading_remove_ingredients()
 		
 		#$Clear.hide()
@@ -116,13 +116,13 @@ func reset_chompy() -> void:
 func cascading_remove_ingredients() -> void:
 	for ingredient in ingredient_container.get_children():
 		ingredient.disappear()
+		SoundManager.play_sound("chomp", player_color)
 		await get_tree().create_timer(0.2).timeout
 	await get_tree().create_timer(0.2).timeout
 	reset_recipe()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		#complete_recipe()
 		pass
 
 func complete_recipe() -> void:
@@ -131,6 +131,7 @@ func complete_recipe() -> void:
 			continue
 		var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 		tween.tween_callback(func(): pip.set_modulate(Color.GOLD))
+		SoundManager.play_sound("ping")
 		tween.tween_property(pip, "scale", Vector2.ONE * 1.15, 0.15)
 		tween.tween_property(pip, "scale", Vector2.ONE, 0.15)
 		return
