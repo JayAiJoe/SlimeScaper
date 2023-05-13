@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://caiosw3sow3s0"]
+[gd_scene load_steps=7 format=3 uid="uid://caiosw3sow3s0"]
 
 [ext_resource type="Script" path="res://Scenes/slime.gd" id="1_xjruh"]
 [ext_resource type="Texture2D" uid="uid://dsacgoha7jmlc" path="res://Assets/slimes/carrot.png" id="2_f4hor"]
+[ext_resource type="Shader" path="res://Assets/border.gdshader" id="2_lfwd1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkwg4"]
+resource_local_to_scene = true
+shader = ExtResource("2_lfwd1")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="Animation" id="Animation_7m8lu"]
 resource_name = "idle"
@@ -30,6 +37,7 @@ _data = {
 script = ExtResource("1_xjruh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pkwg4")
 position = Vector2(-64, -128)
 texture = ExtResource("2_f4hor")
 centered = false

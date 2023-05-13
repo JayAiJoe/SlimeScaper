@@ -133,9 +133,12 @@ func set_aggro(new_target) -> void:
 		$MoveTimer.stop()
 		$MoveTimer.set_wait_time(max_move_time)
 		$Sprite2D.set_modulate(Color(1,1,1))
+		$Sprite2D.material.set("shader_param/line_thickness", 0)
 	else:
 		$MoveTimer.start()
 		$Sprite2D.set_modulate(GameData.COLORS[aggro.player_color])
+		$Sprite2D.material.set("shader_param/line_color", GameData.COLORS[aggro.player_color])
+		$Sprite2D.material.set("shader_param/line_thickness", 4)
 
 func get_aggro_direction() -> Array:
 	var direction_prio = []
