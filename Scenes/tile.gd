@@ -17,6 +17,9 @@ var tile_type = "dirt"
 
 var selectable : bool = false
 
+const sprite_table = {GameData.TERRAIN.DIRT:[preload("res://Assets/sample_tiles/Stone1.png"),preload("res://Assets/sample_tiles/Stone2.png")],
+					GameData.TERRAIN.GRASS:[preload("res://Assets/sample_tiles/Grass1.png"),preload("res://Assets/sample_tiles/Grass2.png"),preload("res://Assets/sample_tiles/Grass3.png")],
+					GameData.TERRAIN.ROCK:[preload("res://Assets/sample_tiles/Stone1.png"),preload("res://Assets/sample_tiles/Stone2.png")],}
 
 signal clicked(tile)
 
@@ -33,7 +36,7 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	tile_type = terrain_type
 
 func set_sprite(terrain_type : int) -> void:
-	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/Grass1.png"))
+	$TerrainSprite.set_texture(sprite_table[terrain_type].pick_random())
 #	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/" + str(terrain_type) + ".png"))
 #	$TerrainSprite.offset.y = Utils.TILE_HEIGHT
 

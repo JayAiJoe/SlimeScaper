@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4cxw75dkj4gm"]
+[gd_scene load_steps=10 format=3 uid="uid://4cxw75dkj4gm"]
 
 [ext_resource type="Script" path="res://HUD/HUD.gd" id="1_2jc11"]
 [ext_resource type="Script" path="res://HUD/PauseMenu.gd" id="2_myvhi"]
@@ -9,11 +9,21 @@
 [ext_resource type="Texture2D" uid="uid://dqjrurkguy2xl" path="res://Assets/clock_hand.png" id="5_fxi3x"]
 [ext_resource type="Texture2D" uid="uid://cjqfuyfhrikww" path="res://Assets/HUD/EWAN.PNG" id="5_l0t3i"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnuf8"]
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_2jc11")
 
 [node name="PauseMenu" type="Panel" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,17 +34,25 @@ offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(825, 464)
+theme_override_styles/panel = SubResource("StyleBoxFlat_wnuf8")
 script = ExtResource("2_myvhi")
 
-[node name="Settings" type="VBoxContainer" parent="PauseMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
 
-[node name="Label" type="Label" parent="PauseMenu/Settings"]
+[node name="Settings" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 100
@@ -42,11 +60,11 @@ text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Music" type="HBoxContainer" parent="PauseMenu/Settings"]
+[node name="Music" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Music_text" type="Label" parent="PauseMenu/Settings/Music"]
+[node name="Music_text" type="Label" parent="PauseMenu/MarginContainer/Settings/Music"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
@@ -54,7 +72,7 @@ text = "MUSIC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicToggle" type="TextureButton" parent="PauseMenu/Settings/Music"]
+[node name="MusicToggle" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/Music"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -62,11 +80,11 @@ texture_normal = ExtResource("3_8lufx")
 texture_pressed = ExtResource("4_e8trt")
 stretch_mode = 0
 
-[node name="Sound" type="HBoxContainer" parent="PauseMenu/Settings"]
+[node name="Sound" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Sound_text" type="Label" parent="PauseMenu/Settings/Sound"]
+[node name="Sound_text" type="Label" parent="PauseMenu/MarginContainer/Settings/Sound"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
@@ -74,7 +92,7 @@ text = "SOUND"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundToggle" type="TextureButton" parent="PauseMenu/Settings/Sound"]
+[node name="SoundToggle" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/Sound"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -82,7 +100,7 @@ texture_normal = ExtResource("3_8lufx")
 texture_pressed = ExtResource("4_e8trt")
 stretch_mode = 0
 
-[node name="MenuButton" type="TextureButton" parent="PauseMenu/Settings"]
+[node name="MenuButton" type="TextureButton" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = ExtResource("5_l0t3i")
@@ -142,6 +160,6 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="toggled" from="PauseMenu/Settings/Music/MusicToggle" to="PauseMenu" method="_on_music_toggle_toggled"]
-[connection signal="toggled" from="PauseMenu/Settings/Sound/SoundToggle" to="PauseMenu" method="_on_sound_toggle_toggled"]
-[connection signal="toggled" from="PauseMenu/Settings/MenuButton" to="PauseMenu" method="_on_menu_button_toggled"]
+[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/Music/MusicToggle" to="PauseMenu" method="_on_music_toggle_toggled"]
+[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/Sound/SoundToggle" to="PauseMenu" method="_on_sound_toggle_toggled"]
+[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/MenuButton" to="PauseMenu" method="_on_menu_button_toggled"]
