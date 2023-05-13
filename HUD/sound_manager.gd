@@ -6,7 +6,7 @@ extends Node2D
 
 
 var sounds = {
-	"grass_step" : [preload("res://Assets/sounds/grass_blue.ogg"), preload("res://Assets/sounds/grass_red.ogg")],
+	"grass_step" : [preload("res://Assets/sounds/grass_blue.mp3"), preload("res://Assets/sounds/grass_red.mp3")],
 	"tile_step" : [preload("res://Assets/sounds/tile_blue.ogg"), preload("res://Assets/sounds/tile_red.ogg")],
 	"ping" : [preload("res://Assets/sounds/ping.mp3")],
 	"chomp" : [preload("res://Assets/sounds/chomp.mp3"), preload("res://Assets/sounds/chomp.mp3")],
@@ -22,7 +22,14 @@ func play_sound(sound : String, color : String = "") -> void:
 	elif color == "red":
 		current_player = player_2
 		idx = 1
+	if sound == "ping":
+		current_player.pitch_scale = 0.9
+		
 	current_player.stream = sounds[sound][idx]
 	current_player.play()
-	
-	
+	await current_player.finished
+	current_player.pitch_scale = 1.0
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		play_sound("ping")

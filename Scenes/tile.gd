@@ -75,7 +75,7 @@ func occupy(slime : Slime) -> void:
 
 func leave() -> void:
 	entity = null
-	$CaptureTimer.stop()
+
 
 #
 #func global_tick():
