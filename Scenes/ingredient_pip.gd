@@ -15,6 +15,7 @@ func _ready():
 	sprite.scale = Vector2.ZERO
 
 func set_type_empty(ingredient_type : int) -> void:
+	$X.hide()
 	type = ingredient_type
 	filled = false
 	sprite.modulate = Color.BLACK
@@ -23,6 +24,7 @@ func set_type_empty(ingredient_type : int) -> void:
 	tween.tween_property(sprite, "scale", Vector2.ONE, ANIMATION_TIME)
 
 func fill() -> void:
+	$X.hide()
 	filled = true
 	sprite.modulate = Color.WHITE
 	correctly_filled = true
@@ -32,6 +34,7 @@ func fill() -> void:
 	tween.tween_property(sprite, "scale", Vector2.ONE, ANIMATION_TIME/2)
 
 func set_type_incorrect(ingredient_type : int) -> void:
+	$X.show()
 	type = ingredient_type
 	filled = true
 	sprite.modulate = Color.RED

@@ -9,6 +9,8 @@ var contained_ingredients = []
 var current_index = 0
 var player_color
 
+var contaminated = false
+
 signal recipe_requested(index, indicator)
 
 func _ready():
@@ -24,6 +26,7 @@ func request_new_recipe() -> void:
 	$Recipe_index.set_text("Recipe # "+ str(current_index))
 	
 func reset_contained() -> void:
+	contaminated = false
 	for i in range(GameData.INGREDIENT_VARIETIES):
 		contained_ingredients.append(0)
 
@@ -47,13 +50,12 @@ func reset_recipe() -> void:
 			ingredient_container.add_child(pip)
 			pip.set_type_empty(i)
 	reset_contained()
-			
 
 func receive_ingredient(type : int) -> void:
 	if type == GameData.CHOMPY_INDEX:
 		reset_recipe()
-		$Clear.hide()
-		$IngredientContainer.show()
+		#$Clear.hide()
+		#$IngredientContainer.show()
 		return
 	for pip in ingredient_container.get_children():
 		if not pip.filled and pip.type == type:
@@ -62,12 +64,19 @@ func receive_ingredient(type : int) -> void:
 				animate_fulfill()
 				request_new_recipe()
 			return
-	for pip in ingredient_container.get_children():
-		if not pip.filled:
-			pip.set_type_incorrect(type)
-			$Clear.show()
-			$IngredientContainer.hide()
-			return
+	if not contaminated:
+		contaminated = true
+		var pip = PIP.instantiate()
+		ingredient_container.add_child(pip)
+		pip.set_type_incorrect(type)
+		
+#	for pip in ingredient_container.get_children():
+#		if not pip.filled:
+#			pip.set_type_incorrect(type)
+#			$Clear.show()
+#			$IngredientContainer.hide()
+#
+#			return
 
 func check_recipe() -> bool:
 	for pip in ingredient_container.get_children():
