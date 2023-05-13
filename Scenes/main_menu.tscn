@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1lo345ypnvh5"]
+[gd_scene load_steps=6 format=3 uid="uid://d1lo345ypnvh5"]
 
 [ext_resource type="Texture2D" uid="uid://b74g2yrip66i0" path="res://Assets/HUD/TITLE.png" id="1_ki65e"]
+[ext_resource type="Texture2D" uid="uid://cwgm200u2pwr2" path="res://Assets/HUD/PLAY.png" id="2_765i1"]
+[ext_resource type="Script" path="res://HUD/Buttons.gd" id="2_m033m"]
+[ext_resource type="Texture2D" uid="uid://detklgk180sa7" path="res://Assets/HUD/TUTORIAL.png" id="3_y5554"]
+[ext_resource type="Texture2D" uid="uid://cjqfuyfhrikww" path="res://Assets/HUD/EWAN.PNG" id="4_jv46v"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,17 +15,47 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TITLE" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 76.0
-offset_right = 1600.0
-offset_bottom = 496.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -620.0
+offset_top = 68.0
+offset_right = 620.0
+offset_bottom = 488.0
+grow_horizontal = 2
 texture = ExtResource("1_ki65e")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -773.0
+offset_right = 250.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(250, 758)
+alignment = 2
+script = ExtResource("2_m033m")
 
 [node name="Play" type="TextureButton" parent="Buttons"]
 layout_mode = 2
+texture_normal = ExtResource("2_765i1")
+
+[node name="TUTORIAL" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("3_y5554")
+
+[node name="EWAN" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("4_jv46v")
+
+[connection signal="pressed" from="Buttons/Play" to="Buttons" method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/TUTORIAL" to="Buttons" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Buttons/EWAN" to="Buttons" method="_on_ewan_pressed"]

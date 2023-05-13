@@ -82,7 +82,7 @@ func _ready():
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]
 		Events.connect("slime_absorbed", map.spawn_random_slime)
-		$WINCON.show()
+		#$WINCON.show()
 		set_physics_process(false)
 		$round_start_timer.set_wait_time(1)
 		$round_start_timer.start()
@@ -90,7 +90,7 @@ func _ready():
 		
 	$RecipeHandler.init_recipe_list(is_main_menu)
 	var recipe_sum = $RecipeHandler.recipe_nums.reduce(func(accum, number): return accum + number,0)
-	$WINCON.set_text("First to complete %d recipes wins!" % recipe_sum)
+	#$WINCON.set_text("First to complete %d recipes wins!" % recipe_sum)
 	load_stage()
 
 func _physics_process(delta):

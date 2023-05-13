@@ -12,6 +12,8 @@ var SCREEN_CENTER = Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
 var map
 var player
 
+var has_played_tutorial = false
+
 func ready():
 	SCREEN_RECT = Rect2(0,0,get("display/width"),get("display/height"))
 	SCREEN_WIDTH = SCREEN_RECT.size.x

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgchxlyd8a4y2"]
+[gd_scene load_steps=7 format=3 uid="uid://c3jo8e8n8wh1l"]
 
 [ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
 [ext_resource type="PackedScene" uid="uid://bgmterw6bq5iq" path="res://Scenes/Map.tscn" id="2_oien2"]
@@ -20,7 +20,6 @@ script = ExtResource("4_dkcvl")
 [node name="PlayerContainer" type="Node2D" parent="."]
 
 [node name="Blue" parent="PlayerContainer" instance=ExtResource("3_1y5lv")]
-player_color = "blue"
 
 [node name="Red" parent="PlayerContainer" instance=ExtResource("3_1y5lv")]
 player_color = "red"

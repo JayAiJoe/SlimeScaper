@@ -33,7 +33,8 @@ func create_new_tile(_coordinates = Vector2(0,0), terrain_type : int = GameData.
 	tile_type = terrain_type
 
 func set_sprite(terrain_type : int) -> void:
-	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/" + str(terrain_type) + ".png"))
+	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/sample.png"))
+#	$TerrainSprite.set_texture(load("res://Assets/sample_tiles/" + str(terrain_type) + ".png"))
 	$TerrainSprite.offset.y = -Utils.TILE_HEIGHT
 
 func get_top_pos() -> Vector2:
