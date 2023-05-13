@@ -146,7 +146,7 @@ func update_trails( color : String,new_coords : Vector2) -> void:
 #	tile_clicked.emit(tile)
 
 func get_pheromone_level(color : String, center:Vector2) -> float:
-	var pheromone_level = pow(grid[center].trail_levels[color],5)
+	var pheromone_level = pow(grid[center].trail_levels[color],2)
 	for coord in Utils.get_coords_in_ring(center, 1):
 		if coord in grid:
 			pheromone_level += grid[coord].trail_levels[color]

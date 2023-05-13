@@ -55,6 +55,7 @@ func move_dir(dir_prio : Array) -> void:
 	if animating:
 		return
 	var new_coord
+	var found = false
 	for dir in dir_prio:
 		new_coord = current_coord + GameData.DIRECTIONS[dir]
 		if not is_free_tile(new_coord):
@@ -62,8 +63,11 @@ func move_dir(dir_prio : Array) -> void:
 		elif Utils.map.grid[new_coord].entity is Slime: # may laman
 			continue
 		else:
+			found = true
 			break
-		
+			
+	if not found:
+		return
 	if Utils.map.grid[new_coord].entity is Player: # may laman
 		#animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
@@ -138,10 +142,15 @@ func get_aggro_direction() -> Array:
 	var pheromones_prio = []
 	var i = 0
 	if aggro.current_coord in los:
-		for coord in GameData.DIRECTION_NAMES:
+		var current_pher = Utils.map.get_pheromone_level(aggro.player_color, current_coord)
+		var dirs = GameData.DIRECTION_NAMES.keys()
+		dirs.shuffle()
+		for coord in dirs:
 			var new_coord = current_coord + coord
 			if new_coord in Utils.map.grid:
 				var new_pher = Utils.map.get_pheromone_level(aggro.player_color, new_coord)
+				if new_pher < current_pher:
+					continue
 				i = 0
 				while i < direction_prio.size() and new_pher < pheromones_prio[i]:
 					i += 1

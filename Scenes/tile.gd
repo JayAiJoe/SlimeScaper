@@ -46,7 +46,7 @@ func get_top_pos() -> Vector2:
 
 
 func decrement_trail_level(color) -> void:
-	trail_levels[color] = max(0, trail_levels[color] - 1)
+	trail_levels[color] = max(1, pow(trail_levels[color],0.65))
 
 func set_trail_level(color, t_level : int) -> void:
 	trail_levels[color] = t_level

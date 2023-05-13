@@ -81,7 +81,7 @@ const KEY_BINDS = {"blue":{
 
 const COLORS = {"blue":Color(0,0,1,1), "red":Color(1,0,0,1)}
 
-const PLAYER_TRAIL_STRENGTH = 6
+const PLAYER_TRAIL_STRENGTH = 60
 
 enum TERRAIN {DIRT, GRASS, ROCK, WATER, PLANT}
 
