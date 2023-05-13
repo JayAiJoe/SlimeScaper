@@ -64,6 +64,7 @@ offset_right = 1920.0
 offset_bottom = 250.0
 grow_horizontal = 1
 grow_vertical = 1
+chomp_direction = -1
 
 [node name="RecipeHandler" parent="." instance=ExtResource("6_w5r4q")]
 
