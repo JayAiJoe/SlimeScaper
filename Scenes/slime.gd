@@ -65,11 +65,11 @@ func move_dir(dir_prio : Array) -> void:
 		else:
 			found = true
 			break
-			
-	if not found:
-		return
+	
 	if Utils.map.grid[new_coord].entity is Player: # may laman
 		#animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
+		return
+	if not found:
 		return
 	
 	change_coord(new_coord)
