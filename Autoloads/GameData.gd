@@ -97,9 +97,9 @@ var REACTIONS : Dictionary = {
 const INGREDIENT_VARIETIES = 3
 const CHOMPY_INDEX = 3
 
-var INGREDIENT_NAMES = {
-	0 : "onion",
-	1 : "carrot",
-	2 : "lettuce",
-	3 : "chompy",
+var INGREDIENT_TEXTURES = {
+	0 : preload("res://Assets/slimes/onion.png"),
+	1 : preload("res://Assets/slimes/carrot.png"),
+	2 : preload("res://Assets/slimes/lettuce.png"),
+	3 : preload("res://Assets/Crow/CrowIdle1.png"),
 }
