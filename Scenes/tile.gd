@@ -19,7 +19,8 @@ var selectable : bool = false
 
 const sprite_table = {GameData.TERRAIN.DIRT:[preload("res://Assets/sample_tiles/Stone1.png"),preload("res://Assets/sample_tiles/Stone2.png")],
 					GameData.TERRAIN.GRASS:[preload("res://Assets/sample_tiles/Grass1.png"),preload("res://Assets/sample_tiles/Grass2.png"),preload("res://Assets/sample_tiles/Grass3.png")],
-					GameData.TERRAIN.ROCK:[preload("res://Assets/sample_tiles/Stone1.png"),preload("res://Assets/sample_tiles/Stone2.png")],}
+					GameData.TERRAIN.ROCK:[preload("res://Assets/sample_tiles/Stone1.png"),preload("res://Assets/sample_tiles/Stone2.png")],
+					GameData.TERRAIN.WATER:[preload("res://Assets/sample_tiles/Water1.png"),preload("res://Assets/sample_tiles/Water2.png")],}
 
 signal clicked(tile)
 

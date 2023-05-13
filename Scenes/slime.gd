@@ -51,8 +51,8 @@ func _physics_process(delta):
 
 func set_type(type_code : int) -> void:
 	type = type_code
-	#sprite.set_texture(load("res://Assets/slimes/" + str(type) + ".png"))
-	sprite.set_texture(GameData.INGREDIENT_TEXTURES[type])
+	sprite.set_texture(load("res://Assets/slimes/"+GameData.INGREDIENT_NAMES[type]+".png"))
+	#sprite.set_texture(GameData.INGREDIENT_TEXTURES[type])
 
 func move_dir(dir_prio : Array) -> void:
 	if animating:

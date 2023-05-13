@@ -19,7 +19,7 @@ func set_type_empty(ingredient_type : int) -> void:
 	type = ingredient_type
 	filled = false
 	sprite.modulate = Color.BLACK
-	sprite.texture = GameData.INGREDIENT_TEXTURES[type]
+	sprite.texture = load("res://Assets/slimes/"+GameData.INGREDIENT_NAMES[type]+".png")
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(sprite, "scale", Vector2.ONE, ANIMATION_TIME)
 
@@ -38,7 +38,7 @@ func set_type_incorrect(ingredient_type : int) -> void:
 	type = ingredient_type
 	filled = true
 	sprite.modulate = Color.RED
-	sprite.texture = GameData.INGREDIENT_TEXTURES[type]
+	sprite.texture = load("res://Assets/slimes/"+GameData.INGREDIENT_NAMES[type]+".png")
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(sprite, "scale", Vector2.ONE, ANIMATION_TIME)
 

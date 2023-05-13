@@ -77,8 +77,9 @@ func _ready():
 			player.show_keys()
 		stage_info = StageData.LEVEL_DATA["main_menu"]
 		Events.connect("slime_absorbed", map.spawn_fixed_slimes)
-		Events.disconnect("points_gained", HUD.update_score)
 		$Prompts/TextureProgressBar.set_max(max_ready_time)
+		$Recipes/RecipeIndicator.set_pips_visibility(false)
+		$Recipes/RecipeIndicator2.set_pips_visibility(false)
 		start_round()
 	else:
 		stage_info = StageData.LEVEL_DATA["garden1"]

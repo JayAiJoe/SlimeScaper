@@ -7,13 +7,16 @@
 script = ExtResource("1_bgmec")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -45.0
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+volume_db = -45.0
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+volume_db = -45.0
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ltig1")
-volume_db = -20.0
+volume_db = -45.0
 
 [connection signal="finished" from="BGMusic" to="." method="_on_bg_music_finished"]

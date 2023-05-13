@@ -16,7 +16,6 @@ var sounds = {
 	"boom" : [preload("res://Assets/sounds/boom.mp3"), preload("res://Assets/sounds/boom.mp3")],
 }
 
-
 func _ready():
 	bg_start()
 
@@ -42,12 +41,18 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		play_sound("ping")
 
+func set_music_level(sound_level):
+	bg_player.volume_db = sound_level
+	
+func set_sound_level(sound_level):
+	for i in range(3):
+		get_child(i).volume_db = sound_level
 
 func _on_bg_music_finished():
 	bg_start()
 
 func bg_start():
-	bg_player.volume_db = -20
+	bg_player.volume_db = -50
 	bg_player.play()
 
 
