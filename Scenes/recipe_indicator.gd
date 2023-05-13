@@ -10,14 +10,14 @@ var contained_ingredients = []
 var current_index = 0
 var player_color
 
-
+@export var chomp_direction : int = 1
 
 var contaminated = false
 
 signal recipe_requested(index, indicator)
 
 func _ready():
-	pass
+	reset_chompy()
 
 #func _input(event):
 #	if event.is_action_pressed("ui_accept"):
@@ -106,16 +106,20 @@ func animate_chompy() -> void:
 	$Chompy.show()
 	$Chompy.set_modulate(Color.WHITE)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property($Chompy, "position:x", 800, 1)
+	tween.tween_property($Chompy, "position:x", 400 + chomp_direction * 464 - 64, 1)
 	tween.tween_callback(reset_chompy)
 
 func reset_chompy() -> void:
 	$Chompy.hide()
-	$Chompy.position = Vector2(0, 128)
+	$Chompy.position = Vector2(400 - chomp_direction * 464 -64, 128)
+	$Chompy.rotation_degrees = chomp_direction * 90
 
 func cascading_remove_ingredients() -> void:
-	for ingredient in ingredient_container.get_children():
-		ingredient.disappear()
+	var ingredients = ingredient_container.get_children()
+	if chomp_direction == -1:
+		ingredients.reverse()
+	for ingredient in ingredients:
+		ingredient.disappear(chomp_direction)
 		SoundManager.play_sound("chomp", player_color)
 		await get_tree().create_timer(0.2).timeout
 	await get_tree().create_timer(0.2).timeout
