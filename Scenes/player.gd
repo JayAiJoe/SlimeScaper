@@ -15,10 +15,13 @@ var move_queue_max : int = 1
 
 var round_started = false
 
+
+
 @export var player_color = "blue"
 var score = 0
 
 @onready var sprite : Sprite2D = $Sprite2D
+
 
 signal landed(color, coords)
 
@@ -84,6 +87,10 @@ func move_dir(dir):
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME)
 	#velocity_y = JUMP_VELOCITY
 	tween.tween_callback(emit_signal.bind("landed", player_color, current_coord))
+	if Utils.map.grid[current_coord].tile_type == GameData.TERRAIN.GRASS:
+		SoundManager.play_sound("grass_step", player_color)
+	else:
+		SoundManager.play_sound("tile_step", player_color)
 
 func set_animating(val : bool) -> void:
 	animating = val
