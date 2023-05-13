@@ -9,7 +9,9 @@ var sounds = {
 	"grass_step" : [preload("res://Assets/sounds/grass_blue.ogg"), preload("res://Assets/sounds/grass_red.ogg")],
 	"tile_step" : [preload("res://Assets/sounds/tile_blue.ogg"), preload("res://Assets/sounds/tile_red.ogg")],
 	"ping" : [preload("res://Assets/sounds/ping.mp3")],
-	"chomp" : [preload("res://Assets/sounds/chomp.mp3"), preload("res://Assets/sounds/chomp.mp3")]
+	"chomp" : [preload("res://Assets/sounds/chomp.mp3"), preload("res://Assets/sounds/chomp.mp3")],
+	"drop" : [preload("res://Assets/sounds/drop.mp3"), preload("res://Assets/sounds/drop.mp3")],
+	"boom" : [preload("res://Assets/sounds/boom.mp3"), preload("res://Assets/sounds/boom.mp3")],
 }
 
 func play_sound(sound : String, color : String = "") -> void:

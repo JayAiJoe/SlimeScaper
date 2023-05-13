@@ -45,6 +45,7 @@ func load_stage() -> void:
 		
 		for i in range(cauldrons.size()):
 			cauldrons[i].ingredient_placed.connect($Recipes.get_children()[i].receive_ingredient)
+			cauldrons[i].player_owner = GameData.COLORS.keys()[i]
 		
 		var idx = 0
 		for indicator in $Recipes.get_children():

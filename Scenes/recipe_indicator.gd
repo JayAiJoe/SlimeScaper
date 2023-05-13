@@ -67,6 +67,7 @@ func receive_ingredient(type : int) -> void:
 		#$Clear.hide()
 		#$IngredientContainer.show()
 		return
+	SoundManager.play_sound("drop", player_color)
 	for pip in ingredient_container.get_children():
 		if not pip.filled and pip.type == type:
 			pip.fill()
@@ -79,8 +80,8 @@ func receive_ingredient(type : int) -> void:
 		var pip = PIP.instantiate()
 		ingredient_container.add_child(pip)
 		pip.set_type_incorrect(type)
-		$Chompy.show()
-		$Chompy.set_modulate(Color.BLACK)
+		#$Chompy.show()
+		#$Chompy.set_modulate(Color.BLACK)
 		
 #	for pip in ingredient_container.get_children():
 #		if not pip.filled:
