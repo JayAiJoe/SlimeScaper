@@ -61,8 +61,8 @@ func receive_ingredient(type : int) -> void:
 	if type == GameData.CHOMPY_INDEX:
 		animate_chompy()
 		if ingredient_container.get_children().size() < 4:
-			await get_tree().create_timer(ingredient_container.get_children().size() * 0.15).timeout
-			cascading_remove_ingredients()
+			await get_tree().create_timer(ingredient_container.get_children().size() * 0.07).timeout
+		cascading_remove_ingredients()
 		
 		#$Clear.hide()
 		#$IngredientContainer.show()
@@ -122,7 +122,6 @@ func cascading_remove_ingredients() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		#complete_recipe()
 		pass
 
 func complete_recipe() -> void:
