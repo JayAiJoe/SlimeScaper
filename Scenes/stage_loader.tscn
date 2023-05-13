@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bdo8vi8f3apoo" path="res://Scenes/recipe_handler.tscn" id="6_w5r4q"]
 
 [node name="StageLoader" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_qk5nt")
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -18,6 +20,8 @@ script = ExtResource("4_dkcvl")
 [node name="Grid" parent="." instance=ExtResource("2_oien2")]
 
 [node name="PlayerContainer" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Blue" parent="PlayerContainer" instance=ExtResource("3_1y5lv")]
 
@@ -25,6 +29,8 @@ script = ExtResource("4_dkcvl")
 player_color = "red"
 
 [node name="SlimeContainer" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Recipes" type="Control" parent="."]
 layout_mode = 3
