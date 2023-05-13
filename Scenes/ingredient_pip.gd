@@ -41,4 +41,12 @@ func set_type_incorrect(ingredient_type : int) -> void:
 	sprite.texture = load("res://Assets/slimes/" + GameData.INGREDIENT_NAMES[type] + ".png")
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(sprite, "scale", Vector2.ONE, ANIMATION_TIME)
-	
+
+func disappear() -> void:
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	tween.tween_property($Sprite2D, "position:x", $Sprite2D.position.x - 64, 0.1)
+	tween.parallel().tween_property($Sprite2D, "scale", Vector2.ONE * 0.2, 0.1)
+	tween.parallel().tween_property($Sprite2D, "modulate:a", 0, 0.1)
+	tween.parallel().tween_property($X, "position:x", $X.position.x - 64, 0.1)
+	tween.parallel().tween_property($X, "scale", Vector2.ONE * 0.2, 0.1)
+	tween.parallel().tween_property($X, "modulate:a", 0, 0.1)
