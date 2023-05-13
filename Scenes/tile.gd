@@ -55,6 +55,9 @@ func decrement_trail_level(color) -> void:
 func set_trail_level(color, t_level : int) -> void:
 	trail_levels[color] = t_level
 
+func modulate_sprite(color : Color) -> void:
+	$TerrainSprite.set_modulate(color)
+
 #func _on_area_2d_mouse_entered():
 #	if selectable:
 #		will_highlight(true)

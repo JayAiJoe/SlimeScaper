@@ -39,12 +39,13 @@ func set_starting_position(pos : Vector2) -> void:
 	update_los(current_coord)
 
 func _physics_process(delta):
-	pass
-#	if velocity_y != 0:
-#		velocity_y += + gravity * delta
-#		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
-#		if sprite.offset.y == 0:
-#			velocity_y = 0
+	if type != GameData.SLIME.FIRE:
+		return
+	if velocity_y != 0:
+		velocity_y += + gravity * delta
+		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
+		if sprite.offset.y == 0:
+			velocity_y = 0
 
 func set_type(type_code : int) -> void:
 	type = type_code
