@@ -30,6 +30,7 @@ signal landed(coords, type)
 func _ready():
 	set_type(type)
 	set_z_index(1000)
+	animation_player.play("crow_idle")
 	$MoveTimer.set_wait_time(max_move_time)
 
 func set_starting_position(pos : Vector2) -> void:
@@ -39,13 +40,14 @@ func set_starting_position(pos : Vector2) -> void:
 	update_los(current_coord)
 
 func _physics_process(delta):
-	if type != GameData.SLIME.FIRE:
-		return
-	if velocity_y != 0:
-		velocity_y += + gravity * delta
-		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
-		if sprite.offset.y == 0:
-			velocity_y = 0
+	pass
+#	if type != GameData.SLIME.FIRE:
+#		return
+#	if velocity_y != 0:
+#		velocity_y += + gravity * delta
+#		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
+#		if sprite.offset.y == 0:
+#			velocity_y = 0
 
 func set_type(type_code : int) -> void:
 	type = type_code
@@ -78,6 +80,8 @@ func move_dir(dir_prio : Array) -> void:
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.2)
+	
+	animation_player.play("crow_walk")
 	velocity_y = JUMP_VELOCITY
 	if to_free:
 		tween.tween_callback(absorb)
@@ -139,7 +143,7 @@ func set_aggro(new_target) -> void:
 		$MoveTimer.start()
 		$Sprite2D.set_modulate(GameData.COLORS[aggro.player_color])
 		$Sprite2D.material.set("shader_param/line_color", GameData.COLORS[aggro.player_color])
-		$Sprite2D.material.set("shader_param/line_thickness", 4)
+		$Sprite2D.material.set("shader_param/line_thickness", 2)
 
 func get_aggro_direction() -> Array:
 	var direction_prio = []
@@ -181,3 +185,9 @@ func _on_move_timer_timeout():
 
 func trigger_free():
 	to_free = true
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	await get_tree().create_timer(randf_range(2,5)).timeout
+	animation_player.play("crow_idle")
