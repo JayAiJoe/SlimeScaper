@@ -7,7 +7,6 @@ extends Node2D
 
 var allow_sound : bool = true
 
-
 var sounds = {
 	"grass_step" : [preload("res://Assets/sounds/grass_blue.mp3"), preload("res://Assets/sounds/grass_red.mp3")],
 	"tile_step" : [preload("res://Assets/sounds/tile_blue.ogg"), preload("res://Assets/sounds/tile_red.ogg")],

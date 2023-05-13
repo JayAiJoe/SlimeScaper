@@ -24,7 +24,6 @@ corner_radius_bottom_left = 80
 script = ExtResource("1_2jc11")
 
 [node name="PauseMenu" type="Panel" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,12 +73,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MusicToggle" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/Music"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 texture_normal = ExtResource("3_8lufx")
 texture_pressed = ExtResource("4_e8trt")
 stretch_mode = 0
+
+[node name="HSlider" type="HSlider" parent="PauseMenu/MarginContainer/Settings/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
 
 [node name="Sound" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
