@@ -112,4 +112,4 @@ func _on_round_start_timer_timeout():
 
 func start_round():
 	for player in player_container.get_children():
-		player.round_started = true
+		player.paused = false

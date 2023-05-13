@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 var winning_points = 10
+var paused = false
+
+signal pause(paused)
 
 func _ready():
 	Events.connect("points_gained", update_score)
@@ -23,3 +26,9 @@ func display_number(num):
 	tween.tween_property($Number, "modulate", Color(1,1,1,0), 0.85)
 	tween.parallel().tween_property($Number, "scale", Vector2(0.4,0.4), 0.85)
 	tween.tween_callback($Number.hide)
+
+func _input(event):
+	if event.is_action_pressed("pause"):
+		paused = not paused
+		$PauseMenu.set_visible(paused)
+		emit_signal("pause", paused)

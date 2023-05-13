@@ -13,9 +13,7 @@ var velocity_y = 0
 var move_queue : Array = []
 var move_queue_max : int = 1
 
-var round_started = false
-
-
+var paused = true
 
 @export var player_color = "blue"
 var score = 0
@@ -29,6 +27,7 @@ func _ready():
 	set_z_index(4096)
 	Utils.player = self
 	Events.emit_signal("points_gained",player_color,score)
+	HUD.connect("pause", pause)
 	$Hat.set_modulate(GameData.COLORS[player_color])
 
 func set_starting_position(pos : Vector2) -> void:
@@ -38,7 +37,7 @@ func set_starting_position(pos : Vector2) -> void:
 	landed.emit(player_color, current_coord)
 
 func _input(event):
-	if round_started:
+	if not paused:
 		for dir in GameData.DIRECTIONS:
 			if event.is_action_pressed(player_color+"_"+dir):
 				if move_queue.size() < move_queue_max:
@@ -118,3 +117,7 @@ func change_coord(new_pos : Vector2) -> void:
 func add_score(gained_score : int):
 	score += gained_score
 	Events.emit_signal("points_gained",player_color,score)
+
+func pause(will_pause):
+	paused = will_pause
+	
