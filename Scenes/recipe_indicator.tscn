@@ -92,7 +92,7 @@ layout_mode = 0
 offset_top = 128.0
 offset_right = 128.0
 offset_bottom = 256.0
-rotation = 1.5708
+rotation = -1.5708
 pivot_offset = Vector2(64, 64)
 texture = ExtResource("4_6jbp0")
 
