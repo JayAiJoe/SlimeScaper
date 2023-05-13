@@ -102,8 +102,8 @@ func spawn_random_slime(absorbed_slime = null) -> void:
 	new_slime.set_starting_position(spawn_coord)
 	new_slime.set_type(slime_type)
 	
-	if slime_type == GameData.SLIME.FIRE:
-		await get_tree().create_timer(5).timeout
+#	if slime_type == GameData.SLIME.FIRE:
+#		await get_tree().create_timer(5).timeout
 	
 	#growing shit
 	

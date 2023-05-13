@@ -6,21 +6,9 @@
 [node name="Tile2d" type="Node2D"]
 script = ExtResource("1_17tx4")
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-monitoring = false
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-53, -46, 54, -46, 106, 1, 54, 46, -53, 47, -105, -1)
-
 [node name="TerrainSprite" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_36bae")
 
 [node name="CaptureTimer" type="Timer" parent="."]
 one_shot = true
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

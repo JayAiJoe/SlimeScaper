@@ -1,0 +1,269 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6dqwxpfh1p8f"]
+
+[ext_resource type="PackedScene" uid="uid://c3jo8e8n8wh1l" path="res://Scenes/stage_loader.tscn" id="1_x5fag"]
+[ext_resource type="Texture2D" uid="uid://bdx12iwsmw7l4" path="res://HUD/ready_timer.png" id="2_mrho5"]
+[ext_resource type="Texture2D" uid="uid://dsacgoha7jmlc" path="res://Assets/slimes/carrot.png" id="3_eo7cx"]
+[ext_resource type="Texture2D" uid="uid://nw7hpqydjslo" path="res://Assets/slimes/lettuce.png" id="4_tc5bp"]
+[ext_resource type="Texture2D" uid="uid://dk51w0dqpsv7u" path="res://Assets/slimes/onion.png" id="5_w4qqi"]
+[ext_resource type="Texture2D" uid="uid://dubyat2464u7v" path="res://Assets/sample_tiles/2.png" id="6_0ht2e"]
+[ext_resource type="Script" path="res://Scenes/ready_text.gd" id="7_46274"]
+
+[node name="StageLoader" instance=ExtResource("1_x5fag")]
+is_main_menu = true
+
+[node name="Recipes" parent="." index="4"]
+offset_top = 70.0
+offset_bottom = 1150.0
+
+[node name="RecipeIndicator" parent="Recipes" index="0"]
+scale = Vector2(0.6, 0.6)
+
+[node name="RecipeIndicator2" parent="Recipes" index="1"]
+scale = Vector2(0.6, 0.6)
+
+[node name="Prompts" type="Control" parent="." index="6"]
+z_index = 4093
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Prompts" index="0"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 704.0
+offset_top = -73.0
+offset_right = 1216.0
+offset_bottom = 439.0
+grow_horizontal = 2
+max_value = 5.0
+step = 0.001
+fill_mode = 6
+texture_progress = ExtResource("2_mrho5")
+
+[node name="Blue_keys" type="Control" parent="Prompts" index="1"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Q" type="Label" parent="Prompts/Blue_keys" index="0"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 466.0
+offset_right = 354.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 30
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="W" type="Label" parent="Prompts/Blue_keys" index="1"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 419.0
+offset_right = 518.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 30
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="E" type="Label" parent="Prompts/Blue_keys" index="2"]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 469.0
+offset_right = 691.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 30
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="A" type="Label" parent="Prompts/Blue_keys" index="3"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 573.0
+offset_right = 360.0
+offset_bottom = 713.0
+theme_override_font_sizes/font_size = 30
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="S" type="Label" parent="Prompts/Blue_keys" index="4"]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 622.0
+offset_right = 513.0
+offset_bottom = 762.0
+theme_override_font_sizes/font_size = 30
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="D" type="Label" parent="Prompts/Blue_keys" index="5"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 582.0
+offset_right = 682.0
+offset_bottom = 722.0
+theme_override_font_sizes/font_size = 30
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Red_keys" type="Control" parent="Prompts" index="2"]
+visible = false
+anchors_preset = 0
+offset_left = 987.0
+offset_top = -13.0
+offset_right = 1027.0
+offset_bottom = 27.0
+
+[node name="U" type="Label" parent="Prompts/Red_keys" index="0"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 487.0
+offset_right = 339.0
+offset_bottom = 627.0
+theme_override_font_sizes/font_size = 30
+text = "U"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="I" type="Label" parent="Prompts/Red_keys" index="1"]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 437.0
+offset_right = 488.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 30
+text = "I"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="O" type="Label" parent="Prompts/Red_keys" index="2"]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 486.0
+offset_right = 661.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 30
+text = "O"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="J" type="Label" parent="Prompts/Red_keys" index="3"]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 590.0
+offset_right = 338.0
+offset_bottom = 730.0
+theme_override_font_sizes/font_size = 30
+text = "J"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="K" type="Label" parent="Prompts/Red_keys" index="4"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 633.0
+offset_right = 491.0
+offset_bottom = 773.0
+theme_override_font_sizes/font_size = 30
+text = "K"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L" type="Label" parent="Prompts/Red_keys" index="5"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 581.0
+offset_right = 655.0
+offset_bottom = 721.0
+theme_override_font_sizes/font_size = 30
+text = "L"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tutorials" type="Control" parent="Prompts" index="3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bring" type="Control" parent="Prompts/Tutorials" index="0"]
+anchors_preset = 0
+offset_left = 298.0
+offset_top = 101.0
+offset_right = 338.0
+offset_bottom = 141.0
+
+[node name="bring" type="Label" parent="Prompts/Tutorials/Bring" index="0"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -184.0
+offset_right = 311.0
+offset_bottom = -126.0
+theme_override_font_sizes/font_size = 40
+text = "Bring                                   close to                          to complete recipes"
+
+[node name="veggie" type="TextureRect" parent="Prompts/Tutorials/Bring" index="1"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = -233.0
+offset_right = 303.0
+offset_bottom = -105.0
+texture = ExtResource("3_eo7cx")
+
+[node name="veggie2" type="TextureRect" parent="Prompts/Tutorials/Bring" index="2"]
+layout_mode = 0
+offset_left = 268.0
+offset_top = -233.0
+offset_right = 396.0
+offset_bottom = -105.0
+texture = ExtResource("4_tc5bp")
+
+[node name="veggie3" type="TextureRect" parent="Prompts/Tutorials/Bring" index="3"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = -233.0
+offset_right = 498.0
+offset_bottom = -105.0
+texture = ExtResource("5_w4qqi")
+
+[node name="cauldron" type="TextureRect" parent="Prompts/Tutorials/Bring" index="4"]
+layout_mode = 0
+offset_left = 521.0
+offset_top = -503.0
+offset_right = 1033.0
+offset_bottom = 9.0
+texture = ExtResource("6_0ht2e")
+
+[node name="ready_text" type="Label" parent="Prompts" index="4"]
+modulate = Color(1, 1, 1, 0.419608)
+layout_mode = 0
+offset_left = 752.0
+offset_top = 250.0
+offset_right = 1153.0
+offset_bottom = 394.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "STAND HERE TO START GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("7_46274")
+
+[node name="round_start_timer" parent="." index="8"]
+wait_time = 1.0

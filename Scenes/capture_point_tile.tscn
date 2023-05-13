@@ -8,10 +8,7 @@
 [node name="CapturePointTile" instance=ExtResource("1_lnmny")]
 script = ExtResource("2_02ubn")
 
-[node name="Area2D" parent="." index="0"]
-visible = true
-
-[node name="ScoreEffect" type="Node2D" parent="." index="3"]
+[node name="ScoreEffect" type="Node2D" parent="." index="2"]
 visible = false
 
 [node name="halo_front" type="Sprite2D" parent="ScoreEffect" index="0"]

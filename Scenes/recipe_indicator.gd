@@ -62,7 +62,7 @@ func receive_ingredient(type : int) -> void:
 		animate_chompy()
 		if ingredient_container.get_children().size() < 4:
 			await get_tree().create_timer(ingredient_container.get_children().size() * 0.15).timeout
-			cascading_remove_ingredients()
+		cascading_remove_ingredients()
 		
 		#$Clear.hide()
 		#$IngredientContainer.show()
