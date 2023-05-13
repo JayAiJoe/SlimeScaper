@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4tof1rxyw7ab"]
+[gd_scene load_steps=3 format=3 uid="uid://b4tof1rxyw7ab"]
 
 [ext_resource type="Script" path="res://HUD/sound_manager.gd" id="1_bgmec"]
+[ext_resource type="AudioStream" uid="uid://gu7mandb40ht" path="res://Assets/sounds/bg_music.mp3" id="2_ltig1"]
 
 [node name="SoundManager" type="Node2D"]
 script = ExtResource("1_bgmec")
@@ -10,3 +11,9 @@ script = ExtResource("1_bgmec")
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ltig1")
+volume_db = -20.0
+
+[connection signal="finished" from="BGMusic" to="." method="_on_bg_music_finished"]

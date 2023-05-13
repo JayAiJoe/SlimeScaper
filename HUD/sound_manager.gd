@@ -3,6 +3,9 @@ extends Node2D
 @onready var player_1 = $AudioStreamPlayer
 @onready var player_2 = $AudioStreamPlayer2
 @onready var player_general = $AudioStreamPlayer3
+@onready var bg_player = $BGMusic
+
+var allow_sound : bool = true
 
 
 var sounds = {
@@ -14,7 +17,13 @@ var sounds = {
 	"boom" : [preload("res://Assets/sounds/boom.mp3"), preload("res://Assets/sounds/boom.mp3")],
 }
 
+
+func _ready():
+	bg_start()
+
 func play_sound(sound : String, color : String = "") -> void:
+	if not allow_sound:
+		return
 	var idx = 0
 	var current_player : AudioStreamPlayer = player_general
 	if color == "blue":
@@ -33,3 +42,13 @@ func play_sound(sound : String, color : String = "") -> void:
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		play_sound("ping")
+
+
+func _on_bg_music_finished():
+	bg_start()
+
+func bg_start():
+	bg_player.volume_db = -20
+	bg_player.play()
+
+
