@@ -11,7 +11,7 @@ var stage_info
 var slime_scene = preload("res://Scenes/slime.tscn")
 
 var ready_players = 0
-var max_ready_time = 3
+var max_ready_time = 2
 var ready_decay = 1
 
 const MAX_COUNTDOWN = 3

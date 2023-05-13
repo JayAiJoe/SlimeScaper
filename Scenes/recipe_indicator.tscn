@@ -2,9 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://b3gpxxuplm68u" path="res://Assets/panel_beige.png" id="1_g870h"]
 [ext_resource type="Script" path="res://Scenes/recipe_indicator.gd" id="2_ulnxo"]
-[ext_resource type="Texture2D" uid="uid://gsjl8jrif8qo" path="res://Assets/WRONG.png" id="3_6ftf3"]
 [ext_resource type="Texture2D" uid="uid://c2u7q31is38ol" path="res://Assets/slimes/chompy.png" id="4_6jbp0"]
 [ext_resource type="Texture2D" uid="uid://ce6xur3usovwh" path="res://Assets/Maps/pip.png" id="5_upifd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_408k0"]
 
 [node name="RecipeIndicator" type="NinePatchRect"]
 anchors_preset = -1
@@ -50,13 +51,6 @@ theme_override_font_sizes/font_size = 50
 text = "Recipe # 1"
 horizontal_alignment = 1
 
-[node name="WRONG" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_6ftf3")
-
 [node name="Clear" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -95,6 +89,12 @@ offset_bottom = 256.0
 rotation = 1.5708
 pivot_offset = Vector2(64, 64)
 texture = ExtResource("4_6jbp0")
+
+[node name="Crow" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_408k0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="RecipeCounter" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)

@@ -29,6 +29,9 @@ func display_number(num):
 
 func _input(event):
 	if event.is_action_pressed("pause"):
-		paused = not paused
-		$PauseMenu.set_visible(paused)
-		emit_signal("pause", paused)
+		open_pause_menu()
+
+func open_pause_menu():
+	paused = not paused
+	$PauseMenu.set_visible(paused)
+	emit_signal("pause", paused)

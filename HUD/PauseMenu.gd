@@ -10,6 +10,7 @@ func _on_sound_toggle_toggled(button_pressed):
 
 func _on_menu_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_parent().paused = false
 	hide()
 
 func _on_music_slider_value_changed(value):

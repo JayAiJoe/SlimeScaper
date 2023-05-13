@@ -104,6 +104,7 @@ func animate_fulfill():
 	tween.tween_property(self, "scale", orig_scale, 0.25)
 
 func animate_chompy() -> void:
+	#$AnimationPlayer.play("crow_walk")
 	$Chompy.show()
 	$Chompy.set_modulate(Color.WHITE)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)

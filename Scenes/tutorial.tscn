@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6dqwxpfh1p8f"]
 
 [ext_resource type="PackedScene" uid="uid://bgchxlyd8a4y2" path="res://Scenes/stage_loader.tscn" id="1_x5fag"]
-[ext_resource type="Texture2D" uid="uid://bdx12iwsmw7l4" path="res://HUD/ready_timer.png" id="2_mrho5"]
+[ext_resource type="Texture2D" uid="uid://dsu3b5nbfgj0u" path="res://HUD/ready_timer2.png" id="2_h1ts2"]
 [ext_resource type="Texture2D" uid="uid://dsacgoha7jmlc" path="res://Assets/slimes/carrot.png" id="3_eo7cx"]
 [ext_resource type="Texture2D" uid="uid://nw7hpqydjslo" path="res://Assets/slimes/lettuce.png" id="4_tc5bp"]
 [ext_resource type="Texture2D" uid="uid://dk51w0dqpsv7u" path="res://Assets/slimes/onion.png" id="5_w4qqi"]
@@ -22,8 +22,7 @@ scale = Vector2(0.6, 0.6)
 scale = Vector2(0.6, 0.6)
 
 [node name="Prompts" type="Control" parent="." index="6"]
-z_index = 4093
-z_as_relative = false
+z_index = 1
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -31,18 +30,19 @@ anchor_right = 0.5
 grow_horizontal = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Prompts" index="0"]
+z_index = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 704.0
-offset_top = -73.0
+offset_top = -97.0
 offset_right = 1216.0
-offset_bottom = 439.0
+offset_bottom = 415.0
 grow_horizontal = 2
-max_value = 5.0
+max_value = 3.0
 step = 0.001
 fill_mode = 6
-texture_progress = ExtResource("2_mrho5")
+texture_progress = ExtResource("2_h1ts2")
 
 [node name="Blue_keys" type="Control" parent="Prompts" index="1"]
 visible = false
