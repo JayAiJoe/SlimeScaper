@@ -35,7 +35,8 @@ func load_stage() -> void:
 			player.set_starting_position(stage_info[player.player_color+"_start"])
 		
 		if is_main_menu:
-			map.spawn_fixed_slimes()
+			for i in range(4):
+				map.spawn_fixed_slimes(i)
 			Events.emit_signal("resize_camera", Vector2(960, 320), Vector2(1,1)*0.95)
 		else:
 			for i in range(stage_info["num_slimes"]):

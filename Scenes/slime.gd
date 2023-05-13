@@ -65,7 +65,7 @@ func move_dir(dir_prio : Array) -> void:
 			break
 		
 	if Utils.map.grid[new_coord].entity is Player: # may laman
-		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
+		#animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
 	
 	change_coord(new_coord)

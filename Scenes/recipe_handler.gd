@@ -15,7 +15,6 @@ func init_recipe_list(is_main_menu):
 	for i in range(recipe_nums.size()):
 		for recipe in generate_unique_combinations(i+3, recipe_nums[i]): #(3, 4)
 			recipe_list.append(recipe)
-	
 
 func generate_unique_combinations(ingredient_count : int, combination_count : int) -> Array:
 	var combinations = []

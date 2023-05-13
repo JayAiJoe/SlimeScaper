@@ -18,6 +18,7 @@ var bot_right = Vector2()
 var map_scale = 1
 
 var slime_deck = []
+var queued_coords = []
 
 var player_color = ""
 
@@ -82,13 +83,10 @@ func check_grid_size(new_tile_pos: Vector2):
 func spawn_random_slime(absorbed_slime = null) -> void:
 	if absorbed_slime:
 		slime_deck.remove_at(slime_deck.find(absorbed_slime.type))
-	var spawn_coord = Vector2()
-	while grid[spawn_coord].entity != null:
+	var spawn_coord = garden_coords.pick_random()
+	while grid[spawn_coord].entity != null :
 		spawn_coord = garden_coords.pick_random()
-	
-	var new_slime : Slime = slime_scene.instantiate()
-	slime_container.add_child(new_slime)
-	new_slime.set_starting_position(spawn_coord)
+		
 	var slime_type = -1
 	for i in range(4):
 		if not i in slime_deck:
@@ -97,12 +95,25 @@ func spawn_random_slime(absorbed_slime = null) -> void:
 	if slime_type == -1:
 		slime_type = randi()%3
 		
-	new_slime.set_type(slime_type)
 	slime_deck.append(slime_type)
+	
+	var new_slime : Slime = slime_scene.instantiate()
+	slime_container.add_child(new_slime)
+	new_slime.set_starting_position(spawn_coord)
+	new_slime.set_type(slime_type)
+	
+	if slime_type == GameData.SLIME.FIRE:
+		await get_tree().create_timer(5).timeout
+	
+	#growing shit
+	
 
-func spawn_fixed_slimes(_slime = null):
+func spawn_fixed_slimes(slime = null):
+	var slime_type = slime
+	if slime is Slime:
+		slime_type = slime.type
 	for i in range(garden_coords.size()):
-		if grid[garden_coords[i]].entity == null:
+		if slime_type == i:
 			var new_slime : Slime = slime_scene.instantiate()
 			slime_container.add_child(new_slime)
 			new_slime.set_starting_position(garden_coords[i])
