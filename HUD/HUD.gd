@@ -1,17 +1,12 @@
 extends CanvasLayer
 
-var winning_points = 10
+var in_game = false
 var paused = false
 
 signal pause(paused)
 
 func _ready():
-	Events.connect("points_gained", update_score)
-	
-func update_score(player_color, new_score):
-	if new_score == winning_points:
-		$Winner.set_modulate(GameData.COLORS[player_color])
-		$Winner.set_text(player_color+" wins!")
+	pass
 
 func display_winner(player_color):
 	$WinnerPanel.show()
@@ -30,9 +25,17 @@ func display_number(num):
 
 func _input(event):
 	if event.is_action_pressed("pause"):
-		open_pause_menu()
+		if in_game:
+			open_pause_menu()
 
 func open_pause_menu():
 	paused = not paused
+	$PauseMenu.setup("pause")
+	$PauseMenu.set_visible(paused)
+	emit_signal("pause", paused)
+
+func open_settings():
+	paused = not paused
+	$PauseMenu.setup("settings")
 	$PauseMenu.set_visible(paused)
 	emit_signal("pause", paused)

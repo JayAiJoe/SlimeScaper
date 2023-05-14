@@ -122,9 +122,19 @@ max_value = -20.0
 step = 0.001
 value = -35.0
 
-[node name="MenuButton" type="TextureButton" parent="PauseMenu/MarginContainer/Settings"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
+
+[node name="MenuButton" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+texture_normal = ExtResource("5_l0t3i")
+stretch_mode = 0
+
+[node name="ResumeButton" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 texture_normal = ExtResource("5_l0t3i")
 stretch_mode = 0
 
@@ -195,6 +205,7 @@ radial_center_offset = Vector2(1, 18)
 script = ExtResource("4_gawtx")
 
 [node name="clock_hand" type="TextureRect" parent="timer_visual"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,7 +237,8 @@ vertical_alignment = 1
 [connection signal="toggled" from="PauseMenu/MarginContainer/Settings/Sound/SoundToggle" to="PauseMenu" method="_on_sound_toggle_toggled"]
 [connection signal="drag_ended" from="PauseMenu/MarginContainer/Settings/Sound/SoundSlider" to="PauseMenu" method="_on_sound_slider_drag_ended"]
 [connection signal="value_changed" from="PauseMenu/MarginContainer/Settings/Sound/SoundSlider" to="PauseMenu" method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="PauseMenu/MarginContainer/Settings/MenuButton" to="PauseMenu" method="_on_menu_button_pressed"]
-[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/MenuButton" to="PauseMenu" method="_on_menu_button_toggled"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/Settings/HBoxContainer/MenuButton" to="PauseMenu" method="_on_menu_button_pressed"]
+[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/HBoxContainer/MenuButton" to="PauseMenu" method="_on_menu_button_toggled"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/Settings/HBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="WinnerPanel/MenuButton" to="WinnerPanel" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="WinnerPanel/PlayAgain" to="WinnerPanel" method="_on_play_again_pressed"]

@@ -8,6 +8,10 @@ var player_owner = ""
 
 signal ingredient_placed(type)
 
+func _ready():
+	super()
+	$Cauldron
+
 
 func occupy(slime : Slime) -> void:
 	entity = null

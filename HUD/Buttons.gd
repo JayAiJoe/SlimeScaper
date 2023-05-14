@@ -1,9 +1,8 @@
 extends VBoxContainer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func _ready():
+	HUD.in_game = false
 
 func _on_play_pressed():
 	if Utils.has_played_tutorial:
@@ -18,4 +17,4 @@ func _on_tutorial_pressed():
 	get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
 
 func _on_ewan_pressed():
-	HUD.open_pause_menu()
+	HUD.open_settings()
