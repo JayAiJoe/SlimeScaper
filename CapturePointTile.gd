@@ -12,7 +12,6 @@ func _ready():
 	super()
 	$Cauldron
 
-
 func occupy(slime : Slime) -> void:
 	entity = null
 	var player_color = (slime.aggro as Player).player_color

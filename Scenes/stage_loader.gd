@@ -65,7 +65,7 @@ func update_ready(delta):
 	ready_players += delta
 
 func _ready():
-	HUD.in_game = true
+	HUD.set_in_game(true)
 	Events.connect("ready_player", update_ready)
 	for player in player_container.get_children():
 		player.landed.connect(map.update_trails)

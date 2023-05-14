@@ -8,10 +8,18 @@ signal pause(paused)
 func _ready():
 	pass
 
+func set_in_game(is_in_game):
+	in_game = is_in_game
+	$PauseButton.hide()
+	if in_game:
+		$PauseButton.show()
+
 func display_winner(player_color):
 	$WinnerPanel.show()
 	$WinnerPanel/Winner.set_modulate(GameData.COLORS[player_color])
 	$WinnerPanel/Winner.set_text(player_color+" wins!")
+	paused = not paused
+	emit_signal("pause", paused)
 
 func display_number(num):
 	$Number.set_text(str(num))
@@ -39,3 +47,6 @@ func open_settings():
 	$PauseMenu.setup("settings")
 	$PauseMenu.set_visible(paused)
 	emit_signal("pause", paused)
+
+func _on_pause_button_pressed():
+	open_pause_menu()

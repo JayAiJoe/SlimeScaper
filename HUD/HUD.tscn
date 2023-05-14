@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://4cxw75dkj4gm"]
+[gd_scene load_steps=9 format=3 uid="uid://4cxw75dkj4gm"]
 
 [ext_resource type="Script" path="res://HUD/HUD.gd" id="1_2jc11"]
 [ext_resource type="Script" path="res://HUD/PauseMenu.gd" id="2_myvhi"]
 [ext_resource type="Texture2D" uid="uid://d2a8lpmg5k71y" path="res://Assets/HUD/ON.png" id="3_8lufx"]
-[ext_resource type="Texture2D" uid="uid://8um4xymtmjna" path="res://Assets/timer_progress.png" id="3_famjv"]
 [ext_resource type="Texture2D" uid="uid://s73mcg0ut2lo" path="res://Assets/HUD/OFF.png" id="4_e8trt"]
-[ext_resource type="Script" path="res://HUD/Timer_visual.gd" id="4_gawtx"]
-[ext_resource type="Texture2D" uid="uid://dqjrurkguy2xl" path="res://Assets/clock_hand.png" id="5_fxi3x"]
 [ext_resource type="Texture2D" uid="uid://cjqfuyfhrikww" path="res://Assets/HUD/EWAN.PNG" id="5_l0t3i"]
 [ext_resource type="Script" path="res://HUD/WinnerPanel.gd" id="6_ee2a5"]
+[ext_resource type="Texture2D" uid="uid://dy7jt38b1x6fh" path="res://Assets/HUD/pause.png" id="7_lwgem"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnuf8"]
 border_width_left = 20
@@ -187,37 +185,11 @@ grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("5_l0t3i")
 
-[node name="timer_visual" type="TextureProgressBar" parent="."]
+[node name="PauseButton" type="TextureButton" parent="."]
 visible = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 832.0
-offset_top = -23.0
-offset_right = -832.0
-offset_bottom = 233.0
-grow_horizontal = 2
-max_value = 5.0
-step = 0.001
-value = 5.0
-fill_mode = 4
-texture_progress = ExtResource("3_famjv")
-radial_center_offset = Vector2(1, 18)
-script = ExtResource("4_gawtx")
-
-[node name="clock_hand" type="TextureRect" parent="timer_visual"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -13.0
-offset_top = 5.0
-offset_right = -13.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(141.507, 138.884)
-texture = ExtResource("5_fxi3x")
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("7_lwgem")
 
 [node name="Number" type="Label" parent="."]
 visible = false
@@ -242,3 +214,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="PauseMenu/MarginContainer/Settings/HBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="WinnerPanel/MenuButton" to="WinnerPanel" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="WinnerPanel/PlayAgain" to="WinnerPanel" method="_on_play_again_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

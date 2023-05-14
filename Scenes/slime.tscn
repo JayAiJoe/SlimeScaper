@@ -538,7 +538,6 @@ material = SubResource("ShaderMaterial_pkwg4")
 position = Vector2(-180, -184)
 texture = ExtResource("4_qxby1")
 centered = false
-offset = Vector2(0, -25)
 hframes = 4
 region_rect = Rect2(0, 0, 128, 128)
 

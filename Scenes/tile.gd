@@ -83,7 +83,6 @@ func occupy(slime : Slime) -> void:
 func leave() -> void:
 	entity = null
 
-
 #
 #func global_tick():
 #	if captured_by:

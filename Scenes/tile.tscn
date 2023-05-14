@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dubyat2464u7v" path="res://Assets/sample_tiles/2.png" id="2_36bae"]
 
 [node name="Tile2d" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_17tx4")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -16,6 +17,7 @@ polygon = PackedVector2Array(-53, -46, 54, -46, 106, 1, 54, 46, -53, 47, -105, -
 
 [node name="TerrainSprite" type="Sprite2D" parent="."]
 z_index = 1
+y_sort_enabled = true
 texture = ExtResource("2_36bae")
 
 [node name="CaptureTimer" type="Timer" parent="."]

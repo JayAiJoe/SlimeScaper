@@ -28,7 +28,7 @@ func _ready():
 	Utils.player = self
 	Events.emit_signal("points_gained",player_color,score)
 	HUD.connect("pause", pause)
-	$Hat.set_modulate(GameData.COLORS[player_color])
+	$AnimationPlayer.play("player_idle")
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
@@ -64,23 +64,29 @@ func move_dir(dir):
 	if animating:
 		return
 	var new_coord = current_coord + GameData.DIRECTIONS[dir]
+	
+	if GameData.DIRECTIONS[dir].x == -1:
+		$Sprite2D.set_flip_h(true)
+	elif GameData.DIRECTIONS[dir].x == 1:
+		$Sprite2D.set_flip_h(false)
+		
 	if not new_coord in Utils.map.grid: # no tile
 		animate_invalid_move(half_move(Utils.coordinates_to_global(new_coord)) )
 		return
 	if Utils.map.grid[new_coord].tile_type == GameData.TERRAIN.ROCK:
 		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
-	if Utils.map.grid[new_coord].entity and Utils.map.grid[new_coord].entity is Slime: # may laman
-		Utils.map.grid[new_coord].entity.set_aggro(self)
+	if Utils.map.grid[new_coord].entity is Player: # may laman
 		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
-	elif Utils.map.grid[new_coord].entity is Player: # may laman
+	if Utils.map.grid[new_coord].entity and Utils.map.grid[new_coord].entity is Slime: # may laman
+		Utils.map.grid[new_coord].entity.set_aggro(self)
 		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
 		
 	change_coord(new_coord)
 	
-	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME)
@@ -123,3 +129,6 @@ func add_score(gained_score : int):
 func pause(will_pause):
 	paused = will_pause
 	
+func _on_animation_player_animation_finished(anim_name):
+	await get_tree().create_timer(randf_range(1,3)).timeout
+	$AnimationPlayer.play("player_idle")

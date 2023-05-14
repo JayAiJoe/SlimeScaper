@@ -75,12 +75,16 @@ func move_dir(dir_prio : Array) -> void:
 	if not found:
 		return
 	
+	if (new_coord-current_coord).x == -1:
+		$Sprite2D.set_flip_h(false)
+	elif (new_coord-current_coord).x == 1:
+		$Sprite2D.set_flip_h(true)
+		
 	change_coord(new_coord)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.2)
-	
 	
 	var action = "walk"
 	if to_free:
