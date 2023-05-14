@@ -1,12 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6dqwxpfh1p8f"]
+[gd_scene load_steps=9 format=3 uid="uid://c6dqwxpfh1p8f"]
 
 [ext_resource type="PackedScene" uid="uid://bgchxlyd8a4y2" path="res://Scenes/stage_loader.tscn" id="1_x5fag"]
 [ext_resource type="Texture2D" uid="uid://dsu3b5nbfgj0u" path="res://HUD/ready_timer2.png" id="2_h1ts2"]
-[ext_resource type="Texture2D" uid="uid://dsacgoha7jmlc" path="res://Assets/slimes/carrot.png" id="3_eo7cx"]
-[ext_resource type="Texture2D" uid="uid://nw7hpqydjslo" path="res://Assets/slimes/lettuce.png" id="4_tc5bp"]
-[ext_resource type="Texture2D" uid="uid://dk51w0dqpsv7u" path="res://Assets/slimes/onion.png" id="5_w4qqi"]
-[ext_resource type="Texture2D" uid="uid://dubyat2464u7v" path="res://Assets/sample_tiles/2.png" id="6_0ht2e"]
+[ext_resource type="Texture2D" uid="uid://jnaijoia66pg" path="res://Assets/slimes/CarrotSnap.png" id="3_kplhh"]
+[ext_resource type="Texture2D" uid="uid://bw5lcgh2330il" path="res://Assets/slimes/LettuceSnap.png" id="4_7uegc"]
+[ext_resource type="Texture2D" uid="uid://cykpdmoq58p7c" path="res://Assets/slimes/OnionSnap.png" id="5_pxy2c"]
+[ext_resource type="Texture2D" uid="uid://ta3bcuhj883t" path="res://Assets/sample_tiles/Cauldron.png" id="6_4rlxf"]
 [ext_resource type="Script" path="res://Scenes/ready_text.gd" id="7_46274"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l8s8"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.898039, 0.768627, 0.737255, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="StageLoader" instance=ExtResource("1_x5fag")]
 is_main_menu = true
@@ -208,7 +220,15 @@ offset_top = 101.0
 offset_right = 338.0
 offset_bottom = 141.0
 
-[node name="bring" type="Label" parent="Prompts/Tutorials/Bring" index="0"]
+[node name="Panel" type="Panel" parent="Prompts/Tutorials/Bring" index="0"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = -245.0
+offset_right = 1331.0
+offset_bottom = -70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l8s8")
+
+[node name="bring" type="Label" parent="Prompts/Tutorials/Bring" index="1"]
 layout_mode = 0
 offset_left = 60.0
 offset_top = -184.0
@@ -217,37 +237,40 @@ offset_bottom = -126.0
 theme_override_font_sizes/font_size = 40
 text = "Bring                                   close to                          to complete recipes"
 
-[node name="veggie" type="TextureRect" parent="Prompts/Tutorials/Bring" index="1"]
+[node name="veggie" type="TextureRect" parent="Prompts/Tutorials/Bring" index="2"]
+clip_contents = true
 layout_mode = 0
-offset_left = 175.0
-offset_top = -233.0
-offset_right = 303.0
-offset_bottom = -105.0
-texture = ExtResource("3_eo7cx")
+offset_left = 166.0
+offset_top = -228.0
+offset_right = 294.0
+offset_bottom = -100.0
+texture = ExtResource("3_kplhh")
+expand_mode = 2
+stretch_mode = 2
 
-[node name="veggie2" type="TextureRect" parent="Prompts/Tutorials/Bring" index="2"]
+[node name="veggie2" type="TextureRect" parent="Prompts/Tutorials/Bring" index="3"]
 layout_mode = 0
-offset_left = 268.0
-offset_top = -233.0
-offset_right = 396.0
-offset_bottom = -105.0
-texture = ExtResource("4_tc5bp")
+offset_left = 267.0
+offset_top = -225.0
+offset_right = 395.0
+offset_bottom = -97.0
+texture = ExtResource("4_7uegc")
 
-[node name="veggie3" type="TextureRect" parent="Prompts/Tutorials/Bring" index="3"]
+[node name="veggie3" type="TextureRect" parent="Prompts/Tutorials/Bring" index="4"]
 layout_mode = 0
-offset_left = 370.0
-offset_top = -233.0
-offset_right = 498.0
-offset_bottom = -105.0
-texture = ExtResource("5_w4qqi")
+offset_left = 379.0
+offset_top = -225.0
+offset_right = 507.0
+offset_bottom = -97.0
+texture = ExtResource("5_pxy2c")
 
-[node name="cauldron" type="TextureRect" parent="Prompts/Tutorials/Bring" index="4"]
+[node name="cauldron" type="TextureRect" parent="Prompts/Tutorials/Bring" index="5"]
 layout_mode = 0
-offset_left = 521.0
-offset_top = -503.0
-offset_right = 1033.0
-offset_bottom = 9.0
-texture = ExtResource("6_0ht2e")
+offset_left = 569.0
+offset_top = -341.0
+offset_right = 996.0
+offset_bottom = 86.0
+texture = ExtResource("6_4rlxf")
 
 [node name="ready_text" type="Label" parent="Prompts" index="4"]
 modulate = Color(1, 1, 1, 0.419608)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgchxlyd8a4y2"]
+[gd_scene load_steps=8 format=3 uid="uid://bgchxlyd8a4y2"]
 
 [ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
 [ext_resource type="PackedScene" uid="uid://bgmterw6bq5iq" path="res://Scenes/Map.tscn" id="2_oien2"]
+[ext_resource type="Texture2D" uid="uid://dtnn2fe247ddx" path="res://Assets/Background.png" id="2_t8rlh"]
 [ext_resource type="PackedScene" uid="uid://behco8lyoffkn" path="res://Scenes/player.tscn" id="3_1y5lv"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_dkcvl"]
 [ext_resource type="PackedScene" uid="uid://2m3xx3wjvjw4" path="res://Scenes/recipe_indicator.tscn" id="5_8dcxp"]
@@ -16,6 +17,13 @@ script = ExtResource("1_qk5nt")
 z_index = 4092
 z_as_relative = false
 script = ExtResource("4_dkcvl")
+
+[node name="TextureRect" type="TextureRect" parent="Camera"]
+z_index = -2000
+z_as_relative = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_t8rlh")
 
 [node name="Grid" parent="." instance=ExtResource("2_oien2")]
 

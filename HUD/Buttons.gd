@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
@@ -18,3 +18,13 @@ func _on_tutorial_pressed():
 
 func _on_ewan_pressed():
 	HUD.open_settings()
+
+
+func _on_credits_pressed():
+	get_parent().get_node("MarginContainer").show()
+
+
+
+
+func _on_back_pressed():
+	get_parent().get_node("MarginContainer").hide()

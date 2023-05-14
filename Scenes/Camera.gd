@@ -8,4 +8,6 @@ func _ready():
 func adjust_camera(cam_pos, cam_zoom):
 	set_position(cam_pos)
 	set_zoom(cam_zoom)
+	$TextureRect.position = -Vector2(1920,1080) / cam_zoom.x / 2
+	$TextureRect.scale = Vector2.ONE * (1/cam_zoom.x)
 

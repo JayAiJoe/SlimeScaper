@@ -85,10 +85,10 @@ stretch_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-min_value = -70.0
+min_value = -40.0
 max_value = -20.0
 step = 0.001
-value = -45.0
+value = -35.0
 
 [node name="Sound" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
@@ -115,10 +115,9 @@ stretch_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-min_value = -50.0
-max_value = -20.0
+min_value = -20.0
+max_value = 20.0
 step = 0.001
-value = -35.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2

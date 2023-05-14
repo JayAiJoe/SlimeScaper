@@ -1,5 +1,8 @@
 extends Panel
 
+
+
+
 func setup(type:String)->void:
 	if type == "pause":
 		$MarginContainer/Settings/Label.set_text("Paused")

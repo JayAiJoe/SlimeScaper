@@ -18,8 +18,11 @@ var sounds = {
 
 func _ready():
 	bg_start()
+	set_music_level(-30)
+	set_sound_level(0)
 
 func play_sound(sound : String, color : String = "") -> void:
+	print(sound)
 	if not allow_sound:
 		return
 	var idx = 0
@@ -43,6 +46,10 @@ func _input(event):
 
 func set_music_level(sound_level):
 	bg_player.volume_db = sound_level
+	if sound_level == -40:
+		bg_player.stream_paused = true
+	else:
+		bg_player.stream_paused = false
 	
 func set_sound_level(sound_level):
 	for i in range(3):
