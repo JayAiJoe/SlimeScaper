@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2mj45q5c60tb"
-path="res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"
+uid="uid://ce51q8h3aj03j"
+path="res://.godot/imported/03 Qmark Hover.png-8470f33cc6636eaf90bb90bb1b270423.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sample_tiles/Cauldron.png"
-dest_files=["res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"]
+source_file="res://Assets/HUD/03 Qmark Hover.png"
+dest_files=["res://.godot/imported/03 Qmark Hover.png-8470f33cc6636eaf90bb90bb1b270423.ctex"]
 
 [params]
 

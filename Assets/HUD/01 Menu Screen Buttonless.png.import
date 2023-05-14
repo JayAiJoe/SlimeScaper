@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2mj45q5c60tb"
-path="res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"
+uid="uid://dvwiwp2eqyjgp"
+path="res://.godot/imported/01 Menu Screen Buttonless.png-88643d95aa86ac8256ec9d09bd551967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sample_tiles/Cauldron.png"
-dest_files=["res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"]
+source_file="res://Assets/HUD/01 Menu Screen Buttonless.png"
+dest_files=["res://.godot/imported/01 Menu Screen Buttonless.png-88643d95aa86ac8256ec9d09bd551967.ctex"]
 
 [params]
 

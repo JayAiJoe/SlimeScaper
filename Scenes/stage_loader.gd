@@ -17,6 +17,9 @@ var ready_decay = 1
 const MAX_COUNTDOWN = 3
 var COUNTDOWN = MAX_COUNTDOWN
 
+const colored_cauldron_textures = {"blue":preload("res://Assets/sample_tiles/CauldronBlue.png"),
+									"red":preload("res://Assets/sample_tiles/CauldronRed.png")}
+									
 func set_stage_info(info : Dictionary) -> void:
 	stage_info = info
 
@@ -46,6 +49,7 @@ func load_stage() -> void:
 		for i in range(cauldrons.size()):
 			cauldrons[i].ingredient_placed.connect($Recipes.get_children()[i].receive_ingredient)
 			cauldrons[i].player_owner = GameData.COLORS.keys()[i]
+			cauldrons[i].set_cauldron(colored_cauldron_textures[cauldrons[i].player_owner])
 		
 		var idx = 0
 		for indicator in $Recipes.get_children():

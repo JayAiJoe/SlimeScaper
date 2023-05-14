@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2mj45q5c60tb"
-path="res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"
+uid="uid://bb6tlfn16htba"
+path="res://.godot/imported/03 Setting Hover.png-a78d2c9f6311f8e41063f6eae6a66eff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sample_tiles/Cauldron.png"
-dest_files=["res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"]
+source_file="res://Assets/HUD/03 Setting Hover.png"
+dest_files=["res://.godot/imported/03 Setting Hover.png-a78d2c9f6311f8e41063f6eae6a66eff.ctex"]
 
 [params]
 

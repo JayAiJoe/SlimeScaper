@@ -1,11 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6dqwxpfh1p8f"]
+[gd_scene load_steps=17 format=3 uid="uid://c6dqwxpfh1p8f"]
 
-[ext_resource type="Texture2D" uid="uid://dtnn2fe247ddx" path="res://Assets/Background.png" id="1_4p3r4"]
 [ext_resource type="Texture2D" uid="uid://b74g2yrip66i0" path="res://Assets/HUD/TITLE.png" id="1_ki65e"]
-[ext_resource type="Texture2D" uid="uid://cwgm200u2pwr2" path="res://Assets/HUD/PLAY.png" id="2_765i1"]
+[ext_resource type="Texture2D" uid="uid://dvwiwp2eqyjgp" path="res://Assets/HUD/01 Menu Screen Buttonless.png" id="1_nxfe8"]
 [ext_resource type="Script" path="res://HUD/Buttons.gd" id="2_m033m"]
-[ext_resource type="Texture2D" uid="uid://detklgk180sa7" path="res://Assets/HUD/TUTORIAL.png" id="3_y5554"]
-[ext_resource type="Texture2D" uid="uid://cjqfuyfhrikww" path="res://Assets/HUD/EWAN.PNG" id="4_jv46v"]
+[ext_resource type="Texture2D" uid="uid://dfg5fcq2a83r0" path="res://Assets/HUD/02 Play.png" id="4_bltkv"]
+[ext_resource type="Texture2D" uid="uid://bpk7x5a3qa4oc" path="res://Assets/HUD/03 Play Hover.png" id="5_h3lgy"]
+[ext_resource type="Texture2D" uid="uid://cov6mh0o18sjy" path="res://Assets/HUD/02 Qmark.png" id="6_t6mvm"]
+[ext_resource type="Texture2D" uid="uid://ce51q8h3aj03j" path="res://Assets/HUD/03 Qmark Hover.png" id="7_rb0is"]
+[ext_resource type="Texture2D" uid="uid://dp3cikknnwyfb" path="res://Assets/HUD/02 Setting Button.png" id="8_l3uiq"]
+[ext_resource type="Texture2D" uid="uid://bb6tlfn16htba" path="res://Assets/HUD/03 Setting Hover.png" id="9_kovdi"]
+[ext_resource type="Texture2D" uid="uid://ob6jcqtqo5rl" path="res://Assets/HUD/02 Credit Button.png" id="10_gal0c"]
+[ext_resource type="Texture2D" uid="uid://cm4gl0nhrkecv" path="res://Assets/HUD/03 Credits Hover.png" id="11_jwqtb"]
+[ext_resource type="Texture2D" uid="uid://bbxedxwxk1hra" path="res://Assets/slimes/crow_fly.png" id="12_wlct6"]
+[ext_resource type="Script" path="res://Scenes/MainMenuCrow.gd" id="13_gyfey"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i03ba"]
 bg_color = Color(0.12549, 0.12549, 0.12549, 1)
@@ -18,6 +25,39 @@ corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
+
+[sub_resource type="Animation" id="Animation_gc4al"]
+resource_name = "fly"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Crow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2050, 247), Vector2(-90, 247)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ok5hl"]
+_data = {
+"fly": SubResource("Animation_gc4al")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -34,9 +74,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_4p3r4")
+texture = ExtResource("1_nxfe8")
 
 [node name="TITLE" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -48,7 +89,7 @@ offset_bottom = 488.0
 grow_horizontal = 2
 texture = ExtResource("1_ki65e")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -61,34 +102,45 @@ offset_right = 502.0
 offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 64
 script = ExtResource("2_m033m")
 
-[node name="Buttons" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Play" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_constants/separation = 32
-alignment = 2
+offset_left = -470.0
+offset_top = -510.0
+offset_right = 1450.0
+offset_bottom = 570.0
+size_flags_horizontal = 0
+texture_normal = ExtResource("4_bltkv")
+texture_hover = ExtResource("5_h3lgy")
 
-[node name="Play" type="TextureButton" parent="HBoxContainer/Buttons"]
+[node name="TUTORIAL" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_765i1")
+offset_left = 1984.0
+offset_right = 3904.0
+offset_bottom = 1080.0
+size_flags_horizontal = 0
+texture_normal = ExtResource("6_t6mvm")
+texture_hover = ExtResource("7_rb0is")
 
-[node name="TUTORIAL" type="TextureButton" parent="HBoxContainer/Buttons"]
+[node name="Settings" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_y5554")
+offset_left = 3968.0
+offset_right = 5888.0
+offset_bottom = 1080.0
+size_flags_horizontal = 0
+texture_normal = ExtResource("8_l3uiq")
+texture_hover = ExtResource("9_kovdi")
 
-[node name="Buttons2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Credits" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 32
-alignment = 2
-
-[node name="EWAN" type="TextureButton" parent="HBoxContainer/Buttons2"]
-layout_mode = 2
-texture_normal = ExtResource("4_jv46v")
-
-[node name="Credits" type="TextureButton" parent="HBoxContainer/Buttons2"]
-layout_mode = 2
-texture_normal = ExtResource("4_jv46v")
+offset_left = 5952.0
+offset_right = 7872.0
+offset_bottom = 1080.0
+size_flags_horizontal = 0
+texture_normal = ExtResource("10_gal0c")
+texture_hover = ExtResource("11_jwqtb")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
@@ -129,7 +181,6 @@ Happy Funny Kids (background music) by Oleg Kirilkov (Pixabay.com)
 Bell, Waterdrop, Flower Chomp SFX by Pixabay (Pixabay.com)
 Footstep Sounds by Dryoma (Itch.io)
 "
-scroll_vertical = 1.0
 
 [node name="Back" type="Button" parent="MarginContainer/CreditsPanel"]
 layout_mode = 0
@@ -140,8 +191,21 @@ offset_bottom = 879.0
 theme_override_font_sizes/font_size = 48
 text = "Back"
 
-[connection signal="pressed" from="HBoxContainer/Buttons/Play" to="HBoxContainer" method="_on_play_pressed"]
-[connection signal="pressed" from="HBoxContainer/Buttons/TUTORIAL" to="HBoxContainer" method="_on_tutorial_pressed"]
-[connection signal="pressed" from="HBoxContainer/Buttons2/EWAN" to="HBoxContainer" method="_on_ewan_pressed"]
-[connection signal="pressed" from="HBoxContainer/Buttons2/Credits" to="HBoxContainer" method="_on_credits_pressed"]
+[node name="Crow" type="Sprite2D" parent="."]
+position = Vector2(1265.33, 247)
+texture = ExtResource("12_wlct6")
+hframes = 4
+frame = 1
+script = ExtResource("13_gyfey")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ok5hl")
+}
+
+[connection signal="pressed" from="HBoxContainer/Play" to="HBoxContainer" method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/TUTORIAL" to="HBoxContainer" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="HBoxContainer/Settings" to="HBoxContainer" method="_on_ewan_pressed"]
+[connection signal="pressed" from="HBoxContainer/Credits" to="HBoxContainer" method="_on_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/CreditsPanel/Back" to="HBoxContainer" method="_on_back_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Crow" method="_on_animation_player_animation_finished"]

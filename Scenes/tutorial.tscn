@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://jnaijoia66pg" path="res://Assets/slimes/CarrotSnap.png" id="3_kplhh"]
 [ext_resource type="Texture2D" uid="uid://bw5lcgh2330il" path="res://Assets/slimes/LettuceSnap.png" id="4_7uegc"]
 [ext_resource type="Texture2D" uid="uid://cykpdmoq58p7c" path="res://Assets/slimes/OnionSnap.png" id="5_pxy2c"]
-[ext_resource type="Texture2D" uid="uid://ta3bcuhj883t" path="res://Assets/sample_tiles/Cauldron.png" id="6_4rlxf"]
 [ext_resource type="Script" path="res://Scenes/ready_text.gd" id="7_46274"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l8s8"]
@@ -19,6 +18,9 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mygqc"]
+load_path = "res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"
 
 [node name="StageLoader" instance=ExtResource("1_x5fag")]
 is_main_menu = true
@@ -270,7 +272,7 @@ offset_left = 569.0
 offset_top = -341.0
 offset_right = 996.0
 offset_bottom = 86.0
-texture = ExtResource("6_4rlxf")
+texture = SubResource("CompressedTexture2D_mygqc")
 
 [node name="ready_text" type="Label" parent="Prompts" index="4"]
 modulate = Color(1, 1, 1, 0.419608)
