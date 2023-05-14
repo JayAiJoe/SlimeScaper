@@ -26,9 +26,8 @@ func occupy(slime : Slime) -> void:
 	slime.trigger_free()
 
 func score_effect(player):
-	$CauldronEffect.show()
 	$AnimationPlayer.play("ploop")
-	
+	$CauldronEffect.show()
 
 func _on_animation_player_animation_finished(anim_name):
 	$CauldronEffect.hide()

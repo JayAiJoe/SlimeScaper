@@ -33,6 +33,7 @@ script = ExtResource("2_02ubn")
 texture = ExtResource("3_r7xkh")
 
 [node name="CauldronEffect" type="Sprite2D" parent="." index="3"]
+visible = false
 texture = ExtResource("5_gajrq")
 hframes = 4
 frame = 3
