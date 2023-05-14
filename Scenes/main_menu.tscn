@@ -120,7 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Developers:
-IshbenHuben, JayAiJoe 
+Ishbenhuben, JayAiJoe 
 Artists:
 Misphantom, Paolo Mutuc
 
@@ -129,7 +129,6 @@ Happy Funny Kids (background music) by Oleg Kirilkov (Pixabay.com)
 Bell, Waterdrop, Flower Chomp SFX by Pixabay (Pixabay.com)
 Footstep Sounds by Dryoma (Itch.io)
 "
-scroll_vertical = 1.0
 
 [node name="Back" type="Button" parent="MarginContainer/CreditsPanel"]
 layout_mode = 0
