@@ -28,7 +28,7 @@ func _ready():
 	Utils.player = self
 	Events.emit_signal("points_gained",player_color,score)
 	HUD.connect("pause", pause)
-	$AnimationPlayer.play("player_idle")
+	$AnimationPlayer.play("player_idle_"+player_color)
 
 func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
@@ -81,11 +81,13 @@ func move_dir(dir):
 		return
 	if Utils.map.grid[new_coord].entity and Utils.map.grid[new_coord].entity is Slime: # may laman
 		Utils.map.grid[new_coord].entity.set_aggro(self)
+		$AnimationPlayer.play("player_whack_"+player_color)
 		animate_invalid_move(half_move(Utils.map.grid[new_coord].get_top_pos()))
 		return
 		
 	change_coord(new_coord)
 	
+	$AnimationPlayer.play("player_walk_"+player_color)
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 	tween.finished.connect(set_animating.bind(false))
 	set_animating(true)
