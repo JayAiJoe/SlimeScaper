@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://HUD/HUD.gd" id="1_2jc11"]
 [ext_resource type="Script" path="res://HUD/PauseMenu.gd" id="2_myvhi"]
-[ext_resource type="Texture2D" uid="uid://d2a8lpmg5k71y" path="res://Assets/HUD/ON.png" id="3_8lufx"]
-[ext_resource type="Texture2D" uid="uid://s73mcg0ut2lo" path="res://Assets/HUD/OFF.png" id="4_e8trt"]
-[ext_resource type="Texture2D" uid="uid://cjqfuyfhrikww" path="res://Assets/HUD/EWAN.PNG" id="5_l0t3i"]
+[ext_resource type="Texture2D" uid="uid://drorgblj3dxak" path="res://Assets/HUD/04 Back to Menu Button.png" id="5_kh751"]
+[ext_resource type="Texture2D" uid="uid://8gl3a8hag83q" path="res://Assets/HUD/04 Resume Button.png" id="6_0c5r3"]
 [ext_resource type="Script" path="res://HUD/WinnerPanel.gd" id="6_ee2a5"]
+[ext_resource type="Texture2D" uid="uid://b3gpxxuplm68u" path="res://Assets/panel_beige.png" id="7_8sgvg"]
 [ext_resource type="Texture2D" uid="uid://dy7jt38b1x6fh" path="res://Assets/HUD/pause.png" id="7_lwgem"]
+[ext_resource type="Texture2D" uid="uid://btoxi8m1nv2rh" path="res://Assets/HUD/04 Restart Button.png" id="8_t1y46"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnuf8"]
 border_width_left = 20
@@ -18,18 +19,6 @@ corner_radius_top_left = 80
 corner_radius_top_right = 80
 corner_radius_bottom_right = 80
 corner_radius_bottom_left = 80
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0d5q"]
-bg_color = Color(0.12549, 0.12549, 0.12549, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.898039, 0.768627, 0.737255, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_2jc11")
@@ -84,15 +73,6 @@ text = "MUSIC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicToggle" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/Music"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-texture_normal = ExtResource("3_8lufx")
-texture_pressed = ExtResource("4_e8trt")
-stretch_mode = 0
-
 [node name="MusicSlider" type="HSlider" parent="PauseMenu/MarginContainer/Settings/Music"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -114,15 +94,6 @@ text = "SOUND"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundToggle" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/Sound"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-texture_normal = ExtResource("3_8lufx")
-texture_pressed = ExtResource("4_e8trt")
-stretch_mode = 0
-
 [node name="SoundSlider" type="HSlider" parent="PauseMenu/MarginContainer/Settings/Sound"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -133,21 +104,20 @@ step = 0.001
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/MarginContainer/Settings"]
 layout_mode = 2
+alignment = 1
 
 [node name="MenuButton" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 size_flags_vertical = 3
-texture_normal = ExtResource("5_l0t3i")
-stretch_mode = 0
+texture_normal = ExtResource("5_kh751")
 
 [node name="ResumeButton" type="TextureButton" parent="PauseMenu/MarginContainer/Settings/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("5_l0t3i")
-stretch_mode = 0
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_0c5r3")
 
-[node name="WinnerPanel" type="Panel" parent="."]
+[node name="WinnerPanel" type="NinePatchRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -157,7 +127,11 @@ offset_right = -299.0
 offset_bottom = -212.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o0d5q")
+texture = ExtResource("7_8sgvg")
+patch_margin_left = 33
+patch_margin_top = 33
+patch_margin_right = 33
+patch_margin_bottom = 33
 script = ExtResource("6_ee2a5")
 
 [node name="Winner" type="Label" parent="WinnerPanel"]
@@ -165,36 +139,37 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -138.0
+offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 250
+theme_override_font_sizes/font_size = 200
 text = "red wins!"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
-[node name="MenuButton" type="TextureButton" parent="WinnerPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WinnerPanel"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -148.0
-offset_right = 445.0
+offset_left = -290.0
+offset_top = -288.0
+offset_right = 290.0
+grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("5_l0t3i")
 
-[node name="PlayAgain" type="TextureButton" parent="WinnerPanel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -445.0
-offset_top = -148.0
-grow_horizontal = 0
-grow_vertical = 0
-texture_normal = ExtResource("5_l0t3i")
+[node name="MenuButton" type="TextureButton" parent="WinnerPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_kh751")
+
+[node name="PlayAgain" type="TextureButton" parent="WinnerPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("8_t1y46")
 
 [node name="PauseButton" type="TextureButton" parent="."]
 visible = false
@@ -215,14 +190,12 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/Music/MusicToggle" to="PauseMenu" method="_on_music_toggle_toggled"]
 [connection signal="value_changed" from="PauseMenu/MarginContainer/Settings/Music/MusicSlider" to="PauseMenu" method="_on_music_slider_value_changed"]
-[connection signal="toggled" from="PauseMenu/MarginContainer/Settings/Sound/SoundToggle" to="PauseMenu" method="_on_sound_toggle_toggled"]
 [connection signal="drag_ended" from="PauseMenu/MarginContainer/Settings/Sound/SoundSlider" to="PauseMenu" method="_on_sound_slider_drag_ended"]
 [connection signal="value_changed" from="PauseMenu/MarginContainer/Settings/Sound/SoundSlider" to="PauseMenu" method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Settings/HBoxContainer/MenuButton" to="PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="toggled" from="PauseMenu/MarginContainer/Settings/HBoxContainer/MenuButton" to="PauseMenu" method="_on_menu_button_toggled"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Settings/HBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="WinnerPanel/MenuButton" to="WinnerPanel" method="_on_menu_button_pressed"]
-[connection signal="pressed" from="WinnerPanel/PlayAgain" to="WinnerPanel" method="_on_play_again_pressed"]
+[connection signal="pressed" from="WinnerPanel/HBoxContainer/MenuButton" to="WinnerPanel" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="WinnerPanel/HBoxContainer/PlayAgain" to="WinnerPanel" method="_on_play_again_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
