@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbxedxwxk1hra"
-path="res://.godot/imported/CrowFly.png-be149616cf0487c42831a6a631d253ff.ctex"
+uid="uid://c8ntvqvjeh2k4"
+path="res://.godot/imported/lettuce_idle.png-75a7039428648e1bb9e4a1d1892b06c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/slimes/CrowFly.png"
-dest_files=["res://.godot/imported/CrowFly.png-be149616cf0487c42831a6a631d253ff.ctex"]
+source_file="res://Assets/slimes/lettuce_idle.png"
+dest_files=["res://.godot/imported/lettuce_idle.png-75a7039428648e1bb9e4a1d1892b06c8.ctex"]
 
 [params]
 

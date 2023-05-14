@@ -100,5 +100,5 @@ var INGREDIENT_NAMES = {
 	0 : "onion",
 	1 : "carrot",
 	2 : "lettuce",
-	3 : "CrowIdle",
+	3 : "crow",
 }

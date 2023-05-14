@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q2dngxn0aeq3"
-path="res://.godot/imported/CrowIdle2.png-92fa9b517472856402bcedd14b5dda47.ctex"
+uid="uid://br7cdoloeosii"
+path="res://.godot/imported/crow_idle.png-5734ff750c59fcb32f8ad34771dc95c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crow/CrowIdle2.png"
-dest_files=["res://.godot/imported/CrowIdle2.png-92fa9b517472856402bcedd14b5dda47.ctex"]
+source_file="res://Assets/slimes/crow_idle.png"
+dest_files=["res://.godot/imported/crow_idle.png-5734ff750c59fcb32f8ad34771dc95c3.ctex"]
 
 [params]
 

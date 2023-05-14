@@ -20,6 +20,7 @@ var max_move_time = 0.2
 var min_move_time = 0.2
 var move_time_scale = 0.1
 var to_free = false
+
 #if speed carries over to new aggro, make scale higher for more incentive to steal
 
 @onready var sprite : Sprite2D = $Sprite2D
@@ -30,7 +31,7 @@ signal landed(coords, type)
 func _ready():
 	set_type(type)
 	set_z_index(1000)
-	animation_player.play("crow_idle")
+	
 	$MoveTimer.set_wait_time(max_move_time)
 
 func set_starting_position(pos : Vector2) -> void:
@@ -51,7 +52,7 @@ func _physics_process(delta):
 
 func set_type(type_code : int) -> void:
 	type = type_code
-	sprite.set_texture(load("res://Assets/slimes/"+GameData.INGREDIENT_NAMES[type]+".png"))
+	play_animation("idle")
 	#sprite.set_texture(GameData.INGREDIENT_TEXTURES[type])
 
 func move_dir(dir_prio : Array) -> void:
@@ -80,20 +81,29 @@ func move_dir(dir_prio : Array) -> void:
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), 0.2)
 	
-	animation_player.play("crow_walk")
-	velocity_y = JUMP_VELOCITY
+	
+	var action = "walk"
 	if to_free:
+		if type == GameData.SLIME.FIRE:
+			play_animation("eat")
+		else:
+			play_animation("walk")
 		tween.tween_callback(absorb)
 		tween.tween_callback(queue_free)
 	else:
+		play_animation("walk")
 		tween.tween_callback(emit_signal.bind("landed", current_coord, type))
 		tween.tween_callback(update_los.bind(current_coord))
+	
 	
 func absorb():
 	Events.emit_signal("slime_absorbed", self)
 
 func set_animating(val : bool) -> void:
 	animating = val
+
+func play_animation(action:String):
+	animation_player.play(GameData.INGREDIENT_NAMES[type]+"_"+action)
 
 func half_move(a)->Vector2:
 	return (Utils.map.grid[current_coord].get_top_pos() +a)/2
@@ -185,8 +195,6 @@ func _on_move_timer_timeout():
 func trigger_free():
 	to_free = true
 
-
-
 func _on_animation_player_animation_finished(anim_name):
 	await get_tree().create_timer(randf_range(2,5)).timeout
-	animation_player.play("crow_idle")
+	play_animation("idle")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0j2s72n4afp6"
-path="res://.godot/imported/CrowWalk2.png-d576538014413620e36f2b296cb7accd.ctex"
+uid="uid://bbxedxwxk1hra"
+path="res://.godot/imported/crow_fly.png-e47d42db4f6a676dd0a441ecd18ae403.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crow/CrowWalk2.png"
-dest_files=["res://.godot/imported/CrowWalk2.png-d576538014413620e36f2b296cb7accd.ctex"]
+source_file="res://Assets/slimes/crow_fly.png"
+dest_files=["res://.godot/imported/crow_fly.png-e47d42db4f6a676dd0a441ecd18ae403.ctex"]
 
 [params]
 

@@ -14,8 +14,9 @@ func update_score(player_color, new_score):
 		$Winner.set_text(player_color+" wins!")
 
 func display_winner(player_color):
-	$Winner.set_modulate(GameData.COLORS[player_color])
-	$Winner.set_text(player_color+" wins!")
+	$WinnerPanel.show()
+	$WinnerPanel/Winner.set_modulate(GameData.COLORS[player_color])
+	$WinnerPanel/Winner.set_text(player_color+" wins!")
 
 func display_number(num):
 	$Number.set_text(str(num))

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br7cdoloeosii"
-path="res://.godot/imported/CrowIdle.png-a402583e7006d7a2b89ee8eb498f4c28.ctex"
+uid="uid://b06o4prfnegen"
+path="res://.godot/imported/carrot_walk.png-dbb928521a04edbeffa44d1fdbd9244e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/slimes/CrowIdle.png"
-dest_files=["res://.godot/imported/CrowIdle.png-a402583e7006d7a2b89ee8eb498f4c28.ctex"]
+source_file="res://Assets/slimes/carrot_walk.png"
+dest_files=["res://.godot/imported/carrot_walk.png-dbb928521a04edbeffa44d1fdbd9244e.ctex"]
 
 [params]
 

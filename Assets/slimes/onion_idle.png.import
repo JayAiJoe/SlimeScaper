@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chixv453cj5eg"
-path="res://.godot/imported/CrowWalk3.png-68f0a5d300061841d41ec8ed1945ce36.ctex"
+uid="uid://b2mxm1hevbck"
+path="res://.godot/imported/onion_idle.png-2272afbf4ac2b535d61b604ab4e803b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crow/CrowWalk3.png"
-dest_files=["res://.godot/imported/CrowWalk3.png-68f0a5d300061841d41ec8ed1945ce36.ctex"]
+source_file="res://Assets/slimes/onion_idle.png"
+dest_files=["res://.godot/imported/onion_idle.png-2272afbf4ac2b535d61b604ab4e803b1.ctex"]
 
 [params]
 

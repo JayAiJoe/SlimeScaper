@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4cxw75dkj4gm"]
+[gd_scene load_steps=11 format=3 uid="uid://4cxw75dkj4gm"]
 
 [ext_resource type="Script" path="res://HUD/HUD.gd" id="1_2jc11"]
 [ext_resource type="Script" path="res://HUD/PauseMenu.gd" id="2_myvhi"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://HUD/Timer_visual.gd" id="4_gawtx"]
 [ext_resource type="Texture2D" uid="uid://dqjrurkguy2xl" path="res://Assets/clock_hand.png" id="5_fxi3x"]
 [ext_resource type="Texture2D" uid="uid://cjqfuyfhrikww" path="res://Assets/HUD/EWAN.PNG" id="5_l0t3i"]
+[ext_resource type="Script" path="res://HUD/WinnerPanel.gd" id="6_ee2a5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnuf8"]
 border_width_left = 20
@@ -127,15 +128,54 @@ size_flags_vertical = 3
 texture_normal = ExtResource("5_l0t3i")
 stretch_mode = 0
 
-[node name="Winner" type="Label" parent="."]
+[node name="WinnerPanel" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 299.0
+offset_top = 265.0
+offset_right = -299.0
+offset_bottom = -212.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 300
+script = ExtResource("6_ee2a5")
+
+[node name="Winner" type="Label" parent="WinnerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 250
+text = "red wins!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="WinnerPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_right = 445.0
+grow_vertical = 0
+texture_normal = ExtResource("5_l0t3i")
+
+[node name="PlayAgain" type="TextureButton" parent="WinnerPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -445.0
+offset_top = -148.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_l0t3i")
 
 [node name="timer_visual" type="TextureProgressBar" parent="."]
 visible = false
@@ -188,3 +228,5 @@ vertical_alignment = 1
 [connection signal="value_changed" from="PauseMenu/MarginContainer/Settings/Sound/SoundSlider" to="PauseMenu" method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Settings/MenuButton" to="PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="toggled" from="PauseMenu/MarginContainer/Settings/MenuButton" to="PauseMenu" method="_on_menu_button_toggled"]
+[connection signal="pressed" from="WinnerPanel/MenuButton" to="WinnerPanel" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="WinnerPanel/PlayAgain" to="WinnerPanel" method="_on_play_again_pressed"]

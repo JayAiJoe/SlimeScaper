@@ -33,6 +33,7 @@ func generate_unique_combinations(ingredient_count : int, combination_count : in
 
 func handle_recipe_request(index : int, indicator) -> void:
 	if index >= recipe_list.size():
+		print(indicator.player_color)
 		HUD.display_winner(indicator.player_color)
 		return
 	indicator.update_recipe(recipe_list[index])

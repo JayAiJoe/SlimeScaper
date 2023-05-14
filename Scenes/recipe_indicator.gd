@@ -104,17 +104,20 @@ func animate_fulfill():
 	tween.tween_property(self, "scale", orig_scale, 0.25)
 
 func animate_chompy() -> void:
-	#$AnimationPlayer.play("crow_walk")
+	$AnimationPlayer.play("crow_fly")
 	$Chompy.show()
 	$Chompy.set_modulate(Color.WHITE)
+	
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($Chompy, "position:x", 400 + chomp_direction * 464 - 64, 1)
 	tween.tween_callback(reset_chompy)
 
 func reset_chompy() -> void:
 	$Chompy.hide()
-	$Chompy.position = Vector2(400 - chomp_direction * 464 -64, 128)
-	$Chompy.rotation_degrees = chomp_direction * 90
+	$Chompy.position = Vector2(400 - chomp_direction * 464 -64, 230)
+	if chomp_direction == -1:
+		$Chompy.set_flip_h(false)
+	#$Chompy.rotation_degrees = chomp_direction * 90
 
 func cascading_remove_ingredients() -> void:
 	var ingredients = ingredient_container.get_children()
@@ -129,7 +132,7 @@ func cascading_remove_ingredients() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		pass
+		complete_recipe()
 
 func complete_recipe() -> void:
 	for pip in recipe_counter.get_children():

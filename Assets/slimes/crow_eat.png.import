@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvdl88n5tpyl1"
-path="res://.godot/imported/CrowWalk.png-4cc8ef5bd86ad78c21461345258bdd99.ctex"
+uid="uid://dyn7o55q0pfcl"
+path="res://.godot/imported/crow_eat.png-630d3192e5aa40e33071497812cf9003.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/slimes/CrowWalk.png"
-dest_files=["res://.godot/imported/CrowWalk.png-4cc8ef5bd86ad78c21461345258bdd99.ctex"]
+source_file="res://Assets/slimes/crow_eat.png"
+dest_files=["res://.godot/imported/crow_eat.png-630d3192e5aa40e33071497812cf9003.ctex"]
 
 [params]
 
