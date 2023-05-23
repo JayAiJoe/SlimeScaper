@@ -107,30 +107,31 @@ script = ExtResource("2_m033m")
 [node name="Play" type="TextureButton" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
-offset_left = 362.0
-offset_top = 278.0
-offset_right = 650.0
-offset_bottom = 566.0
+offset_left = 346.0
+offset_top = 277.0
+offset_right = 634.0
+offset_bottom = 565.0
 size_flags_horizontal = 0
 texture_normal = ExtResource("4_bltkv")
 texture_hover = ExtResource("5_h3lgy")
 
 [node name="TUTORIAL" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-offset_left = 604.0
-offset_top = 248.0
-offset_right = 820.0
-offset_bottom = 464.0
+offset_left = 188.0
+offset_top = 305.0
+offset_right = 404.0
+offset_bottom = 521.0
+rotation = -0.461524
 size_flags_horizontal = 0
 texture_normal = ExtResource("6_t6mvm")
 texture_hover = ExtResource("7_rb0is")
 
 [node name="Settings" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-offset_left = 206.0
-offset_top = 250.0
-offset_right = 422.0
-offset_bottom = 466.0
+offset_left = 584.0
+offset_top = 251.0
+offset_right = 800.0
+offset_bottom = 467.0
 size_flags_horizontal = 0
 texture_normal = ExtResource("8_l3uiq")
 texture_hover = ExtResource("9_kovdi")

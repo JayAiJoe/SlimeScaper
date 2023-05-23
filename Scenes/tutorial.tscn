@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6dqwxpfh1p8f"]
+[gd_scene load_steps=10 format=3 uid="uid://c6dqwxpfh1p8f"]
 
 [ext_resource type="PackedScene" uid="uid://bgchxlyd8a4y2" path="res://Scenes/stage_loader.tscn" id="1_x5fag"]
 [ext_resource type="Texture2D" uid="uid://dsu3b5nbfgj0u" path="res://HUD/ready_timer2.png" id="2_h1ts2"]
 [ext_resource type="Texture2D" uid="uid://jnaijoia66pg" path="res://Assets/slimes/CarrotSnap.png" id="3_kplhh"]
 [ext_resource type="Texture2D" uid="uid://bw5lcgh2330il" path="res://Assets/slimes/LettuceSnap.png" id="4_7uegc"]
 [ext_resource type="Texture2D" uid="uid://cykpdmoq58p7c" path="res://Assets/slimes/OnionSnap.png" id="5_pxy2c"]
+[ext_resource type="Texture2D" uid="uid://wnavk1anh5q0" path="res://Assets/Tutorial Screen.png" id="6_m0bwg"]
 [ext_resource type="Script" path="res://Scenes/ready_text.gd" id="7_46274"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l8s8"]
@@ -36,7 +37,8 @@ scale = Vector2(0.6, 0.6)
 scale = Vector2(0.6, 0.6)
 
 [node name="Prompts" type="Control" parent="." index="6"]
-z_index = 1
+z_index = 4096
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -44,7 +46,8 @@ anchor_right = 0.5
 grow_horizontal = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Prompts" index="0"]
-z_index = 2
+z_index = -1000
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -216,6 +219,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Bring" type="Control" parent="Prompts/Tutorials" index="0"]
+visible = false
 anchors_preset = 0
 offset_left = 298.0
 offset_top = 101.0
@@ -274,17 +278,26 @@ offset_right = 996.0
 offset_bottom = 86.0
 texture = SubResource("CompressedTexture2D_mygqc")
 
+[node name="Tutorial" type="TextureRect" parent="Prompts/Tutorials" index="1"]
+layout_mode = 0
+offset_top = -315.0
+offset_right = 1920.0
+offset_bottom = 185.0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(960, 250)
+texture = ExtResource("6_m0bwg")
+
 [node name="ready_text" type="Label" parent="Prompts" index="4"]
-modulate = Color(1, 1, 1, 0.419608)
 z_index = 1000
 layout_mode = 0
 offset_left = 752.0
-offset_top = 250.0
+offset_top = 227.0
 offset_right = 1153.0
-offset_bottom = 394.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "START GAME"
 horizontal_alignment = 1
 vertical_alignment = 1

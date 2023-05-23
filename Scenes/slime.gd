@@ -206,5 +206,5 @@ func trigger_free():
 	to_free = true
 
 func _on_animation_player_animation_finished(anim_name):
-	await get_tree().create_timer(randf_range(2,5)).timeout
+	await get_tree().create_timer(randf_range(1,3)).timeout
 	play_animation("idle")
