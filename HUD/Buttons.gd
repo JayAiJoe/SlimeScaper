@@ -6,11 +6,10 @@ func _ready():
 
 func _on_play_pressed():
 #	if Utils.has_played_tutorial:
-	get_tree().change_scene_to_file("res://Scenes/stage_loader.tscn")
+	get_tree().change_scene_to_file("res://Scenes/mode_select_screen.tscn")
 #	else:
 #		Utils.has_played_tutorial = true
 #		get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
-
 
 func _on_tutorial_pressed():
 	Utils.has_played_tutorial = true

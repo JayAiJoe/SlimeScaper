@@ -26,17 +26,7 @@ load_path = "res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b
 [node name="StageLoader" instance=ExtResource("1_x5fag")]
 is_main_menu = true
 
-[node name="Recipes" parent="." index="4"]
-offset_top = 70.0
-offset_bottom = 1150.0
-
-[node name="RecipeIndicator" parent="Recipes" index="0"]
-scale = Vector2(0.6, 0.6)
-
-[node name="RecipeIndicator2" parent="Recipes" index="1"]
-scale = Vector2(0.6, 0.6)
-
-[node name="Prompts" type="Control" parent="." index="6"]
+[node name="Prompts" type="Control" parent="." index="4"]
 z_index = 4096
 z_as_relative = false
 layout_mode = 3
@@ -303,6 +293,3 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("7_46274")
-
-[node name="round_start_timer" parent="." index="8"]
-wait_time = 1.0

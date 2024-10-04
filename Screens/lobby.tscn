@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dduc474l7lkj2"]
+
+[ext_resource type="Script" path="res://Screens/lobby.gd" id="1_pbns5"]
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_pbns5")

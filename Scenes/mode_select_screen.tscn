@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxug6hy2lnaln"]
+
+[ext_resource type="Script" path="res://Scenes/mode_select_screen.gd" id="1_d0ma8"]
+
+[node name="ModeSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d0ma8")
+
+[node name="Modes" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Local" type="CenterContainer" parent="Modes"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LocalButton" type="Button" parent="Modes/Local"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play Locally"
+
+[node name="Online" type="CenterContainer" parent="Modes"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OnlineButtons" type="VBoxContainer" parent="Modes/Online"]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="Modes/Online/OnlineButtons"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Host Lobby
+"
+
+[node name="Spacer" type="Control" parent="Modes/Online/OnlineButtons"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="Modes/Online/OnlineButtons"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Enter Code"
+
+[node name="JoinButton" type="Button" parent="Modes/Online/OnlineButtons"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Join Lobby"
+
+[connection signal="button_up" from="Modes/Local/LocalButton" to="." method="_on_local_button_button_up"]
+[connection signal="button_up" from="Modes/Online/OnlineButtons/HostButton" to="." method="_on_host_button_button_up"]
+[connection signal="button_up" from="Modes/Online/OnlineButtons/JoinButton" to="." method="_on_join_button_button_up"]

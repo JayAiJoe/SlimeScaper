@@ -1,29 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgchxlyd8a4y2"]
+[gd_scene load_steps=4 format=3 uid="uid://bgchxlyd8a4y2"]
 
 [ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
 [ext_resource type="PackedScene" uid="uid://bgmterw6bq5iq" path="res://Scenes/Map.tscn" id="2_oien2"]
-[ext_resource type="Texture2D" uid="uid://dtnn2fe247ddx" path="res://Assets/Background.png" id="2_t8rlh"]
 [ext_resource type="PackedScene" uid="uid://behco8lyoffkn" path="res://Scenes/player.tscn" id="3_1y5lv"]
-[ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_dkcvl"]
-[ext_resource type="PackedScene" uid="uid://2m3xx3wjvjw4" path="res://Scenes/recipe_indicator.tscn" id="5_8dcxp"]
-[ext_resource type="PackedScene" uid="uid://bdo8vi8f3apoo" path="res://Scenes/recipe_handler.tscn" id="6_w5r4q"]
 
 [node name="StageLoader" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_qk5nt")
-
-[node name="Camera" type="Camera2D" parent="."]
-z_index = 4092
-z_as_relative = false
-script = ExtResource("4_dkcvl")
-
-[node name="TextureRect" type="TextureRect" parent="Camera"]
-z_index = -2000
-z_as_relative = false
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("2_t8rlh")
 
 [node name="Grid" parent="." instance=ExtResource("2_oien2")]
 
@@ -40,48 +24,6 @@ player_color = "red"
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="Recipes" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -77.0
-offset_right = 1920.0
-offset_bottom = 1003.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RecipeIndicator" parent="Recipes" instance=ExtResource("5_8dcxp")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 800.0
-offset_bottom = 250.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="RecipeIndicator2" parent="Recipes" instance=ExtResource("5_8dcxp")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 1120.0
-offset_top = 0.0
-offset_right = 1920.0
-offset_bottom = 250.0
-grow_horizontal = 1
-grow_vertical = 1
-chomp_direction = -1
-
-[node name="RecipeHandler" parent="." instance=ExtResource("6_w5r4q")]
-
 [node name="WINCON" type="Label" parent="."]
 visible = false
 offset_left = 586.0
@@ -93,9 +35,3 @@ text = "First to complete 3 recipes wins!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
-
-[node name="round_start_timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="timeout" from="round_start_timer" to="." method="_on_round_start_timer_timeout"]

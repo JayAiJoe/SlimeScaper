@@ -3,6 +3,11 @@ extends Node
 enum TERRAIN {DIRT, GRASS, ROCK, WATER}
 enum SLIME {GRASS, WATER, ROCK, FIRE}
 
+var current_level_name := "garden1"
+
+func get_level_data() -> Dictionary:
+	return LEVEL_DATA[current_level_name]
+
 const LEVEL_DATA = {
 	"level_1" : {
 		"map" : [

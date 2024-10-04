@@ -1,6 +1,5 @@
 extends Node2D
 
-
 var recipe_list = []
 var recipe_nums = [2,1,1,1]
 
