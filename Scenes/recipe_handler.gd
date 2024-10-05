@@ -3,9 +3,9 @@ extends Node2D
 var recipe_list = []
 var recipe_nums = [2,1,1,1]
 
-func init_recipe_list(is_main_menu):
+func init_recipe_list(is_tutorial):
 	randomize()
-	if is_main_menu:
+	if is_tutorial:
 		for i in range(100):
 			for recipe in generate_unique_combinations(3, 1):
 				recipe_list.append(recipe)

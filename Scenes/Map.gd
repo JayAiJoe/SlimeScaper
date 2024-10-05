@@ -34,6 +34,7 @@ func generate_main_menu():
 
 func connect_starting_signals() -> void:
 	#$slime.landed.connect(change_top_level) #test function
+	Events.player_landed.connect(update_trails)
 	pass
 
 func add_new_tile(coordinates : Vector2, terrain : int = GameData.TERRAIN.DIRT) -> Tile:
@@ -78,7 +79,7 @@ func check_grid_size(new_tile_pos: Vector2):
 		var cam_pos = top_left + (bot_right-top_left)/2
 		var cam_zoom = map_scale*Vector2(1,1)
 		#print(cam_pos," ",cam_zoom)
-		Events.emit_signal("resize_camera", cam_pos, cam_zoom)
+		#Events.emit_signal("resize_camera", cam_pos, cam_zoom)
 
 func spawn_random_slime(absorbed_slime = null) -> void:
 	if absorbed_slime:

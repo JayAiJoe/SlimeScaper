@@ -24,9 +24,8 @@ corner_radius_bottom_left = 16
 load_path = "res://.godot/imported/Cauldron.png-ae1197160e32c17330ec992e1e98709b.ctex"
 
 [node name="StageLoader" instance=ExtResource("1_x5fag")]
-is_main_menu = true
 
-[node name="Prompts" type="Control" parent="." index="4"]
+[node name="Prompts" type="Control" parent="." index="3"]
 z_index = 4096
 z_as_relative = false
 layout_mode = 3

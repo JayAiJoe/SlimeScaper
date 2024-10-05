@@ -104,6 +104,17 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_nbti1")
 
+[node name="TUTORIAL" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+offset_left = 184.0
+offset_top = 305.0
+offset_right = 400.0
+offset_bottom = 521.0
+rotation = -0.461524
+size_flags_horizontal = 0
+texture_normal = ExtResource("6_vbjce")
+texture_hover = ExtResource("7_7vxmx")
+
 [node name="Play" type="TextureButton" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
@@ -114,17 +125,6 @@ offset_bottom = 565.0
 size_flags_horizontal = 0
 texture_normal = ExtResource("4_7d0ro")
 texture_hover = ExtResource("5_io2ux")
-
-[node name="TUTORIAL" type="TextureButton" parent="HBoxContainer"]
-layout_mode = 2
-offset_left = 188.0
-offset_top = 305.0
-offset_right = 404.0
-offset_bottom = 521.0
-rotation = -0.461524
-size_flags_horizontal = 0
-texture_normal = ExtResource("6_vbjce")
-texture_hover = ExtResource("7_7vxmx")
 
 [node name="Settings" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
@@ -207,8 +207,8 @@ libraries = {
 "": SubResource("AnimationLibrary_ok5hl")
 }
 
-[connection signal="pressed" from="HBoxContainer/Play" to="HBoxContainer" method="_on_play_pressed"]
 [connection signal="pressed" from="HBoxContainer/TUTORIAL" to="HBoxContainer" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="HBoxContainer/Play" to="HBoxContainer" method="_on_play_pressed"]
 [connection signal="pressed" from="HBoxContainer/Settings" to="HBoxContainer" method="_on_ewan_pressed"]
 [connection signal="pressed" from="HBoxContainer/Credits" to="HBoxContainer" method="_on_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/CreditsPanel/Back" to="HBoxContainer" method="_on_back_pressed"]

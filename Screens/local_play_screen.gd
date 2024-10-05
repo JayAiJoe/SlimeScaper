@@ -13,6 +13,8 @@ func _ready() -> void:
 	for i in range(len($StageLoader.cauldrons)):
 		$StageLoader.cauldrons[i].ingredient_placed.connect($Recipes.get_child(i).receive_ingredient)
 	
+	for i in range(len($PlayerContainer.get_children())):
+		$PlayerContainer.get_child(i).set_starting_position($StageLoader.player_start[i])
 	var idx = 0
 	for indicator in $Recipes.get_children():
 		indicator.recipe_requested.connect($RecipeHandler.handle_recipe_request)
@@ -30,5 +32,8 @@ func _on_round_start_timer_timeout():
 		$round_start_timer.start()
 
 func start_round():
-	$StageLoader.unpause_players()
-	
+	unpause_players()
+
+func unpause_players() -> void:
+	for player in $PlayerContainer.get_children():
+		player.paused = false

@@ -1,0 +1,295 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxudicfekd3bl"]
+
+[ext_resource type="Script" path="res://Screens/tutorial_screen.gd" id="1_1578o"]
+[ext_resource type="PackedScene" uid="uid://bgchxlyd8a4y2" path="res://Scenes/stage_loader.tscn" id="2_romca"]
+[ext_resource type="PackedScene" uid="uid://behco8lyoffkn" path="res://Scenes/player.tscn" id="3_nwsxo"]
+[ext_resource type="Script" path="res://Scenes/Camera.gd" id="4_fqe7k"]
+[ext_resource type="Texture2D" uid="uid://dtnn2fe247ddx" path="res://Assets/Background.png" id="5_j2yw2"]
+[ext_resource type="PackedScene" uid="uid://2m3xx3wjvjw4" path="res://Scenes/recipe_indicator.tscn" id="6_7dusr"]
+[ext_resource type="PackedScene" uid="uid://bdo8vi8f3apoo" path="res://Scenes/recipe_handler.tscn" id="7_ntbl8"]
+[ext_resource type="Texture2D" uid="uid://dsu3b5nbfgj0u" path="res://HUD/ready_timer2.png" id="8_bhfrp"]
+[ext_resource type="Texture2D" uid="uid://wnavk1anh5q0" path="res://Assets/Tutorial Screen.png" id="12_dhy7y"]
+[ext_resource type="Script" path="res://Scenes/ready_text.gd" id="13_g6fjg"]
+
+[node name="TutorialScreen" type="Node2D"]
+script = ExtResource("1_1578o")
+
+[node name="StageLoader" parent="." instance=ExtResource("2_romca")]
+is_tutorial = true
+
+[node name="PlayerContainer" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Blue" parent="PlayerContainer" instance=ExtResource("3_nwsxo")]
+
+[node name="Red" parent="PlayerContainer" instance=ExtResource("3_nwsxo")]
+player_color = "red"
+
+[node name="Camera" type="Camera2D" parent="."]
+z_index = 4092
+z_as_relative = false
+position = Vector2(960, 320)
+zoom = Vector2(0.95, 0.95)
+script = ExtResource("4_fqe7k")
+
+[node name="TextureRect" type="TextureRect" parent="Camera"]
+z_index = -2000
+z_as_relative = false
+offset_left = -1010.0
+offset_top = -569.0
+offset_right = 910.0
+offset_bottom = 511.0
+scale = Vector2(1.053, 1.053)
+texture = ExtResource("5_j2yw2")
+
+[node name="Recipes" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_right = 1920.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RecipeIndicator" parent="Recipes" instance=ExtResource("6_7dusr")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 800.0
+offset_bottom = 250.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="RecipeIndicator2" parent="Recipes" instance=ExtResource("6_7dusr")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1120.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 250.0
+grow_horizontal = 1
+grow_vertical = 1
+chomp_direction = -1
+
+[node name="RecipeHandler" parent="." instance=ExtResource("7_ntbl8")]
+
+[node name="Prompts" type="Control" parent="."]
+z_index = 4096
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Prompts"]
+z_index = -1000
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 704.0
+offset_top = -97.0
+offset_right = 1216.0
+offset_bottom = 415.0
+grow_horizontal = 2
+max_value = 3.0
+step = 0.001
+fill_mode = 6
+texture_progress = ExtResource("8_bhfrp")
+
+[node name="Blue_keys" type="Control" parent="Prompts"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Q" type="Label" parent="Prompts/Blue_keys"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 466.0
+offset_right = 354.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 30
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="W" type="Label" parent="Prompts/Blue_keys"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 419.0
+offset_right = 518.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 30
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="E" type="Label" parent="Prompts/Blue_keys"]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 469.0
+offset_right = 691.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 30
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="A" type="Label" parent="Prompts/Blue_keys"]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 573.0
+offset_right = 360.0
+offset_bottom = 713.0
+theme_override_font_sizes/font_size = 30
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="S" type="Label" parent="Prompts/Blue_keys"]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 622.0
+offset_right = 513.0
+offset_bottom = 762.0
+theme_override_font_sizes/font_size = 30
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="D" type="Label" parent="Prompts/Blue_keys"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 582.0
+offset_right = 682.0
+offset_bottom = 722.0
+theme_override_font_sizes/font_size = 30
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Red_keys" type="Control" parent="Prompts"]
+visible = false
+anchors_preset = 0
+offset_left = 987.0
+offset_top = -13.0
+offset_right = 1027.0
+offset_bottom = 27.0
+
+[node name="U" type="Label" parent="Prompts/Red_keys"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 487.0
+offset_right = 339.0
+offset_bottom = 627.0
+theme_override_font_sizes/font_size = 30
+text = "U"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="I" type="Label" parent="Prompts/Red_keys"]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 437.0
+offset_right = 488.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 30
+text = "I"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="O" type="Label" parent="Prompts/Red_keys"]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 486.0
+offset_right = 661.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 30
+text = "O"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="J" type="Label" parent="Prompts/Red_keys"]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 590.0
+offset_right = 338.0
+offset_bottom = 730.0
+theme_override_font_sizes/font_size = 30
+text = "J"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="K" type="Label" parent="Prompts/Red_keys"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 633.0
+offset_right = 491.0
+offset_bottom = 773.0
+theme_override_font_sizes/font_size = 30
+text = "K"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L" type="Label" parent="Prompts/Red_keys"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 581.0
+offset_right = 655.0
+offset_bottom = 721.0
+theme_override_font_sizes/font_size = 30
+text = "L"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tutorials" type="Control" parent="Prompts"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Tutorial" type="TextureRect" parent="Prompts/Tutorials"]
+layout_mode = 0
+offset_top = -315.0
+offset_right = 1920.0
+offset_bottom = 185.0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(960, 250)
+texture = ExtResource("12_dhy7y")
+expand_mode = 1
+
+[node name="ready_text" type="Label" parent="Prompts"]
+z_index = 1000
+layout_mode = 0
+offset_left = 752.0
+offset_top = 227.0
+offset_right = 1153.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "BACK TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("13_g6fjg")

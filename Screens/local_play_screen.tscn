@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://chre08rue8e1h"]
+[gd_scene load_steps=8 format=3 uid="uid://chre08rue8e1h"]
 
 [ext_resource type="Script" path="res://Screens/local_play_screen.gd" id="1_32sly"]
 [ext_resource type="PackedScene" uid="uid://bgchxlyd8a4y2" path="res://Scenes/stage_loader.tscn" id="1_kx1ns"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="2_avw6x"]
 [ext_resource type="Texture2D" uid="uid://dtnn2fe247ddx" path="res://Assets/Background.png" id="3_l4bpp"]
+[ext_resource type="PackedScene" uid="uid://behco8lyoffkn" path="res://Scenes/player.tscn" id="3_lba8f"]
 [ext_resource type="PackedScene" uid="uid://2m3xx3wjvjw4" path="res://Scenes/recipe_indicator.tscn" id="4_mtekd"]
 [ext_resource type="PackedScene" uid="uid://bdo8vi8f3apoo" path="res://Scenes/recipe_handler.tscn" id="5_2s7md"]
 
@@ -12,9 +13,20 @@ script = ExtResource("1_32sly")
 
 [node name="StageLoader" parent="." instance=ExtResource("1_kx1ns")]
 
+[node name="PlayerContainer" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Blue" parent="PlayerContainer" instance=ExtResource("3_lba8f")]
+
+[node name="Red" parent="PlayerContainer" instance=ExtResource("3_lba8f")]
+player_color = "red"
+
 [node name="Camera" type="Camera2D" parent="."]
 z_index = 4092
 z_as_relative = false
+position = Vector2(960, 320)
+zoom = Vector2(0.906, 0.906)
 script = ExtResource("2_avw6x")
 
 [node name="TextureRect" type="TextureRect" parent="Camera"]

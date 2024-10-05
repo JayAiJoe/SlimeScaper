@@ -13,7 +13,7 @@ func _on_play_pressed():
 
 func _on_tutorial_pressed():
 	Utils.has_played_tutorial = true
-	get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
+	get_tree().change_scene_to_file("res://Screens/tutorial_screen.tscn")
 
 func _on_ewan_pressed():
 	HUD.open_settings()

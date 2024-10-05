@@ -130,10 +130,6 @@ func cascading_remove_ingredients() -> void:
 	await get_tree().create_timer(0.2).timeout
 	reset_recipe()
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		complete_recipe()
-
 func complete_recipe() -> void:
 	for pip in recipe_counter.get_children():
 		if pip.modulate == Color.GOLD:
@@ -151,4 +147,3 @@ func reset_pips() -> void:
 
 func set_pips_visibility(visibility : bool) -> void:
 	$RecipeCounter.visible = visibility
-

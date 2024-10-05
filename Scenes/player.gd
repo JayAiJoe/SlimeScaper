@@ -20,9 +20,6 @@ var score = 0
 
 @onready var sprite : Sprite2D = $Sprite2D
 
-
-signal landed(color, coords)
-
 func _ready():
 	set_z_index(1000)
 	Utils.player = self
@@ -34,7 +31,7 @@ func set_starting_position(pos : Vector2) -> void:
 	current_coord = pos
 	Utils.map.grid[pos].entity = self
 	set_position(Utils.coordinates_to_global(current_coord))
-	landed.emit(player_color, current_coord)
+	Events.player_landed.emit(player_color, current_coord)
 
 func _input(event):
 	if not paused:
@@ -93,11 +90,14 @@ func move_dir(dir):
 	set_animating(true)
 	tween.tween_property(self, "position", Utils.map.grid[current_coord].get_top_pos(), MOVE_TIME)
 	#velocity_y = JUMP_VELOCITY
-	tween.tween_callback(emit_signal.bind("landed", player_color, current_coord))
+	tween.tween_callback(landed.bind(player_color, current_coord))
 	if Utils.map.grid[current_coord].tile_type == GameData.TERRAIN.GRASS:
 		SoundManager.play_sound("grass_step", player_color)
 	else:
 		SoundManager.play_sound("tile_step", player_color)
+
+func landed(color, coord) -> void:
+	Events.player_landed.emit(color, coord)
 
 func set_animating(val : bool) -> void:
 	animating = val

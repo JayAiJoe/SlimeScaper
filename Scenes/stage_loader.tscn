@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgchxlyd8a4y2"]
+[gd_scene load_steps=3 format=3 uid="uid://bgchxlyd8a4y2"]
 
 [ext_resource type="Script" path="res://Scenes/stage_loader.gd" id="1_qk5nt"]
 [ext_resource type="PackedScene" uid="uid://bgmterw6bq5iq" path="res://Scenes/Map.tscn" id="2_oien2"]
-[ext_resource type="PackedScene" uid="uid://behco8lyoffkn" path="res://Scenes/player.tscn" id="3_1y5lv"]
 
 [node name="StageLoader" type="Node2D"]
 z_as_relative = false
@@ -10,15 +9,6 @@ y_sort_enabled = true
 script = ExtResource("1_qk5nt")
 
 [node name="Grid" parent="." instance=ExtResource("2_oien2")]
-
-[node name="PlayerContainer" type="Node2D" parent="."]
-z_as_relative = false
-y_sort_enabled = true
-
-[node name="Blue" parent="PlayerContainer" instance=ExtResource("3_1y5lv")]
-
-[node name="Red" parent="PlayerContainer" instance=ExtResource("3_1y5lv")]
-player_color = "red"
 
 [node name="SlimeContainer" type="Node2D" parent="."]
 z_as_relative = false
