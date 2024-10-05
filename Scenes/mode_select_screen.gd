@@ -11,11 +11,9 @@ func _on_local_button_button_up() -> void:
 	
 func _on_host_button_button_up() -> void:
 	MultiplayerManager.host_server()
-	StageData.current_level_name = "main_menu"
-	get_tree().change_scene_to_file("res://Scenes/lobby.tscn")
+	get_tree().change_scene_to_file("res://Screens/lobby.tscn")
 	
 
 func _on_join_button_button_up() -> void:
 	MultiplayerManager.join_server()
-	StageData.current_level_name = "main_menu"
-	get_tree().change_scene_to_file("res://Scenes/lobby.tscn")
+	get_tree().change_scene_to_file("res://Screens/lobby.tscn")

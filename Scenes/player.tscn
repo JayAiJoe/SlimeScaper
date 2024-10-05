@@ -210,6 +210,7 @@ libraries = {
 }
 
 [node name="KEYS" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -486.0
@@ -231,10 +232,10 @@ clip_text = true
 
 [node name="N" type="Label" parent="KEYS"]
 layout_mode = 0
-offset_left = 403.0
-offset_top = 416.0
-offset_right = 482.0
-offset_bottom = 556.0
+offset_left = 439.0
+offset_top = 419.0
+offset_right = 518.0
+offset_bottom = 559.0
 theme_override_font_sizes/font_size = 30
 text = "W"
 horizontal_alignment = 1
