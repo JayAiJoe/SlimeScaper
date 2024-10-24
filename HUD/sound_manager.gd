@@ -61,5 +61,3 @@ func _on_bg_music_finished():
 func bg_start():
 	bg_player.volume_db = -50
 	bg_player.play()
-
-
