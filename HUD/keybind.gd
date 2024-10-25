@@ -1,8 +1,12 @@
 extends TextureButton
 
 @export var action_name : String
+
+signal listening_changed(key:TextureButton, listening:bool)
+
 var is_listening := false
 var current_key : InputEventKey
+
 
 func _ready() -> void:
 	set_listening(false)
@@ -19,6 +23,7 @@ func set_listening(val:bool) -> void:
 	is_listening = val
 	set_process_input(val)
 	$Outline.set_visible(val)
+	listening_changed.emit(self, is_listening)
 
 func _input(event) -> void:
 	if event is InputEventKey and event.is_pressed:
@@ -28,7 +33,8 @@ func _input(event) -> void:
 func change_action_input(input_key : InputEventKey) -> void:
 	if action_name == "":
 		return
+	current_key = input_key
 	InputMap.action_erase_events(action_name)
-	InputMap.action_add_event(action_name, input_key)
-	$KeyLabel.set_text(OS.get_keycode_string(input_key.keycode))
+	InputMap.action_add_event(action_name, current_key)
+	$KeyLabel.set_text(OS.get_keycode_string(current_key.keycode))
 	set_listening(false)
