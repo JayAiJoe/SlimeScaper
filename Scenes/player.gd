@@ -44,14 +44,6 @@ func _process(delta):
 	if not animating and move_queue.size() > 0:
 		move_dir(move_queue.pop_front())
 
-func _physics_process(delta):
-	pass
-#	if velocity_y != 0:
-#		velocity_y += + gravity * delta
-#		sprite.offset.y = min(0, sprite.offset.y + velocity_y * delta)
-#		if sprite.offset.y == 0:
-#			velocity_y = 0
-
 func show_keys():
 	for key in GameData.KEY_BINDS[player_color]:
 		$KEYS.get_node(key).set_text(GameData.KEY_BINDS[player_color][key])

@@ -1,8 +1,5 @@
 extends Panel
 
-
-
-
 func setup(type:String)->void:
 	if type == "pause":
 		$MarginContainer/Settings/Label.set_text("Paused")
@@ -19,7 +16,7 @@ func _on_sound_toggle_toggled(button_pressed):
 	SoundManager.allow_sound = not SoundManager.allow_sound
 
 func _on_menu_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Screens/main_menu.tscn")
 	get_parent().paused = false
 	hide()
 
@@ -39,5 +36,3 @@ func _on_sound_slider_drag_ended(value_changed):
 	else:
 		SoundManager.allow_sound = true
 	SoundManager.play_sound("ping")
-
-

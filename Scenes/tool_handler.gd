@@ -20,7 +20,6 @@ func _input(event):
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				switch_tool(-1)
 
-
 func switch_tool(delta : int = 1) -> void:
 	current_index += delta
 	if current_index >= tools.size():

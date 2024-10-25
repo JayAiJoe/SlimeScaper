@@ -40,10 +40,6 @@ func play_sound(sound : String, color : String = "") -> void:
 	await current_player.finished
 	current_player.pitch_scale = 1.0
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		play_sound("ping")
-
 func set_music_level(sound_level):
 	bg_player.volume_db = sound_level
 	if sound_level == -40:

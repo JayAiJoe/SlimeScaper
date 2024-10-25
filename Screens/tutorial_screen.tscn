@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxudicfekd3bl"]
+[gd_scene load_steps=13 format=3 uid="uid://dxudicfekd3bl"]
 
 [ext_resource type="Script" path="res://Screens/tutorial_screen.gd" id="1_1578o"]
 [ext_resource type="PackedScene" uid="uid://bgchxlyd8a4y2" path="res://Scenes/stage_loader.tscn" id="2_romca"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://2m3xx3wjvjw4" path="res://Scenes/recipe_indicator.tscn" id="6_7dusr"]
 [ext_resource type="PackedScene" uid="uid://bdo8vi8f3apoo" path="res://Scenes/recipe_handler.tscn" id="7_ntbl8"]
 [ext_resource type="Texture2D" uid="uid://dsu3b5nbfgj0u" path="res://HUD/ready_timer2.png" id="8_bhfrp"]
+[ext_resource type="Script" path="res://HUD/keybind_manager.gd" id="11_ngb0u"]
+[ext_resource type="PackedScene" uid="uid://dsnw5h00i7lfd" path="res://HUD/keybind.tscn" id="11_yapdk"]
 [ext_resource type="Texture2D" uid="uid://wnavk1anh5q0" path="res://Assets/Tutorial Screen.png" id="12_dhy7y"]
 [ext_resource type="Script" path="res://Scenes/ready_text.gd" id="13_g6fjg"]
 
@@ -117,13 +119,15 @@ offset_bottom = 40.0
 
 [node name="Tutorial" type="TextureRect" parent="Prompts/Tutorials"]
 layout_mode = 0
-offset_top = -315.0
-offset_right = 1920.0
-offset_bottom = 185.0
+offset_left = 243.0
+offset_top = -326.0
+offset_right = 1469.0
+offset_bottom = 82.0
 scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(960, 250)
 texture = ExtResource("12_dhy7y")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="ready_text" type="Label" parent="Prompts"]
 z_index = 1000
@@ -141,3 +145,108 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("13_g6fjg")
+
+[node name="Keybinds" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_ngb0u")
+
+[node name="blue" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = -39.0
+offset_top = 740.0
+offset_right = 61.0
+offset_bottom = 840.0
+action_name = "blue_SW"
+
+[node name="blue2" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 771.0
+offset_right = 150.0
+offset_bottom = 871.0
+action_name = "blue_S"
+
+[node name="blue3" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 741.0
+offset_right = 247.0
+offset_bottom = 841.0
+action_name = "blue_SE"
+
+[node name="blue4" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = -38.0
+offset_top = 651.0
+offset_right = 62.0
+offset_bottom = 751.0
+action_name = "blue_NW"
+
+[node name="blue5" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 611.0
+offset_right = 148.0
+offset_bottom = 711.0
+action_name = "blue_N"
+
+[node name="blue6" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 644.0
+offset_right = 247.0
+offset_bottom = 744.0
+
+[node name="red" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 1672.0
+offset_top = 736.0
+offset_right = 1772.0
+offset_bottom = 836.0
+action_name = "red_SW"
+
+[node name="red2" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 1761.0
+offset_top = 767.0
+offset_right = 1861.0
+offset_bottom = 867.0
+action_name = "red_S"
+
+[node name="red3" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 1858.0
+offset_top = 737.0
+offset_right = 1958.0
+offset_bottom = 837.0
+action_name = "red_SE"
+
+[node name="red4" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 1673.0
+offset_top = 647.0
+offset_right = 1773.0
+offset_bottom = 747.0
+action_name = "red_NW"
+
+[node name="red5" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 1759.0
+offset_top = 607.0
+offset_right = 1859.0
+offset_bottom = 707.0
+action_name = "red_N"
+
+[node name="red6" parent="Keybinds" instance=ExtResource("11_yapdk")]
+layout_mode = 0
+offset_left = 1858.0
+offset_top = 640.0
+offset_right = 1958.0
+offset_bottom = 740.0
+action_name = "red_NE"
