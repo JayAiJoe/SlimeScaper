@@ -5,6 +5,7 @@ extends TextureButton
 signal listening_changed(key:TextureButton, listening:bool)
 signal request_action_change(key:TextureButton, new_action:InputEventKey)
 
+var color_tween : Tween
 var is_listening := false
 var displayed_key := ""
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 		var keycode = DisplayServer.keyboard_get_keycode_from_physical(key.physical_keycode)
 		displayed_key = OS.get_keycode_string(keycode)
 		$KeyLabel.set_text(displayed_key)
+	$RedOutline.hide()
 	
 func _on_button_up() -> void:
 	set_listening(not is_listening)
@@ -23,7 +25,7 @@ func _on_button_up() -> void:
 func set_listening(val:bool) -> void:
 	is_listening = val
 	set_process_input(val)
-	$Outline.set_visible(val)
+	$YellowOutline.set_visible(val)
 	listening_changed.emit(self, is_listening)
 
 func _input(event) -> void:
@@ -40,3 +42,13 @@ func change_action_input(input_key : InputEventKey) -> void:
 	$KeyLabel.set_text(displayed_key)
 	
 	set_listening(false)
+
+func flash_red() -> void:
+	if color_tween and color_tween.is_running():
+		return
+	$RedOutline.show()
+	var og_color = $RedOutline.modulate
+	color_tween = get_tree().create_tween()
+	color_tween.tween_property($RedOutline, "modulate", Color.RED, 0.1)
+	color_tween.tween_property($RedOutline, "modulate", og_color, 0.1)
+	color_tween.tween_callback($RedOutline.hide)

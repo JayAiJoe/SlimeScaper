@@ -12,6 +12,7 @@ func _ready() -> void:
 func update_action(key, action) -> void:
 	var new_string = OS.get_keycode_string(action.keycode)
 	if new_string in bound_keys:
+		bound_keys[new_string].flash_red()
 		return
 	var old_string = bound_keys.find_key(key)
 	bound_keys.erase(old_string)
